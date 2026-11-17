@@ -6,63 +6,55 @@ import { miniToPlayableWorld } from "../game/types";
 import { drawPlayer } from "../game/sprites";
 import { btn } from "./Overlays";
 
-// Posiciones en el mapa general (Overworld: 6 grandes bloques)
-const OVERWORLD_POS: [number, number][] = [
-  [12, 70],
-  [27, 34],
-  [43, 68],
-  [58, 32],
-  [73, 66],
-  [88, 36],
-];
-
-// Generador de ruta sinuosa estilo Super Mario World para N temas + 1 Gran Jefe
+// Generador de ruta serpenteante estilo Super Mario World para N temas + 1 Gran Jefe
+// Las coordenadas se mantienen estrictamente entre y=16% e y=68% para no solaparse
+// con el HUD superior (0-12%) ni con el cartel de acción inferior (78-100%).
 function getSubworldPositions(nTemas: number): [number, number][] {
-  const total = nTemas + 1; // temas + jefe
+  const total = nTemas + 1; // temas oficiales + gran jefe
   const coords: [number, number][] = [];
 
   if (total <= 7) {
-    // 1 hilera ondulante
+    // 1 fila ondulada para bloques con 6 temas (total 7 nodos)
     for (let i = 0; i < total; i++) {
-      const x = 12 + i * (76 / (total - 1));
-      const y = i === total - 1 ? 50 : i % 2 === 0 ? 66 : 34;
+      const x = 10 + i * (80 / (total - 1));
+      const y = 42 + (i % 2 === 0 ? -12 : 12);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
   } else if (total <= 10) {
-    // 2 hileras serpenteantes
+    // 2 filas serpenteantes para bloques de 8 temas (total 9 nodos)
     const r1 = Math.ceil(total / 2);
     const r2 = total - r1;
     for (let i = 0; i < r1; i++) {
-      const x = 12 + i * (76 / (r1 - 1));
-      const y = 32 + (i % 2 === 1 ? 8 : -8);
+      const x = 10 + i * (80 / (r1 - 1));
+      const y = 26 + (i % 2 === 0 ? -6 : 6);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
     for (let i = 0; i < r2; i++) {
-      const x = 88 - i * (76 / (r2 - 1));
-      const y = 72 + (i % 2 === 1 ? 8 : -8);
+      const x = 90 - i * (80 / (r2 - 1));
+      const y = 56 + (i % 2 === 0 ? -6 : 6);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
   } else {
-    // 3 hileras serpenteantes clásicas (Super Mario World)
+    // 3 filas serpenteantes clásicas (Super Mario World) para 10, 11 y 13 temas (11, 12, 14 nodos)
     const r1 = Math.ceil((total + 2) / 3);
     const r2 = Math.ceil((total - r1 + 1) / 2);
     const r3 = total - r1 - r2;
-    // Hilera 1: izq a der
+    // Fila 1: izquierda a derecha
     for (let i = 0; i < r1; i++) {
-      const x = 12 + i * (76 / (r1 - 1));
-      const y = 24 + (i % 2 === 1 ? 6 : -6);
+      const x = 10 + i * (80 / (r1 - 1));
+      const y = 18 + (i % 2 === 0 ? -4 : 4);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
-    // Hilera 2: der a izq
+    // Fila 2: derecha a izquierda
     for (let i = 0; i < r2; i++) {
-      const x = 88 - i * (76 / (r2 - 1));
-      const y = 50 + (i % 2 === 1 ? 6 : -6);
+      const x = 90 - i * (80 / (r2 - 1));
+      const y = 42 + (i % 2 === 0 ? -4 : 4);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
-    // Hilera 3: izq a der
+    // Fila 3: izquierda a derecha
     for (let i = 0; i < r3; i++) {
-      const x = 12 + i * (76 / (r3 - 1));
-      const y = 78 + (i % 2 === 1 ? 6 : -6);
+      const x = 10 + i * (80 / (r3 - 1));
+      const y = 64 + (i % 2 === 0 ? -4 : 4);
       coords.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
     }
   }
@@ -91,7 +83,7 @@ function NoaMapSprite() {
       ref={ref}
       width={48}
       height={64}
-      className="[image-rendering:pixelated] w-7 h-9 sm:w-9 sm:h-12 drop-shadow-[0_4px_4px_rgba(0,0,0,0.6)]"
+      className="[image-rendering:pixelated] w-7 h-9 sm:w-9 sm:h-12 drop-shadow-[0_4px_4px_rgba(0,0,0,0.7)]"
     />
   );
 }
@@ -99,7 +91,6 @@ function NoaMapSprite() {
 export default function WorldMap({
   progress,
   initialWorld,
-  initialView = "overworld",
   initialMini = 0,
   onPlay,
   onReview,
@@ -117,7 +108,6 @@ export default function WorldMap({
   onStudyMode: (v: boolean) => void;
   onReset: () => void;
 }) {
-  const [view, setView] = useState<"overworld" | "subworld">(initialView);
   const [worldIdx, setWorldIdx] = useState(initialWorld);
   const [miniIdx, setMiniIdx] = useState(initialMini);
 
@@ -156,15 +146,6 @@ export default function WorldMap({
     : undefined;
 
   const handlePlayCurrent = () => {
-    if (view === "overworld") {
-      // Si estamos en el mapa general y pulsamos entrar, entramos al submapa de temas
-      if (isBlockOpen(worldIdx)) {
-        setView("subworld");
-        setMiniIdx(Math.min(completedTemasInBlock, w.miniWorlds.length - 1));
-      }
-      return;
-    }
-
     if (!isMiniOpen(miniIdx)) return;
 
     if (isBossSelected) {
@@ -178,31 +159,16 @@ export default function WorldMap({
   // Soporte de navegación por teclado estilo Super Mario (Flechas izq/der y Enter para entrar)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (view === "subworld") {
-        const totalNodes = w.miniWorlds.length + 1; // temas + jefe
-        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-          e.preventDefault();
-          setMiniIdx((prev) => Math.min(totalNodes - 1, prev + 1));
-        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-          e.preventDefault();
-          setMiniIdx((prev) => Math.max(0, prev - 1));
-        } else if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handlePlayCurrent();
-        } else if (e.key === "Escape") {
-          setView("overworld");
-        }
-      } else {
-        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-          e.preventDefault();
-          setWorldIdx((prev) => Math.min(WORLDS.length - 1, prev + 1));
-        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-          e.preventDefault();
-          setWorldIdx((prev) => Math.max(0, prev - 1));
-        } else if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handlePlayCurrent();
-        }
+      const totalNodes = w.miniWorlds.length + 1; // temas + jefe
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        setMiniIdx((prev) => Math.min(totalNodes - 1, prev + 1));
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        setMiniIdx((prev) => Math.max(0, prev - 1));
+      } else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handlePlayCurrent();
       }
     };
     window.addEventListener("keydown", onKey);
@@ -215,20 +181,18 @@ export default function WorldMap({
         {/* Barra superior de estado / HUD */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-2 bg-[#161638]/95 backdrop-blur border-3 border-black p-2 sm:p-2.5 shadow-[3px_3px_0_#000]">
           <div className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl">{view === "subworld" ? w.emoji : "🗺️"}</span>
+            <span className="text-xl sm:text-2xl">{w.emoji}</span>
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-pixel text-[11px] sm:text-sm text-[#ffd84d]">
-                  {view === "subworld" ? `${w.bloque}: ${w.name.toUpperCase()}` : "MAPA DE BLOQUES (OPOSICIONES A2 GACE)"}
+                  {w.bloque}: {w.name.toUpperCase()}
                 </h2>
-                {view === "subworld" && (
-                  <span className="text-[9px] font-pixel bg-[#ffd84d] text-black px-1.5 py-0.5 rounded font-bold">
-                    {w.miniWorlds.length} TEMAS BOE
-                  </span>
-                )}
+                <span className="text-[9px] font-pixel bg-[#ffd84d] text-black px-1.5 py-0.5 rounded font-bold">
+                  {w.miniWorlds.length} TEMAS OFICIALES BOE
+                </span>
               </div>
               <p className="text-[10px] sm:text-xs opacity-75 hidden sm:block truncate max-w-md">
-                {view === "subworld" ? w.title : "Selecciona un bloque para recorrer todos sus temas oficiales"}
+                {w.title}
               </p>
             </div>
           </div>
@@ -240,25 +204,15 @@ export default function WorldMap({
             <button className={`${btn} !py-1.5 !px-2.5 !text-[9px] sm:!text-[10px]`} onClick={onReview}>
               📝 Repaso {progress.wrong.length > 0 && `(${progress.wrong.length})`}
             </button>
-            {view === "subworld" ? (
-              <button
-                className={`${btn} !py-1.5 !px-2.5 !bg-amber-400 !text-black !text-[9px] sm:!text-[10px] hover:!bg-amber-300`}
-                onClick={() => setView("overworld")}
-              >
-                ◀ Todos los Bloques
-              </button>
-            ) : (
-              <button className={`${btn} !py-1.5 !px-2.5 !bg-white !text-black !text-[9px] sm:!text-[10px]`} onClick={onTitle}>
-                Inicio
-              </button>
-            )}
+            <button className={`${btn} !py-1.5 !px-2.5 !bg-white !text-black !text-[9px] sm:!text-[10px]`} onClick={onTitle}>
+              Inicio
+            </button>
           </div>
         </div>
 
-        {/* Pestañas rápidas de mundos */}
-        <div className="flex items-center gap-1 mb-2 overflow-x-auto pb-1 scrollbar-none">
+        {/* Pestañas grandes y directas de los 6 Mundos / Bloques del Temario */}
+        <div className="flex items-center gap-1.5 mb-2 overflow-x-auto pb-1.5 scrollbar-none">
           {WORLDS.map((item, idx) => {
-            const open = isBlockOpen(idx);
             const isCur = worldIdx === idx;
             const completedCount = item.miniWorlds.filter((mw) => progress.results[mw.id]?.stars > 0).length;
             return (
@@ -268,22 +222,21 @@ export default function WorldMap({
                   setWorldIdx(idx);
                   setMiniIdx(0);
                 }}
-                className={`shrink-0 font-pixel text-[8px] sm:text-[10px] px-2 py-1.5 border-2 border-black transition-transform cursor-pointer shadow-[2px_2px_0_#000] flex items-center gap-1 ${
-                  isCur ? "scale-105 ring-2 ring-white text-white font-bold" : "opacity-75 hover:opacity-100"
+                className={`shrink-0 font-pixel text-[9px] sm:text-[11px] px-2.5 py-1.5 border-2 border-black transition-all cursor-pointer shadow-[2px_2px_0_#000] flex items-center gap-1.5 rounded-sm ${
+                  isCur
+                    ? "scale-105 ring-2 ring-[#ffd84d] text-white font-bold brightness-110 shadow-[0_0_10px_rgba(255,216,77,0.5)]"
+                    : "opacity-80 hover:opacity-100 hover:scale-102"
                 }`}
                 style={{
-                  background: isCur ? item.color : open ? "#202048" : "#4a4f5c",
-                  color: isCur ? "#fff" : "#eee",
+                  background: isCur ? item.color : "#202048",
+                  color: "#fff",
                 }}
               >
-                <span>{item.emoji}</span>
+                <span className="text-sm">{item.emoji}</span>
                 <span>{item.bloque}</span>
-                {open && (
-                  <span className="text-[7px] sm:text-[8px] opacity-80">
-                    ({completedCount}/{item.miniWorlds.length})
-                  </span>
-                )}
-                {!open && <span>🔒</span>}
+                <span className="text-[8px] sm:text-[9px] bg-black/60 px-1 py-0.5 rounded text-[#ffd84d]">
+                  {completedCount}/{item.miniWorlds.length}
+                </span>
               </button>
             );
           })}
@@ -292,357 +245,242 @@ export default function WorldMap({
         {/* ========================================================================= */}
         {/* ================= MAPA PRINCIPAL ESTILO SUPER MARIO WORLD ================= */}
         {/* ========================================================================= */}
-        <div className="relative w-full aspect-[16/9] border-4 border-black bg-[#101026] shadow-[6px_6px_0_#000] overflow-hidden select-none">
-          {/* Fondo del mapa temático */}
-          {view === "overworld" ? (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#7fd0ff] via-[#a3e5ff] to-[#5dbb63]">
-              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-[#469e4c] border-t-4 border-[#2f6e33]" />
-              {/* Nubes pixeladas flotantes */}
-              <div className="absolute top-4 left-[8%] w-20 h-6 bg-white/80 rounded-full" />
-              <div className="absolute top-10 left-[62%] w-28 h-7 bg-white/80 rounded-full" />
-            </div>
-          ) : (
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  w.theme === "estado"
-                    ? "radial-gradient(circle at 50% 50%, #4a1515 0%, #200808 100%)"
-                    : w.theme === "ue"
-                    ? "radial-gradient(circle at 50% 50%, #102a5c 0%, #061026 100%)"
-                    : w.theme === "politicas"
-                    ? "radial-gradient(circle at 50% 50%, #0b3d2e 0%, #041a13 100%)"
-                    : w.theme === "derecho"
-                    ? "radial-gradient(circle at 50% 50%, #422006 0%, #1c0d02 100%)"
-                    : w.theme === "rrhh"
-                    ? "radial-gradient(circle at 50% 50%, #31134a 0%, #150622 100%)"
-                    : "radial-gradient(circle at 50% 50%, #3d2f07 0%, #191302 100%)",
-              }}
-            >
-              {/* Baldosas/rejilla retro del suelo */}
-              <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px]" />
-              <div className="absolute inset-x-0 bottom-0 h-1/6 bg-black/40 border-t-2 border-white/20" />
-            </div>
-          )}
+        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[440px] sm:min-h-[500px] border-4 border-black bg-[#101026] shadow-[6px_6px_0_#000] overflow-hidden select-none">
+          {/* Fondo retro temático según el bloque */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                w.theme === "estado"
+                  ? "radial-gradient(circle at 50% 50%, #4a1515 0%, #200808 100%)"
+                  : w.theme === "ue"
+                  ? "radial-gradient(circle at 50% 50%, #102a5c 0%, #061026 100%)"
+                  : w.theme === "politicas"
+                  ? "radial-gradient(circle at 50% 50%, #0b3d2e 0%, #041a13 100%)"
+                  : w.theme === "derecho"
+                  ? "radial-gradient(circle at 50% 50%, #422006 0%, #1c0d02 100%)"
+                  : w.theme === "rrhh"
+                  ? "radial-gradient(circle at 50% 50%, #31134a 0%, #150622 100%)"
+                  : "radial-gradient(circle at 50% 50%, #3d2f07 0%, #191302 100%)",
+            }}
+          >
+            {/* Baldosas/rejilla retro del suelo */}
+            <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px]" />
+            <div className="absolute inset-x-0 bottom-0 h-1/6 bg-black/40 border-t-2 border-white/20" />
 
-          {/* Senda / Carretera que conecta los niveles */}
+            {/* Elementos decorativos temáticos */}
+            <div className="absolute top-3 left-4 opacity-25 font-pixel text-4xl sm:text-6xl select-none pointer-events-none">
+              {w.emoji}
+            </div>
+            <div className="absolute top-3 right-4 opacity-20 font-pixel text-3xl sm:text-5xl select-none pointer-events-none">
+              {w.theme === "estado" && "🏛️ 📜 ⚖️"}
+              {w.theme === "ue" && "⭐ 🇪🇺 🌍"}
+              {w.theme === "politicas" && "📊 🌿 💡"}
+              {w.theme === "derecho" && "⚖️ 📑 🏛️"}
+              {w.theme === "rrhh" && "👥 💼 🏢"}
+              {w.theme === "hacienda" && "💰 🏦 📈"}
+            </div>
+          </div>
+
+          {/* Senda / Carretera conectando todos los mini-mundos */}
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none">
-            {view === "overworld" ? (
-              <>
-                <polyline
-                  points={OVERWORLD_POS.map(([x, y]) => `${x},${y}`).join(" ")}
-                  fill="none"
-                  stroke="#8a5a2b"
-                  strokeWidth="3.2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  opacity="0.6"
-                />
-                <polyline
-                  points={OVERWORLD_POS.map(([x, y]) => `${x},${y}`).join(" ")}
-                  fill="none"
-                  stroke="#fff3c4"
-                  strokeWidth="1.2"
-                  strokeDasharray="2 2"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                />
-              </>
-            ) : (
-              <>
-                <polyline
-                  points={subworldPositions.map(([x, y]) => `${x},${y}`).join(" ")}
-                  fill="none"
-                  stroke={w.color}
-                  strokeWidth="3.6"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  opacity="0.8"
-                />
-                <polyline
-                  points={subworldPositions.map(([x, y]) => `${x},${y}`).join(" ")}
-                  fill="none"
-                  stroke="#ffd84d"
-                  strokeWidth="1.4"
-                  strokeDasharray="2.5 2.5"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                />
-              </>
-            )}
+            <polyline
+              points={subworldPositions.map(([x, y]) => `${x},${y}`).join(" ")}
+              fill="none"
+              stroke={w.color}
+              strokeWidth="4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
+            <polyline
+              points={subworldPositions.map(([x, y]) => `${x},${y}`).join(" ")}
+              fill="none"
+              stroke="#ffd84d"
+              strokeWidth="1.8"
+              strokeDasharray="2.5 2.5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
           </svg>
 
-          {/* ================= VISTA OVERWORLD: 6 BLOQUES ================= */}
-          {view === "overworld" &&
-            WORLDS.map((wd, i) => {
-              const open = isBlockOpen(i);
-              const isSel = worldIdx === i;
-              const bCount = wd.miniWorlds.filter((mw) => progress.results[mw.id]?.stars > 0).length;
-              return (
+          {/* ================= NODOS DE LOS TEMAS OFICIALES (MINI-MUNDOS) ================= */}
+          {w.miniWorlds.map((mw, i) => {
+            const open = isMiniOpen(i);
+            const isSel = miniIdx === i;
+            const res = progress.results[mw.id];
+            const pos = subworldPositions[i] || [10, 50];
+
+            return (
+              <div
+                key={mw.id}
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-10"
+                style={{ left: `${pos[0]}%`, top: `${pos[1]}%` }}
+                onClick={() => {
+                  if (isSel) {
+                    handlePlayCurrent();
+                  } else {
+                    setMiniIdx(i);
+                  }
+                }}
+              >
+                {/* Noa encima del nivel seleccionado */}
+                {isSel && (
+                  <div className="absolute -top-9 sm:-top-12 pointer-events-none animate-bounce">
+                    <NoaMapSprite />
+                  </div>
+                )}
+
                 <div
-                  key={wd.id}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group"
-                  style={{ left: `${OVERWORLD_POS[i][0]}%`, top: `${OVERWORLD_POS[i][1]}%` }}
-                  onClick={() => {
-                    if (isSel) {
-                      handlePlayCurrent();
-                    } else {
-                      setWorldIdx(i);
-                    }
-                  }}
+                  className={`relative w-9 h-9 sm:w-13 sm:h-13 rounded-full border-2 sm:border-3 border-black text-sm sm:text-xl flex items-center justify-center shadow-[3px_3px_0_#000] transition-transform ${
+                    isSel ? "scale-125 ring-4 ring-[#ffd84d] animate-pulse" : "group-hover:scale-110"
+                  }`}
+                  style={{ background: open ? mw.color : "#4b5563" }}
                 >
-                  {/* Noa encima del nodo seleccionado */}
-                  {isSel && (
-                    <div className="absolute -top-9 sm:-top-12 pointer-events-none animate-bounce">
-                      <NoaMapSprite />
-                    </div>
-                  )}
-
-                  <div
-                    className={`relative w-11 h-11 sm:w-16 sm:h-16 rounded-full border-3 sm:border-4 border-black text-xl sm:text-3xl flex items-center justify-center shadow-[3px_3px_0_#000] transition-transform ${
-                      isSel ? "scale-110 ring-4 ring-white animate-pulse" : "group-hover:scale-105"
-                    }`}
-                    style={{ background: open ? wd.color : "#6b7280" }}
-                  >
-                    {open ? wd.emoji : "🔒"}
-                    <span className="absolute -top-2 -left-2 w-5 h-5 sm:w-6 sm:h-6 bg-white text-black border-2 border-black rounded-full font-pixel text-[8px] sm:text-[10px] flex items-center justify-center font-bold">
-                      {wd.num}
-                    </span>
-                  </div>
-
-                  <span className="mt-1 font-pixel text-[7px] sm:text-[9px] bg-black/85 text-white px-1.5 py-0.5 text-center max-w-[80px] sm:max-w-[120px] leading-tight border border-white/20">
-                    {wd.name}
-                  </span>
-                  <span className="text-[8px] sm:text-[10px] font-pixel text-[#ffd84d] [text-shadow:1px_1px_0_#000]">
-                    {open ? `${bCount}/${wd.miniWorlds.length} temas` : "Bloqueado"}
+                  {open ? mw.emoji : "🔒"}
+                  <span className="absolute -top-2 -left-2 px-1 bg-white text-black border border-black rounded font-pixel text-[7px] sm:text-[9px] font-bold">
+                    T{mw.num}
                   </span>
                 </div>
-              );
-            })}
 
-          {/* ================= VISTA SUBWORLD: N TEMAS DEL BLOQUE + GRAN JEFE ================= */}
-          {view === "subworld" && (
-            <>
-              {/* Nodos de los Temas Oficiales */}
-              {w.miniWorlds.map((mw, i) => {
-                const open = isMiniOpen(i);
-                const isSel = miniIdx === i;
-                const res = progress.results[mw.id];
-                const pos = subworldPositions[i] || [10, 50];
+                <span className="mt-1 font-pixel text-[6px] sm:text-[8px] bg-black/90 text-white px-1.5 py-0.5 text-center max-w-[70px] sm:max-w-[100px] leading-tight border border-white/20 truncate rounded-sm">
+                  T{mw.num}: {mw.name}
+                </span>
 
-                return (
-                  <div
-                    key={mw.id}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group"
-                    style={{ left: `${pos[0]}%`, top: `${pos[1]}%` }}
-                    onClick={() => {
-                      if (isSel) {
-                        handlePlayCurrent();
-                      } else {
-                        setMiniIdx(i);
-                      }
-                    }}
-                  >
-                    {/* Noa encima del nivel seleccionado */}
-                    {isSel && (
-                      <div className="absolute -top-9 sm:-top-12 pointer-events-none animate-bounce">
-                        <NoaMapSprite />
-                      </div>
-                    )}
+                {res && res.stars > 0 ? (
+                  <span className="text-[9px] sm:text-[11px] text-yellow-300 font-pixel [text-shadow:1px_1px_0_#000]">
+                    {"★".repeat(res.stars)}
+                  </span>
+                ) : (
+                  <span className="text-[6px] sm:text-[7px] font-pixel text-white/60">
+                    {open ? "Disponible" : "Bloqueado"}
+                  </span>
+                )}
+              </div>
+            );
+          })}
 
-                    <div
-                      className={`relative w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 sm:border-3 border-black text-sm sm:text-xl flex items-center justify-center shadow-[3px_3px_0_#000] transition-transform ${
-                        isSel ? "scale-120 ring-4 ring-[#ffd84d] animate-pulse" : "group-hover:scale-110"
-                      }`}
-                      style={{ background: open ? mw.color : "#4b5563" }}
-                    >
-                      {open ? mw.emoji : "🔒"}
-                      <span className="absolute -top-2 -left-2 px-1 bg-white text-black border border-black rounded font-pixel text-[6px] sm:text-[8px] font-bold">
-                        T{mw.num}
-                      </span>
-                    </div>
+          {/* ================= NODO DEL GRAN JEFE DEL BLOQUE ================= */}
+          {(() => {
+            const bossIdx = w.miniWorlds.length;
+            const bossOpen = isMiniOpen(bossIdx);
+            const isSel = miniIdx === bossIdx;
+            const res = progress.results[w.id];
+            const pos = subworldPositions[bossIdx] || [90, 50];
 
-                    <span className="mt-0.5 font-pixel text-[6px] sm:text-[8px] bg-black/85 text-white px-1 py-0.5 text-center max-w-[65px] sm:max-w-[95px] leading-tight border border-white/20 truncate">
-                      T{mw.num}: {mw.name}
-                    </span>
-
-                    {res && res.stars > 0 ? (
-                      <span className="text-[8px] sm:text-[10px] text-yellow-300 font-pixel [text-shadow:1px_1px_0_#000]">
-                        {"★".repeat(res.stars)}
-                      </span>
-                    ) : (
-                      <span className="text-[6px] sm:text-[7px] font-pixel text-white/50">{open ? "Pendiente" : "Bloqueado"}</span>
-                    )}
+            return (
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group z-10"
+                style={{ left: `${pos[0]}%`, top: `${pos[1]}%` }}
+                onClick={() => {
+                  if (isSel) {
+                    handlePlayCurrent();
+                  } else {
+                    setMiniIdx(bossIdx);
+                  }
+                }}
+              >
+                {isSel && (
+                  <div className="absolute -top-9 sm:-top-12 pointer-events-none animate-bounce">
+                    <NoaMapSprite />
                   </div>
-                );
-              })}
+                )}
 
-              {/* Nodo del Gran Jefe del Bloque */}
-              {(() => {
-                const bossIdx = w.miniWorlds.length;
-                const bossOpen = isMiniOpen(bossIdx);
-                const isSel = miniIdx === bossIdx;
-                const res = progress.results[w.id];
-                const pos = subworldPositions[bossIdx] || [90, 50];
+                <div
+                  className={`relative w-11 h-11 sm:w-15 sm:h-15 rounded-full border-3 border-black text-xl sm:text-2xl flex items-center justify-center shadow-[4px_4px_0_#000] transition-transform ${
+                    isSel ? "scale-125 ring-4 ring-[#ff5c7c] animate-pulse" : "group-hover:scale-110"
+                  }`}
+                  style={{ background: bossOpen ? "#e0364b" : "#4b5563" }}
+                >
+                  {bossOpen ? "👑" : "🔒"}
+                  <span className="absolute -top-2 -left-2 px-1 bg-yellow-400 border border-black rounded font-pixel text-[6px] sm:text-[8px] text-black font-bold">
+                    JEFE
+                  </span>
+                </div>
 
-                return (
-                  <div
-                    className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group"
-                    style={{ left: `${pos[0]}%`, top: `${pos[1]}%` }}
-                    onClick={() => {
-                      if (isSel) {
-                        handlePlayCurrent();
-                      } else {
-                        setMiniIdx(bossIdx);
-                      }
-                    }}
-                  >
-                    {isSel && (
-                      <div className="absolute -top-9 sm:-top-12 pointer-events-none animate-bounce">
-                        <NoaMapSprite />
-                      </div>
-                    )}
+                <span className="mt-1 font-pixel text-[7px] sm:text-[9px] bg-[#e0364b]/95 text-white px-1.5 py-0.5 text-center max-w-[80px] sm:max-w-[110px] leading-tight border border-black truncate rounded-sm">
+                  {w.boss.name}
+                </span>
 
-                    <div
-                      className={`relative w-10 h-10 sm:w-14 sm:h-14 rounded-full border-3 border-black text-xl sm:text-2xl flex items-center justify-center shadow-[4px_4px_0_#000] transition-transform ${
-                        isSel ? "scale-120 ring-4 ring-[#ff5c7c] animate-pulse" : "group-hover:scale-110"
-                      }`}
-                      style={{ background: bossOpen ? "#e0364b" : "#4b5563" }}
-                    >
-                      {bossOpen ? "👑" : "🔒"}
-                      <span className="absolute -top-2 -left-2 px-1 bg-yellow-400 border border-black rounded font-pixel text-[6px] sm:text-[7px] text-black font-bold">
-                        JEFE
-                      </span>
-                    </div>
-
-                    <span className="mt-0.5 font-pixel text-[6px] sm:text-[8px] bg-[#e0364b]/95 text-white px-1 py-0.5 text-center max-w-[75px] sm:max-w-[105px] leading-tight border border-black truncate">
-                      {w.boss.name}
-                    </span>
-
-                    {res && res.stars > 0 && (
-                      <span className="text-[8px] sm:text-[10px] text-yellow-300 font-pixel">{"★".repeat(res.stars)}</span>
-                    )}
-                  </div>
-                );
-              })()}
-            </>
-          )}
+                {res && res.stars > 0 && (
+                  <span className="text-[9px] sm:text-[11px] text-yellow-300 font-pixel">{"★".repeat(res.stars)}</span>
+                )}
+              </div>
+            );
+          })()}
 
           {/* ========================================================================= */}
-          {/* POPUP / CARTEL SUPER MARIO INTEGRADO DIRECTAMENTE DENTRO DEL MAPA */}
+          {/* CARTEL SUPER MARIO INTEGRADO EN LA PARTE INFERIOR DEL MAPA */}
           {/* ========================================================================= */}
-          <div className="absolute bottom-2 inset-x-2 sm:inset-x-6 bg-[#0f1026]/95 border-3 border-black p-2 sm:p-3 shadow-[4px_4px_0_#000] flex flex-col sm:flex-row items-center justify-between gap-2 backdrop-blur z-20">
-            {view === "overworld" ? (
-              <>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-pixel text-[9px] sm:text-xs text-[#ffd84d]">
-                      {w.bloque} · MUNDO {w.num}: {w.name.toUpperCase()}
-                    </span>
-                    <span
-                      className="text-[8px] sm:text-[9px] font-pixel px-1.5 py-0.5 rounded"
-                      style={{ background: isBlockOpen(worldIdx) ? "#15803d" : "#4b5563" }}
-                    >
-                      {isBlockOpen(worldIdx) ? `ABIERTO (${completedTemasInBlock}/${w.miniWorlds.length} TEMAS)` : "BLOQUEADO 🔒"}
-                    </span>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-white/90 truncate font-medium">{w.title}</p>
-                </div>
+          <div className="absolute bottom-2 inset-x-2 sm:inset-x-4 bg-[#0c0d1f]/95 border-3 border-black p-2 sm:p-2.5 shadow-[4px_4px_0_#000] flex flex-col sm:flex-row items-center justify-between gap-2 backdrop-blur z-20">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="font-pixel text-[10px] sm:text-xs text-[#ffd84d]">
+                  {isBossSelected ? `👑 GRAN JEFE: ${w.boss.name}` : `TEMA ${currentMiniWorld?.num}: ${currentMiniWorld?.name}`}
+                </span>
+                {activeResult && activeResult.stars > 0 && (
+                  <span className="font-pixel text-[10px] sm:text-xs text-yellow-300">
+                    {"★".repeat(activeResult.stars)}
+                    {"☆".repeat(3 - activeResult.stars)}
+                  </span>
+                )}
+                <span
+                  className="text-[8px] sm:text-[9px] font-pixel px-1.5 py-0.5 rounded"
+                  style={{ background: isMiniOpen(miniIdx) ? "#15803d" : "#b91c1c" }}
+                >
+                  {isMiniOpen(miniIdx) ? "DESBLOQUEADO" : "BLOQUEADO 🔒"}
+                </span>
+              </div>
+              <p className="text-[10px] sm:text-xs text-white/95 truncate font-semibold mt-0.5">
+                {isBossSelected ? `Examen global del bloque completo: ${w.title}` : currentMiniWorld?.temaTitle}
+              </p>
+              <p className="text-[9px] sm:text-[10px] text-white/70 hidden sm:block truncate">
+                {isBossSelected
+                  ? "Derrota al jefe respondiendo preguntas test de todos los temas oficiales del bloque."
+                  : `Tutor: ${currentMiniWorld?.npcs[0]?.name} · ${currentMiniWorld?.summary[0]}`}
+              </p>
+            </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <button
-                    className={`${btn} !py-2 !px-4 !text-[10px] sm:!text-xs font-pixel animate-pulse`}
-                    disabled={!isBlockOpen(worldIdx)}
-                    onClick={() => {
-                      setView("subworld");
-                      setMiniIdx(Math.min(completedTemasInBlock, w.miniWorlds.length - 1));
-                    }}
-                  >
-                    🗺️ Explorar Temas ▶
-                  </button>
-                  <button
-                    className={`${btn} !py-2 !px-3 !bg-red-600 !text-white !text-[9px] sm:!text-[10px]`}
-                    disabled={!isBlockOpen(worldIdx)}
-                    onClick={() => onPlay(w)}
-                  >
-                    👑 Desafío Bloque
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-pixel text-[10px] sm:text-xs text-[#ffd84d]">
-                      {isBossSelected ? `👑 GRAN JEFE: ${w.boss.name}` : `TEMA ${currentMiniWorld?.num}: ${currentMiniWorld?.name}`}
-                    </span>
-                    {activeResult && activeResult.stars > 0 && (
-                      <span className="font-pixel text-[10px] sm:text-xs text-yellow-300">
-                        {"★".repeat(activeResult.stars)}
-                        {"☆".repeat(3 - activeResult.stars)}
-                      </span>
-                    )}
-                    <span
-                      className="text-[8px] sm:text-[9px] font-pixel px-1.5 py-0.5 rounded"
-                      style={{ background: isMiniOpen(miniIdx) ? "#15803d" : "#b91c1c" }}
-                    >
-                      {isMiniOpen(miniIdx) ? "DESBLOQUEADO" : "BLOQUEADO 🔒"}
-                    </span>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-white/90 truncate font-semibold">
-                    {isBossSelected ? `Examen global del bloque completo: ${w.title}` : currentMiniWorld?.temaTitle}
-                  </p>
-                  <p className="text-[9px] sm:text-[10px] text-white/70 hidden sm:block truncate">
-                    {isBossSelected
-                      ? "Derrota al jefe respondiendo preguntas de todos los temas del bloque."
-                      : `Tutor: ${currentMiniWorld?.npcs[0]?.name} · ${currentMiniWorld?.summary[0]}`}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  <button
-                    className={`${btn} !py-2.5 !px-5 !text-[11px] sm:!text-xs font-pixel shadow-[3px_3px_0_#000] ${
-                      isMiniOpen(miniIdx) ? "animate-pulse !bg-[#ffd84d] !text-black hover:!bg-yellow-300" : ""
-                    }`}
-                    disabled={!isMiniOpen(miniIdx)}
-                    onClick={handlePlayCurrent}
-                  >
-                    {isBossSelected
-                      ? activeResult
-                        ? "⚔️ REJUGAR JEFE (ENTER)"
-                        : "⚔️ DESAFIAR JEFE (ENTER)"
-                      : activeResult
-                      ? "↺ REJUGAR TEMA (ENTER)"
-                      : "▶ ENTRAR AL TEMA (ENTER)"}
-                  </button>
-                </div>
-              </>
-            )}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                className={`${btn} !py-2.5 !px-5 !text-[11px] sm:!text-xs font-pixel shadow-[3px_3px_0_#000] ${
+                  isMiniOpen(miniIdx) ? "animate-pulse !bg-[#ffd84d] !text-black hover:!bg-yellow-300" : ""
+                }`}
+                disabled={!isMiniOpen(miniIdx)}
+                onClick={handlePlayCurrent}
+              >
+                {isBossSelected
+                  ? activeResult
+                    ? "⚔️ REJUGAR JEFE (ENTER)"
+                    : "⚔️ DESAFIAR JEFE (ENTER)"
+                  : activeResult
+                  ? "↺ REJUGAR TEMA (ENTER)"
+                  : "▶ ¡ENTRAR AL TEMA! (ENTER)"}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* ================= CONTROLES TÁCTILES RÁPIDOS PARA MÓVIL / TABLET ================= */}
-        {view === "subworld" && (
-          <div className="mt-2 flex items-center justify-between gap-2 bg-[#14143a]/90 p-2 border-2 border-black text-xs">
-            <button
-              className="flex-1 py-2 px-3 bg-[#242456] hover:bg-[#343476] border-2 border-black font-pixel text-[9px] sm:text-[11px] text-white shadow-[2px_2px_0_#000] active:translate-y-0.5 disabled:opacity-40"
-              disabled={miniIdx <= 0}
-              onClick={() => setMiniIdx((prev) => Math.max(0, prev - 1))}
-            >
-              ◀ TEMA ANTERIOR
-            </button>
-            <span className="font-pixel text-[9px] sm:text-xs px-2 text-[#ffd84d]">
-              {miniIdx === w.miniWorlds.length ? "👑 JEFE" : `${miniIdx + 1}/${w.miniWorlds.length}`}
-            </span>
-            <button
-              className="flex-1 py-2 px-3 bg-[#242456] hover:bg-[#343476] border-2 border-black font-pixel text-[9px] sm:text-[11px] text-white shadow-[2px_2px_0_#000] active:translate-y-0.5 disabled:opacity-40"
-              disabled={miniIdx >= w.miniWorlds.length}
-              onClick={() => setMiniIdx((prev) => Math.min(w.miniWorlds.length, prev + 1))}
-            >
-              TEMA SIGUIENTE ▶
-            </button>
-          </div>
-        )}
+        <div className="mt-2 flex items-center justify-between gap-2 bg-[#14143a]/90 p-2 border-2 border-black text-xs">
+          <button
+            className="flex-1 py-2 px-3 bg-[#242456] hover:bg-[#343476] border-2 border-black font-pixel text-[9px] sm:text-[11px] text-white shadow-[2px_2px_0_#000] active:translate-y-0.5 disabled:opacity-40 cursor-pointer"
+            disabled={miniIdx <= 0}
+            onClick={() => setMiniIdx((prev) => Math.max(0, prev - 1))}
+          >
+            ◀ TEMA ANTERIOR
+          </button>
+          <span className="font-pixel text-[9px] sm:text-xs px-2 text-[#ffd84d]">
+            {miniIdx === w.miniWorlds.length ? "👑 GRAN JEFE" : `Tema ${miniIdx + 1} de ${w.miniWorlds.length}`}
+          </span>
+          <button
+            className="flex-1 py-2 px-3 bg-[#242456] hover:bg-[#343476] border-2 border-black font-pixel text-[9px] sm:text-[11px] text-white shadow-[2px_2px_0_#000] active:translate-y-0.5 disabled:opacity-40 cursor-pointer"
+            disabled={miniIdx >= w.miniWorlds.length}
+            onClick={() => setMiniIdx((prev) => Math.min(w.miniWorlds.length, prev + 1))}
+          >
+            TEMA SIGUIENTE ▶
+          </button>
+        </div>
 
         {/* Barra de opciones inferior */}
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-xs text-white/80 bg-[#161638]/90 p-2 border-2 border-black shadow-[2px_2px_0_#000]">
@@ -653,10 +491,10 @@ export default function WorldMap({
               checked={progress.studyMode}
               onChange={(e) => onStudyMode(e.target.checked)}
             />
-            <span>Modo estudio (todos los 58 temas y bloques abiertos)</span>
+            <span>Modo estudio (todos los 58 temas y bloques desbloqueados)</span>
           </label>
           <span className="text-white/50 hidden sm:inline">
-            🕹️ Usa flechas del teclado o toca cualquier nodo del mapa para caminar y entrar al nivel
+            🕹️ Usa las flechas del teclado o pulsa cualquier nodo del mapa para caminar y jugar
           </span>
           <button
             className="text-red-400 underline font-semibold hover:text-red-300 cursor-pointer text-[10px]"

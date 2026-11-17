@@ -88,8 +88,9 @@ export default function App() {
         onPlay={() =>
           setScreen({
             name: "map",
-            sel: Math.min(progress.unlocked - 1, WORLDS.length - 1),
-            view: "overworld",
+            sel: 0,
+            view: "subworld",
+            miniSel: 0,
           })
         }
       />
@@ -101,7 +102,7 @@ export default function App() {
       <WorldMap
         progress={progress}
         initialWorld={screen.sel}
-        initialView={screen.view || "overworld"}
+        initialView="subworld"
         initialMini={screen.miniSel || 0}
         onPlay={(level, mini) =>
           setScreen({
@@ -121,7 +122,7 @@ export default function App() {
   }
 
   if (screen.name === "review") {
-    return <Review wrong={progress.wrong} onMaster={(id) => onAnswer(id, true)} onBack={() => setScreen({ name: "map", sel: 0, view: "overworld" })} />;
+    return <Review wrong={progress.wrong} onMaster={(id) => onAnswer(id, true)} onBack={() => setScreen({ name: "map", sel: 0, view: "subworld" })} />;
   }
 
   if (screen.name === "finale") {

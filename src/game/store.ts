@@ -15,15 +15,15 @@ export interface Progress {
   touchControls: boolean;
 }
 
-const KEY = "opos-quest-a2-v2";
+const KEY = "opos-quest-a2-v3";
 
 export function defaultProgress(): Progress {
   return {
-    unlocked: 1,
-    unlockedMini: { estado: 1, ue: 1, politicas: 1, derecho: 1, rrhh: 1, hacienda: 1 },
+    unlocked: 6,
+    unlockedMini: { estado: 12, ue: 7, politicas: 11, derecho: 14, rrhh: 11, hacienda: 9 },
     results: {},
     wrong: [],
-    studyMode: false,
+    studyMode: true,
     muted: false,
     touchControls: true,
   };
@@ -31,16 +31,27 @@ export function defaultProgress(): Progress {
 
 export function loadProgress(): Progress {
   try {
-    const raw = localStorage.getItem(KEY) || localStorage.getItem("opos-quest-a2-v1");
+    const raw =
+      localStorage.getItem(KEY) ||
+      localStorage.getItem("opos-quest-a2-v2") ||
+      localStorage.getItem("opos-quest-a2-v1");
     if (!raw) return defaultProgress();
     const parsed = JSON.parse(raw) as Partial<Progress>;
     return {
       ...defaultProgress(),
       ...parsed,
+      unlocked: 6,
       unlockedMini: {
-        ...defaultProgress().unlockedMini,
+        estado: 12,
+        ue: 7,
+        politicas: 11,
+        derecho: 14,
+        rrhh: 11,
+        hacienda: 9,
         ...(parsed.unlockedMini || {}),
       },
+      results: parsed.results || {},
+      wrong: parsed.wrong || [],
     };
   } catch {
     return defaultProgress();
