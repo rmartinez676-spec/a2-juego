@@ -1,0 +1,322 @@
+import type { Question, WorldDef } from "./types";
+
+export const Q = (id: string, q: string, options: string[], answer: number, explain: string): Question => ({
+  id,
+  q,
+  options,
+  answer,
+  explain,
+});
+
+/* ============================== MUNDO 1 ============================== */
+export const W1: WorldDef = {
+  id: "estado",
+  num: 1,
+  bloque: "Bloque I",
+  title: "Organización del Estado y de la Administración Pública",
+  name: "Reino de la Constitución",
+  emoji: "🏛️",
+  theme: "estado",
+  color: "#e0463a",
+  enemy: "urna",
+  enemyName: "Urnas rebeldes",
+  temas: [
+    "La Constitución de 1978 y su reforma",
+    "Derechos y deberes fundamentales · Defensor del Pueblo",
+    "Tribunal Constitucional y la Corona",
+    "Cortes Generales, Gobierno y Poder Judicial",
+    "Administración General del Estado y sector público institucional",
+    "CCAA y Administración local",
+  ],
+  npcs: [
+    {
+      name: "Doña Carta Magna",
+      role: "La Constitución de 1978",
+      look: { skin: "#f3c9a0", hair: "#d9d9e0", hairStyle: "bun", shirt: "#c9372c", pants: "#7a1f1a", acc: ["robe", "laurel"], accColor: "#e8b923" },
+      pages: [
+        "¡Bienvenida, opositora! Soy la Constitución Española. Fui aprobada por las Cortes el 31 de octubre de 1978, ratificada en referéndum el 6 de diciembre, sancionada por el Rey el 27 de diciembre y publicada en el BOE el 29 de diciembre de 1978.",
+        "Mi estructura: un Título Preliminar, diez Títulos (I al X) y 169 artículos, más 4 disposiciones adicionales, 9 transitorias, 1 derogatoria y 1 final.",
+        "Art. 1: España se constituye en un Estado social y democrático de Derecho, que propugna como valores superiores la libertad, la justicia, la igualdad y el pluralismo político. La soberanía nacional reside en el pueblo español y la forma política es la Monarquía parlamentaria.",
+        "Para reformarme: procedimiento ordinario (art. 167) con 3/5 de cada Cámara; procedimiento agravado (art. 168) para el Título Preliminar, la Sección 1ª del Cap. II del Título I y el Título II: 2/3 de cada Cámara, disolución de las Cortes, ratificación por las nuevas Cámaras y referéndum.",
+      ],
+    },
+    {
+      name: "Capitán Corona",
+      role: "La Corona (Título II)",
+      look: { skin: "#f0bf94", hair: "#3b2a20", hairStyle: "short", shirt: "#1f3c88", pants: "#1b2a55", acc: ["helmet", "badge", "cape"], accColor: "#e8b923" },
+      pages: [
+        "¡A sus órdenes! Custodio la Corona. El Rey es el Jefe del Estado, símbolo de su unidad y permanencia; arbitra y modera el funcionamiento regular de las instituciones (art. 56).",
+        "Su persona es inviolable y no está sujeta a responsabilidad. Sus actos estarán siempre refrendados por el Presidente del Gobierno, los Ministros competentes o, en su caso, el Presidente del Congreso; sin refrendo carecen de validez (art. 64).",
+        "Entre sus funciones (art. 62): sancionar y promulgar las leyes, convocar y disolver las Cortes, convocar elecciones y referéndum, proponer candidato a Presidente del Gobierno, nombrar y separar a sus miembros, y el mando supremo de las Fuerzas Armadas.",
+        "La Corona es hereditaria en los sucesores de S. M. Don Juan Carlos I de Borbón, con preferencia del grado más próximo, y dentro del mismo grado, del varón sobre la mujer y de la persona de más edad (art. 57). Si el Rey es menor de edad, habrá Regencia.",
+      ],
+    },
+    {
+      name: "Diputada Escaño",
+      role: "Cortes Generales y Gobierno",
+      look: { skin: "#e9b88c", hair: "#5a2e1c", hairStyle: "long", shirt: "#2d7d5b", pants: "#243447", acc: ["glasses", "badge"], accColor: "#e8b923" },
+      pages: [
+        "Las Cortes Generales representan al pueblo español y están formadas por el Congreso de los Diputados y el Senado (art. 66). Ejercen la potestad legislativa, aprueban los Presupuestos y controlan la acción del Gobierno.",
+        "El Congreso tiene un mínimo de 300 y un máximo de 400 diputados, elegidos por 4 años por sufragio universal, libre, igual, directo y secreto. El Senado es la Cámara de representación territorial: 4 senadores por provincia peninsular, más los designados por las CCAA.",
+        "El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado; ejerce la función ejecutiva y la potestad reglamentaria (art. 97). Se compone del Presidente, los Vicepresidentes en su caso, los Ministros y demás miembros que establezca la ley.",
+        "El Consejo de Estado es el supremo órgano consultivo del Gobierno (art. 107) y el CGPJ, órgano de gobierno del Poder Judicial, está formado por el Presidente del Tribunal Supremo y 20 vocales nombrados por 5 años.",
+      ],
+    },
+  ],
+  blockQs: [
+    Q("estado-k1", "¿Cuántos artículos tiene la Constitución Española de 1978?", ["136", "155", "169", "178"], 2, "La CE consta de un Título Preliminar, diez Títulos y 169 artículos, más 4 disposiciones adicionales, 9 transitorias, 1 derogatoria y 1 final."),
+    Q("estado-k2", "Según el art. 1.1 CE, ¿cuáles son los valores superiores del ordenamiento jurídico?", ["Libertad, justicia, igualdad y pluralismo político", "Libertad, igualdad, fraternidad y justicia", "Libertad, justicia, solidaridad y dignidad", "Igualdad, legalidad, seguridad jurídica y libertad"], 0, "Art. 1.1 CE: libertad, justicia, igualdad y pluralismo político. La dignidad de la persona se recoge en el art. 10 como fundamento del orden político."),
+    Q("estado-k3", "¿Quién sanciona las leyes y en qué plazo (art. 91 CE)?", ["El Presidente del Gobierno, en 30 días", "El Rey, en 15 días", "El Presidente del Congreso, en 10 días", "El Rey, en 30 días"], 1, "El Rey sanciona en el plazo de quince días las leyes aprobadas por las Cortes y las promulga y ordena su inmediata publicación."),
+    Q("estado-k4", "¿Cuántos diputados puede tener el Congreso según el art. 68 CE?", ["Entre 250 y 350", "Entre 300 y 400", "Exactamente 350", "Entre 350 y 450"], 1, "La CE fija un mínimo de 300 y un máximo de 400. La LOREG ha fijado en la práctica 350."),
+    Q("estado-k5", "¿Cuántos senadores se eligen en cada provincia peninsular (art. 69 CE)?", ["2", "3", "4", "5"], 2, "Cuatro por provincia. Además: 3 en las islas mayores, 1 en las menores, 2 en Ceuta y 2 en Melilla, y los designados por las CCAA."),
+    Q("estado-k6", "¿Qué artículo de la CE recoge la igualdad ante la ley?", ["Art. 9", "Art. 10", "Art. 14", "Art. 16"], 2, "Art. 14: los españoles son iguales ante la ley, sin que pueda prevalecer discriminación alguna por razón de nacimiento, raza, sexo, religión, opinión o cualquier otra condición o circunstancia personal o social."),
+    Q("estado-k7", "Son órganos superiores de la Administración General del Estado (art. 55 Ley 40/2015):", ["Los Ministros y los Secretarios de Estado", "Los Subsecretarios y los Directores Generales", "Los Ministros y los Subsecretarios", "Los Directores Generales y Subdirectores"], 0, "Órganos superiores: Ministros y Secretarios de Estado. Órganos directivos: Subsecretarios, Secretarios Generales, Secretarios Generales Técnicos, Directores Generales y Subdirectores Generales."),
+  ],
+  bossQs: [
+    Q("estado-b1", "¿Qué mayoría exige la reforma constitucional por el procedimiento ordinario (art. 167 CE)?", ["Mayoría simple del Congreso", "Tres quintos de cada Cámara", "Dos tercios de cada Cámara", "Mayoría absoluta del Congreso"], 1, "3/5 de cada Cámara. Si no hay acuerdo, comisión paritaria; si no, 2/3 del Congreso con mayoría absoluta del Senado. Referéndum si lo pide 1/10 de los miembros de cualquiera de las Cámaras en 15 días."),
+    Q("estado-b2", "La reforma agravada del art. 168 CE exige…", ["3/5 de cada Cámara y referéndum facultativo", "2/3 de cada Cámara, disolución inmediata de las Cortes, ratificación por 2/3 de las nuevas Cámaras y referéndum", "Mayoría absoluta y disolución de las Cortes", "Solo un referéndum nacional"], 1, "Se aplica a la revisión total o parcial que afecte al Título Preliminar, al Capítulo II, Sección 1ª del Título I o al Título II. El referéndum es obligatorio."),
+    Q("estado-b3", "¿Cuántos miembros tiene el Tribunal Constitucional y cuánto dura su mandato?", ["12 miembros, 9 años", "15 miembros, 9 años", "12 miembros, 5 años", "10 miembros, 12 años"], 0, "12 magistrados nombrados por el Rey: 4 a propuesta del Congreso y 4 del Senado (3/5), 2 del Gobierno y 2 del CGPJ. Se renuevan por terceras partes cada 3 años (art. 159 CE)."),
+    Q("estado-b4", "El Defensor del Pueblo es…", ["Un alto comisionado de las Cortes Generales para la defensa de los derechos del Título I", "Un órgano del Poder Judicial", "Un órgano dependiente del Gobierno", "Un tribunal especial"], 0, "Art. 54 CE: alto comisionado de las Cortes Generales, designado por éstas, para la defensa de los derechos comprendidos en el Título I; puede supervisar la actividad de la Administración. Su mandato es de 5 años."),
+    Q("estado-b5", "En la votación de investidura (art. 99 CE), ¿qué mayoría se exige en primera votación?", ["Mayoría simple", "Mayoría absoluta del Congreso", "Tres quintos del Congreso", "Dos tercios del Congreso"], 1, "Mayoría absoluta. Si no se logra, nueva votación 48 horas después, bastando mayoría simple. Si en dos meses nadie obtiene la confianza, el Rey disuelve las Cortes y convoca elecciones."),
+  ],
+  mini: {
+    type: "order",
+    title: "Prueba del Portón Constitucional",
+    prompt: "Ordena los Títulos de la Constitución de 1978 (de primero a último).",
+    items: [
+      "Título Preliminar",
+      "Título I · Derechos y deberes fundamentales",
+      "Título II · De la Corona",
+      "Título III · De las Cortes Generales",
+      "Título IV · Del Gobierno y de la Administración",
+      "Título V · Relaciones Gobierno-Cortes",
+      "Título VI · Del Poder Judicial",
+    ],
+  },
+  boss: {
+    name: "Absolutus, el Rey Absoluto",
+    kind: "king",
+    intro: [
+      "¡JA, JA, JA! ¡Yo soy el Estado! ¡Aquí no hay Constitución que valga!",
+      "Si quieres derrotarme tendrás que demostrar que conoces la Carta Magna. ¡Responde bien y mis poderes se debilitarán!",
+    ],
+    defeat: ["¡Imposible! La soberanía nacional reside en el pueblo español... (art. 1.2 CE)... ¡Aaargh!"],
+  },
+  summary: [
+    "CE 1978: Título Preliminar + 10 Títulos, 169 artículos. Reforma: art. 167 (3/5) y art. 168 (2/3 + disolución + referéndum).",
+    "La Corona: Jefe del Estado, inviolable, sus actos requieren refrendo (art. 64). Sanciona las leyes en 15 días.",
+    "Congreso: 300-400 diputados; Senado: 4 por provincia. TC: 12 miembros, 9 años. Investidura: mayoría absoluta.",
+    "AGE: órganos superiores (Ministros y Secretarios de Estado) y directivos (Ley 40/2015).",
+  ],
+};
+
+/* ============================== MUNDO 2 ============================== */
+export const W2: WorldDef = {
+  id: "ue",
+  num: 2,
+  bloque: "Bloque II",
+  title: "Unión Europea",
+  name: "Eurolandia",
+  emoji: "🇪🇺",
+  theme: "ue",
+  color: "#2f6fe0",
+  enemy: "estrella",
+  enemyName: "Estrellas enfadadas",
+  temas: [
+    "Antecedentes, Tratados y ampliaciones",
+    "Consejo Europeo, Consejo y Comisión",
+    "Parlamento, TJUE, Tribunal de Cuentas y BCE",
+    "Fuentes del Derecho de la UE",
+    "Presupuesto, fondos y cohesión",
+    "Políticas de la UE",
+  ],
+  npcs: [
+    {
+      name: "Madame Tratados",
+      role: "Orígenes y Tratados",
+      look: { skin: "#f1c7a0", hair: "#8a8a99", hairStyle: "bun", shirt: "#2956b8", pants: "#1c2c5c", acc: ["glasses", "scarf"], accColor: "#f4d03f" },
+      pages: [
+        "¡Bonjour, opositora! La integración europea empezó con la CECA (Tratado de París, 1951) y con los Tratados de Roma de 1957, que crearon la CEE y el EURATOM.",
+        "Después llegaron: Acta Única Europea (1986), Maastricht (firmado en 1992, en vigor en 1993), que creó la Unión Europea y la Unión Económica y Monetaria; Ámsterdam (1997), Niza (2001) y Lisboa (firmado en 2007, en vigor el 1 de diciembre de 2009).",
+        "Tras Lisboa, la UE tiene personalidad jurídica propia y se funda en dos Tratados de igual valor jurídico: el Tratado de la Unión Europea (TUE) y el Tratado de Funcionamiento de la Unión Europea (TFUE).",
+        "España ingresó el 1 de enero de 1986 junto con Portugal. Hoy la UE tiene 27 Estados miembros (el Reino Unido salió el 31 de enero de 2020). Las cooperaciones reforzadas exigen un mínimo de 9 Estados miembros (art. 20 TUE).",
+      ],
+    },
+    {
+      name: "Comisario Berlay",
+      role: "Instituciones de la UE",
+      look: { skin: "#d9a577", hair: "#222233", hairStyle: "short", shirt: "#f0f0f5", pants: "#232b4d", acc: ["tie", "badge"], accColor: "#2f6fe0" },
+      pages: [
+        "Bienvenida al Berlaymont. Consejo Europeo: Jefes de Estado o de Gobierno; impulsa y define las orientaciones políticas generales, sin función legislativa. Su Presidente se elige por 2 años y medio, renovable una vez.",
+        "Consejo (de la UE): representantes de los Estados a nivel ministerial. Ejerce, junto con el Parlamento, la función legislativa y presupuestaria. La Presidencia rota cada seis meses entre los Estados miembros.",
+        "Comisión Europea: promueve el interés general de la Unión, tiene (en general) el monopolio de la iniciativa legislativa, ejecuta el presupuesto y vela por la aplicación de los Tratados («guardiana de los Tratados»). Un comisario por Estado; mandato de 5 años.",
+        "Parlamento Europeo: elegido por sufragio universal directo cada 5 años; sede oficial en Estrasburgo. TJUE: Luxemburgo. Banco Central Europeo: Fráncfort (objetivo principal: la estabilidad de precios). Tribunal de Cuentas Europeo: Luxemburgo.",
+      ],
+    },
+    {
+      name: "Doña Directiva",
+      role: "Derecho de la UE",
+      look: { skin: "#f3c9a0", hair: "#c0392b", hairStyle: "curly", shirt: "#f4d03f", pants: "#2c3e8c", acc: ["headset"], accColor: "#222" },
+      pages: [
+        "El Derecho originario son los Tratados. El Derecho derivado (art. 288 TFUE): Reglamento, Directiva, Decisión, Recomendaciones y Dictámenes (estos dos últimos no vinculantes).",
+        "El Reglamento tiene alcance general, es obligatorio en todos sus elementos y directamente aplicable en cada Estado. La Directiva obliga en cuanto al resultado, pero deja a los Estados la elección de la forma y los medios: requiere transposición.",
+        "La Decisión es obligatoria en todos sus elementos; si designa destinatarios, sólo obliga a éstos. Principios: primacía del Derecho de la UE sobre el nacional (Costa/ENEL, 1964) y efecto directo (Van Gend en Loos, 1963).",
+        "Procedimiento legislativo ordinario: la Comisión propone y el Parlamento y el Consejo deciden conjuntamente. Mayoría cualificada en el Consejo: 55% de los Estados (al menos 15) que reúnan el 65% de la población. Presupuesto: Marco Financiero Plurianual 2021-2027.",
+      ],
+    },
+  ],
+  blockQs: [
+    Q("ue-k1", "¿Qué Tratado creó la Unión Europea (en vigor desde 1993)?", ["Tratado de Roma", "Tratado de Maastricht", "Tratado de Niza", "Tratado de Lisboa"], 1, "Maastricht (firmado en 1992) creó la UE y la Unión Económica y Monetaria. Roma (1957) creó la CEE y el EURATOM; Lisboa (2007) dio personalidad jurídica a la UE."),
+    Q("ue-k2", "¿En qué año ingresó España en las Comunidades Europeas?", ["1957", "1981", "1986", "1992"], 2, "El 1 de enero de 1986, junto con Portugal."),
+    Q("ue-k3", "El Tratado de Lisboa entró en vigor en…", ["2000", "2004", "2007", "2009"], 3, "Se firmó en 2007 y entró en vigor el 1 de diciembre de 2009. Consolidó el TUE y el TFUE."),
+    Q("ue-k4", "Número mínimo de Estados miembros para una cooperación reforzada (art. 20 TUE):", ["5", "9", "14", "Todos los Estados (27)"], 1, "Nueve Estados miembros como mínimo; es el último recurso cuando no se alcanzan los objetivos para la Unión en su conjunto."),
+    Q("ue-k5", "¿Dónde tiene su sede oficial el Parlamento Europeo?", ["Bruselas", "Luxemburgo", "Estrasburgo", "Fráncfort"], 2, "Sede oficial y plenos mensuales en Estrasburgo; comisiones y plenos adicionales en Bruselas; Secretaría General en Luxemburgo."),
+    Q("ue-k6", "¿Qué acto de la UE es obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro?", ["La directiva", "El reglamento", "La recomendación", "El dictamen"], 1, "Art. 288 TFUE. La directiva vincula en cuanto al resultado y necesita transposición."),
+    Q("ue-k7", "¿Qué institución tiene, como regla general, la iniciativa legislativa en la UE?", ["Parlamento Europeo", "Consejo", "Comisión Europea", "Consejo Europeo"], 2, "La Comisión Europea: monopolio de iniciativa legislativa y guardiana de los Tratados."),
+  ],
+  bossQs: [
+    Q("ue-b1", "¿Qué caracteriza a una directiva?", ["Obliga en cuanto al resultado, dejando a los Estados la forma y los medios", "Es directamente aplicable en todos sus elementos", "Solo obliga a sus destinatarios designados", "No es vinculante"], 0, "La directiva fija el resultado a alcanzar y los Estados eligen cómo; por eso se transpone al Derecho interno."),
+    Q("ue-b2", "La mayoría cualificada en el Consejo (art. 16 TUE) es…", ["50% de Estados y 50% de población", "55% de los Estados (al menos 15) que reúnan el 65% de la población", "Dos tercios de los Estados", "Unanimidad"], 1, "Se aplica por defecto desde Lisboa. La minoría de bloqueo debe incluir al menos 4 miembros del Consejo."),
+    Q("ue-b3", "¿Cuánto dura el mandato del Presidente del Consejo Europeo?", ["1 año", "2 años y medio, renovable una vez", "5 años, no renovable", "6 meses rotatorios"], 1, "Art. 15.5 TUE: elegido por mayoría cualificada del Consejo Europeo por dos años y medio, renovable una sola vez."),
+    Q("ue-b4", "¿Cuál es el objetivo principal del Banco Central Europeo (art. 127 TFUE)?", ["Financiar a los Estados miembros", "Mantener la estabilidad de precios", "Controlar el gasto de la UE", "Supervisar las elecciones europeas"], 1, "Su objetivo principal es mantener la estabilidad de precios; sede en Fráncfort."),
+    Q("ue-b5", "Una ley nacional contradice un reglamento europeo. ¿Qué principio se aplica?", ["Primacía del Derecho de la UE", "Jerarquía de la ley nacional", "Subsidiariedad", "Proporcionalidad"], 0, "Primacía (Costa/ENEL, 1964): el Derecho de la UE prevalece sobre el nacional, incluidas las normas constitucionales en su ámbito de aplicación."),
+    Q("ue-b6", "El Marco Financiero Plurianual actual (2021-2027) abarca…", ["1 año", "5 años", "7 años", "10 años"], 2, "El MFP fija los límites de gasto por categorías para varios años (al menos cinco); el actual cubre siete años."),
+  ],
+  mini: {
+    type: "match",
+    title: "Prueba del Puente Europeo",
+    prompt: "Une cada institución u organismo con la ciudad donde tiene su sede.",
+    pairs: [
+      ["Parlamento Europeo (sede oficial)", "Estrasburgo"],
+      ["Banco Central Europeo", "Fráncfort"],
+      ["Tribunal de Justicia de la UE", "Luxemburgo"],
+      ["Comisión Europea", "Bruselas"],
+      ["Frontex", "Varsovia"],
+    ],
+  },
+  boss: {
+    name: "Lord Veto",
+    kind: "veto",
+    intro: [
+      "¡Exijo UNANIMIDAD! ¡Vetaré todas las propuestas de la Comisión!",
+      "Solo una mayoría cualificada de respuestas correctas podrá superar mi bloqueo, opositora...",
+    ],
+    defeat: ["¡Imposible! ¡Me han superado por mayoría cualificada! ¡Uniti in diversitate!"],
+  },
+  summary: [
+    "Tratados: París 1951, Roma 1957, AUE 1986, Maastricht 1992/93, Ámsterdam, Niza, Lisboa 2007/2009 (TUE + TFUE).",
+    "Instituciones: Consejo Europeo (orientaciones), Consejo (legisla), Comisión (iniciativa), Parlamento (Estrasburgo), TJUE, BCE, Tribunal de Cuentas.",
+    "Derecho derivado: reglamento (aplicable), directiva (resultado, transposición), decisión. Primacía y efecto directo.",
+    "Mayoría cualificada: 55% Estados (≥15) y 65% población. MFP 2021-2027.",
+  ],
+};
+
+/* ============================== MUNDO 3 ============================== */
+export const W3: WorldDef = {
+  id: "politicas",
+  num: 3,
+  bloque: "Bloque III",
+  title: "Políticas públicas",
+  name: "Ciudad Futuro 2030",
+  emoji: "🌱",
+  theme: "politicas",
+  color: "#2fb26a",
+  enemy: "nube",
+  enemyName: "Nubes de smog",
+  temas: [
+    "Modernización y Administración electrónica",
+    "Gobierno Abierto y Ley 19/2013 de transparencia",
+    "Protección de datos personales",
+    "Igualdad, violencia de género, discapacidad y dependencia",
+    "Política ambiental, inmigración y empleo",
+    "Agenda 2030 y ODS",
+  ],
+  npcs: [
+    {
+      name: "Ada Digital",
+      role: "Administración electrónica y Gobierno Abierto",
+      look: { skin: "#e5b48a", hair: "#7b3fa0", hairStyle: "long", shirt: "#1abc9c", pants: "#2c3e50", acc: ["visor", "headset"], accColor: "#00e5ff" },
+      pages: [
+        "¡Hola! Soy Ada Digital. La Administración electrónica se apoya en la Ley 39/2015 y en la Ley 40/2015. Las personas jurídicas, entidades sin personalidad, profesionales de colegiación obligatoria y empleados públicos deben relacionarse siempre por medios electrónicos (art. 14.2 Ley 39/2015). Las personas físicas pueden elegir.",
+        "El Punto de Acceso General electrónico (PAGe) facilita el acceso a los servicios. La sede electrónica es la dirección electrónica, disponible para la ciudadanía, cuya titularidad corresponde a una Administración (art. 38 Ley 40/2015). Su desarrollo reglamentario: RD 203/2021.",
+        "Gobierno Abierto: transparencia, participación y colaboración. La Ley 19/2013, de 9 de diciembre, regula la publicidad activa, el derecho de acceso a la información pública y el buen gobierno.",
+        "El acceso no exige motivar la solicitud. Plazo para resolver: 1 mes desde la recepción (ampliable otro mes). Si no hay resolución, silencio desestimatorio. Contra la resolución cabe reclamación potestativa ante el Consejo de Transparencia y Buen Gobierno en 1 mes, previa a la vía contencioso-administrativa.",
+      ],
+    },
+    {
+      name: "Dr. Datos",
+      role: "Protección de datos personales",
+      look: { skin: "#f1c7a0", hair: "#2b2b2b", hairStyle: "short", shirt: "#ecf0f1", pants: "#34495e", acc: ["glasses", "badge"], accColor: "#e74c3c" },
+      pages: [
+        "La protección de datos se rige por el Reglamento (UE) 2016/679 (RGPD), aplicable desde el 25 de mayo de 2018, y por la Ley Orgánica 3/2018 (LOPDGDD), que además garantiza los derechos digitales.",
+        "Principios del art. 5 RGPD: licitud, lealtad y transparencia; limitación de la finalidad; minimización de datos; exactitud; limitación del plazo de conservación; integridad y confidencialidad; y responsabilidad proactiva.",
+        "Derechos: acceso, rectificación, supresión («olvido»), limitación del tratamiento, portabilidad y oposición, además de no ser objeto de decisiones individuales automatizadas.",
+        "Responsable (decide fines y medios), encargado (trata por cuenta del responsable) y delegado de protección de datos (obligatorio en autoridades y organismos públicos). Autoridad de control estatal: la AEPD. En España, el menor puede consentir desde los 14 años.",
+      ],
+    },
+    {
+      name: "Doctora Igualdad",
+      role: "Igualdad, discapacidad y dependencia",
+      look: { skin: "#d6a074", hair: "#a23bd1", hairStyle: "curly", shirt: "#9b59b6", pants: "#2c2c54", acc: ["badge", "scarf"], accColor: "#f1c40f" },
+      pages: [
+        "La LO 3/2007 para la igualdad efectiva de mujeres y hombres establece el principio de igualdad de trato, los planes de igualdad (obligatorios en empresas de 50 o más personas) y la composición equilibrada: ni menos del 40% ni más del 60% de cada sexo.",
+        "La LO 1/2004 de Medidas de Protección Integral contra la Violencia de Género creó los Juzgados de Violencia sobre la Mujer y la Delegación del Gobierno contra la Violencia de Género. En 2017 se firmó el Pacto de Estado.",
+        "Discapacidad: el RDL 1/2013 aprueba el Texto Refundido de la Ley General de derechos de las personas con discapacidad y de su inclusión social. Dependencia: la Ley 39/2006 crea el SAAD y reconoce tres grados: I (moderada), II (severa) y III (gran dependencia).",
+      ],
+    },
+    {
+      name: "Capitán Agenda",
+      role: "Agenda 2030, medio ambiente y migración",
+      look: { skin: "#f0bf94", hair: "#27ae60", hairStyle: "short", shirt: "#27ae60", pants: "#145a32", acc: ["hardhat", "badge"], accColor: "#f1c40f" },
+      pages: [
+        "La Agenda 2030 fue aprobada por la Asamblea General de la ONU en septiembre de 2015: 17 Objetivos de Desarrollo Sostenible (ODS) y 169 metas. Lema: «no dejar a nadie atrás».",
+        "Política ambiental: Ley 7/2021 de cambio climático y transición energética (neutralidad climática a más tardar en 2050), Ley 42/2007 del Patrimonio Natural y de la Biodiversidad y Acuerdo de París (2015).",
+        "Extranjería y asilo: LO 4/2000 sobre derechos y libertades de los extranjeros y su integración social; Ley 12/2009 reguladora del derecho de asilo y de la protección subsidiaria; Convención de Ginebra de 1951.",
+        "Evaluación: la Ley 27/2022 institucionaliza la evaluación de políticas públicas en la AGE y crea la Agencia Estatal de Evaluación de Políticas Públicas.",
+      ],
+    },
+  ],
+  blockQs: [
+    Q("pol-k1", "¿Cuántos Objetivos de Desarrollo Sostenible tiene la Agenda 2030?", ["8", "15", "17", "20"], 2, "17 ODS y 169 metas, aprobados por la ONU en septiembre de 2015."),
+    Q("pol-k2", "La Ley Orgánica 3/2007 tiene por objeto…", ["La protección integral contra la violencia de género", "La igualdad efectiva de mujeres y hombres", "La atención a la dependencia", "La protección de datos personales"], 1, "LO 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres. La violencia de género es la LO 1/2004."),
+    Q("pol-k3", "¿Plazo máximo para resolver una solicitud de acceso a información pública (Ley 19/2013)?", ["10 días", "15 días", "Un mes", "Tres meses"], 2, "Un mes desde la recepción de la solicitud por el órgano competente, ampliable por otro mes si el volumen o la complejidad lo justifican."),
+    Q("pol-k4", "¿Cuál es la autoridad estatal de control en protección de datos?", ["Consejo de Transparencia y Buen Gobierno", "Agencia Española de Protección de Datos (AEPD)", "INAP", "Defensor del Pueblo"], 1, "La AEPD. El Consejo de Transparencia y Buen Gobierno se ocupa de la Ley 19/2013."),
+    Q("pol-k5", "¿Desde qué edad puede un menor consentir el tratamiento de sus datos en España?", ["12 años", "14 años", "16 años", "18 años"], 1, "LOPDGDD, art. 7: 14 años. El RGPD permite a los Estados fijar entre 13 y 16."),
+    Q("pol-k6", "La Ley 39/2006 de dependencia reconoce…", ["Dos grados", "Tres grados", "Cuatro grados", "Cinco niveles"], 1, "Grado I (dependencia moderada), II (severa) y III (gran dependencia)."),
+    Q("pol-k7", "La Ley 7/2021, de 20 de mayo, regula…", ["El cambio climático y la transición energética", "La protección de datos", "La transparencia", "El derecho de asilo"], 0, "Ley de cambio climático y transición energética: neutralidad climática a más tardar en 2050."),
+  ],
+  bossQs: [
+    Q("pol-b1", "Los planes de igualdad son obligatorios en empresas con…", ["10 o más personas", "25 o más personas", "50 o más personas", "100 o más personas"], 2, "Desde el RDL 6/2019 el umbral es de 50 personas trabajadoras (LO 3/2007)."),
+    Q("pol-b2", "Transcurrido el plazo sin resolver una solicitud de acceso a información pública, ésta se entenderá…", ["Estimada", "Desestimada", "Admitida a trámite", "Archivada"], 1, "Silencio negativo (art. 20.4 Ley 19/2013)."),
+    Q("pol-b3", "La reclamación ante el Consejo de Transparencia y Buen Gobierno es…", ["Potestativa, previa a la vía contencioso-administrativa, en el plazo de un mes", "Obligatoria, en el plazo de tres meses", "Potestativa, en el plazo de seis meses", "Obligatoria, en quince días"], 0, "Art. 24 Ley 19/2013: reclamación potestativa y previa a la vía contencioso-administrativa."),
+    Q("pol-b4", "La Ley 27/2022 institucionaliza la evaluación de políticas públicas y crea…", ["El Consejo de Estado", "La Agencia Estatal de Evaluación de Políticas Públicas", "El Tribunal de Cuentas", "La AEPD"], 1, "Ley 27/2022, de 20 de diciembre: crea la Agencia Estatal de Evaluación de Políticas Públicas."),
+    Q("pol-b5", "¿Qué norma regula el derecho de asilo y la protección subsidiaria?", ["LO 4/2000", "Ley 12/2009", "Ley 39/2006", "LO 1/2004"], 1, "Ley 12/2009, de 30 de octubre. La LO 4/2000 regula los derechos y libertades de los extranjeros."),
+  ],
+  mini: {
+    type: "match",
+    title: "Prueba de la Agenda 2030",
+    prompt: "Une cada Objetivo de Desarrollo Sostenible con su nombre.",
+    pairs: [
+      ["ODS 1", "Fin de la pobreza"],
+      ["ODS 3", "Salud y bienestar"],
+      ["ODS 5", "Igualdad de género"],
+      ["ODS 13", "Acción por el clima"],
+      ["ODS 16", "Paz, justicia e instituciones sólidas"],
+    ],
+  },
+  boss: {
+    name: "La Nube Gris de la Desigualdad",
+    kind: "cloud",
+    intro: [
+      "Brrrr... Soy la Desigualdad. Cubro las ciudades de niebla y no dejo que nadie avance.",
+      "Si no conoces las políticas públicas, ¡seguiré lloviendo sobre tu oposición!",
+    ],
+    defeat: ["Nooo... las políticas basadas en evidencia... y la Agenda 2030... ¡me disipan!"],
+  },
+  summary: [
+    "Administración electrónica: Leyes 39/2015 y 40/2015, RD 203/2021. Ley 19/2013: acceso en 1 mes, silencio negativo, reclamación ante el CTBG en 1 mes.",
+    "Datos: RGPD 2016/679 + LO 3/2018; AEPD; DPD obligatorio en Administraciones; menores 14 años.",
+    "Igualdad LO 3/2007 (planes en empresas de 50+, composición 40/60); LO 1/2004; Ley 39/2006: tres grados.",
+    "Agenda 2030: 17 ODS y 169 metas. Ley 7/2021 de cambio climático; Ley 12/2009 de asilo; Ley 27/2022 de evaluación.",
+  ],
+};
