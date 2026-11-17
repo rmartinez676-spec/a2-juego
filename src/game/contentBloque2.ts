@@ -1,435 +1,996 @@
-import type { MiniWorldDef, WorldDef } from "./types";
-import { Q } from "./contentBloque1";
+import type { MiniWorldDef, Question, WorldDef } from "./types";
 
-/* ==================== BLOQUE II: MINI-MUNDOS ==================== */
+export const Q = (id: string, q: string, options: string[], answer: number, explain: string): Question => ({
+  id,
+  q,
+  options,
+  answer,
+  explain,
+});
+
+/* ==================== BLOQUE II: UNIÓN EUROPEA (6 TEMAS BOE) ==================== */
 
 export const W2_T1: MiniWorldDef = {
-  id: "ue-t1",
-  num: 1,
-  temaTitle: "Tema 1: Orígenes, Tratados y ampliaciones de la UE",
-  name: "Galería de los Tratados",
-  emoji: "📜",
-  theme: "ue",
-  color: "#2f6fe0",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t1",
+  "num": 1,
+  "temaTitle": "Tema 1: La Unión Europea: Antecedentes. Objetivos y naturaleza jurídica. Los Tratados originarios y modificativos. El Tratado de la Unión Europea y el Tratado de Funcionamiento de la Unión Europea. El proceso de ampliación. Las cooperaciones reforzadas.",
+  "name": "Plaza de los Tratados",
+  "emoji": "🇪🇺",
+  "theme": "ue",
+  "color": "#2f6fe0",
+  "enemy": "estrella",
+  "enemyName": "Estrellas euroescépticas",
+  "npcs": [
     {
-      name: "Madame Tratados",
-      role: "Evolución histórica y Tratados",
-      look: { skin: "#f1c7a0", hair: "#8a8a99", hairStyle: "bun", shirt: "#2956b8", pants: "#1c2c5c", acc: ["glasses", "scarf"], accColor: "#f4d03f" },
-      pages: [
-        "¡Bienvenida a Eurolandia! El proceso de integración se inició con la CECA (Tratado de París de 1951) y con los Tratados de Roma de 1957, creadores de la CEE y EURATOM.",
-        "Hitos de reforma: Acta Única Europea (1986); Maastricht (firmado en 1992, en vigor el 1 de noviembre de 1993, que creó la Unión Europea y la UEM); Ámsterdam (1997); Niza (2001); y Lisboa (firmado en 2007, en vigor el 1 de diciembre de 2009).",
-        "El Tratado de Lisboa otorgó a la UE personalidad jurídica única y suprimió la estructura de pilares. La Unión se fundamenta en el TUE y el TFUE, que tienen el mismo valor jurídico.",
-        "España se adhirió el 1 de enero de 1986 junto a Portugal. Actualmente la UE cuenta con 27 Estados miembros tras la retirada del Reino Unido el 31 de enero de 2020 (art. 50 TUE).",
+      "name": "Jean Monnet Jr.",
+      "role": "Historia y Tratados constitutivos",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#d9d9e0",
+        "hairStyle": "short",
+        "shirt": "#1a468d",
+        "pants": "#0f2752",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd84d"
+      },
+      "pages": [
+        "¡Bienvenida a las instituciones comunitarias! La integración europea comenzó con la Declaración Schuman (9 de mayo de 1950) y el Tratado de París de 1951 (CECA).",
+        "Tratados de Roma (1957): CEE y Euratom. Acta Única Europea (1986): mercado interior.",
+        "Tratado de Maastricht (1992): nace la Unión Europea, estructura en tres pilares y ciudadanía europea.",
+        "Tratado de Lisboa (firmado 2007, en vigor 1 de diciembre de 2009): suprime los pilares, dota a la UE de personalidad jurídica única y estructura el Derecho originario en dos tratados: TUE y TFUE.",
+        "Cooperaciones reforzadas (art. 20 TUE): mínimo de 9 Estados miembros para avanzar cuando no haya acuerdo unánime."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t1-q1",
+      "q": "¿En qué fecha entró en vigor el Tratado de Lisboa que dotó a la UE de personalidad jurídica única?",
+      "options": [
+        "1 de diciembre de 2009",
+        "1 de enero de 2007",
+        "1 de enero de 2010",
+        "1 de mayo de 2004"
       ],
+      "answer": 0,
+      "explain": "El Tratado de Lisboa fue firmado el 13 de diciembre de 2007 y entró en vigor el 1 de diciembre de 2009."
     },
+    {
+      "id": "w2-t1-q2",
+      "q": "¿Cuál es el número mínimo de Estados miembros requerido para iniciar una cooperación reforzada (art. 20 TUE)?",
+      "options": [
+        "Nueve Estados miembros",
+        "Un tercio de los Estados miembros",
+        "Siete Estados miembros",
+        "La mayoría absoluta de Estados miembros"
+      ],
+      "answer": 0,
+      "explain": "Art. 20.2 TUE: La decisión de autorizar una cooperación reforzada se adoptará como último recurso y participarán en ella al menos nueve Estados miembros."
+    },
+    {
+      "id": "w2-t1-q3",
+      "q": "¿Qué tratado originario creó la Comunidad Económica Europea (CEE) en 1957?",
+      "options": [
+        "El Tratado de Roma",
+        "El Tratado de París",
+        "El Tratado de Maastricht",
+        "El Tratado de Ámsterdam"
+      ],
+      "answer": 0,
+      "explain": "Los Tratados de Roma, firmados el 25 de marzo de 1957, crearon la Comunidad Económica Europea (CEE) y el Euratom."
+    }
   ],
-  blockQs: [
-    Q("w2-t1-q1", "¿En qué fecha entró en vigor el Tratado de Maastricht, que creó formalmente la Unión Europea?", ["1 de enero de 1992", "1 de noviembre de 1993", "1 de enero de 1986", "1 de diciembre de 2009"], 1, "El Tratado de Maastricht se firmó el 7 de febrero de 1992 y entró en vigor el 1 de noviembre de 1993, creando la Unión Europea y la ciudadanía europea."),
-    Q("w2-t1-q2", "¿En qué fecha se produjo la adhesión efectiva de España a las Comunidades Europeas?", ["1 de enero de 1986", "6 de diciembre de 1978", "1 de noviembre de 1993", "12 de junio de 1985"], 0, "España firmó el Tratado de Adhesión el 12 de junio de 1985 y su ingreso efectivo tuvo lugar el 1 de enero de 1986, junto con Portugal."),
-    Q("w2-t1-q3", "El Tratado de Lisboa entró en vigor el:", ["1 de diciembre de 2009", "1 de enero de 2007", "1 de mayo de 2004", "1 de noviembre de 2010"], 0, "Firmado el 13 de diciembre de 2007, entró en vigor el 1 de diciembre de 2009. Dotó a la UE de personalidad jurídica propia y reformó el TUE y el TFUE."),
+  "bossQs": [
+    {
+      "id": "w2-t1-b1",
+      "q": "¿Qué artículo del Tratado de la Unión Europea regula la retirada voluntaria y unilateral de un Estado miembro (Brexit)?",
+      "options": [
+        "Artículo 50 del TUE",
+        "Artículo 7 del TUE",
+        "Artículo 48 del TUE",
+        "Artículo 122 del TFUE"
+      ],
+      "answer": 0,
+      "explain": "El art. 50 TUE establece el procedimiento formal para la retirada de un Estado miembro de la Unión Europea."
+    },
+    {
+      "id": "w2-t1-b2",
+      "q": "¿Cuáles son los dos tratados fundamentales sobre los que se fundamenta la Unión Europea tras Lisboa?",
+      "options": [
+        "El Tratado de la Unión Europea (TUE) y el Tratado de Funcionamiento de la Unión Europea (TFUE)",
+        "La Constitución Europea y el Tratado de Niza",
+        "El Acta Única Europea y el Tratado de París",
+        "El Estatuto de Bruselas y la Carta de Niza"
+      ],
+      "answer": 0,
+      "explain": "Art. 1 TUE: La Unión se fundamenta en el presente Tratado y en el Tratado de Funcionamiento de la Unión Europea (TFUE), ambos con el mismo valor jurídico."
+    },
+    {
+      "id": "w2-t1-b3",
+      "q": "¿Qué mayoría se exige para la adhesión de un nuevo Estado miembro según el artículo 49 TUE?",
+      "options": [
+        "Unanimidad del Consejo previa consulta a la Comisión y aprobación por mayoría de miembros del Parlamento Europeo",
+        "Mayoría cualificada del Consejo y del Parlamento",
+        "Tres cuartas partes de los Estados miembros",
+        "Decisión exclusiva de la Comisión Europea"
+      ],
+      "answer": 0,
+      "explain": "Art. 49 TUE: El Consejo se pronunciará por unanimidad, previa consulta a la Comisión y previa aprobación del Parlamento Europeo (mayoría de los miembros que lo componen)."
+    }
   ],
-  bossQs: [
-    Q("w2-t1-b1", "¿Cuál es el número mínimo de Estados miembros exigido para entablar una cooperación reforzada (art. 20 TUE)?", ["9 Estados miembros", "5 Estados miembros", "14 Estados miembros", "La mitad de los Estados miembros"], 0, "Art. 20.2 TUE: la decisión de autorizar una cooperación reforzada será adoptada por el Consejo como último recurso y requerirá la participación de al menos nueve Estados miembros."),
-    Q("w2-t1-b2", "El procedimiento de retirada voluntaria de un Estado miembro de la Unión Europea se regula en:", ["El artículo 50 del Tratado de la Unión Europea (TUE)", "El artículo 7 del TUE", "El artículo 288 del TFUE", "La Carta de los Derechos Fundamentales"], 0, "El art. 50 TUE establece el derecho de todo Estado miembro a decidir retirarse de la Unión de conformidad con sus normas constitucionales (aplicado con el Brexit)."),
-    Q("w2-t1-b3", "¿Cuáles son los tratados constitutivos de igual valor jurídico en los que se fundamenta la UE tras Lisboa?", ["El Tratado de la Unión Europea (TUE) y el Tratado de Funcionamiento de la Unión Europea (TFUE)", "El Tratado de Roma y el Tratado de Maastricht", "La Constitución Europea y el Tratado de Niza", "El Acta Única Europea y la Carta de Niza"], 0, "Art. 1 TUE: la Unión se fundamenta en el Tratado de la Unión Europea y en el Tratado de Funcionamiento de la Unión Europea. Ambos tratados tienen el mismo valor jurídico."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba de la Cronología de los Tratados Europeos",
-    prompt: "Ordena cronológicamente los tratados constitutivos y modificativos de la UE.",
-    items: [
+  "mini": {
+    "type": "order",
+    "title": "Hitos y Tratados de la Integración Europea",
+    "prompt": "Ordena cronológicamente los tratados constitutivos de la Unión Europea.",
+    "items": [
       "Tratado de París (CECA, 1951)",
-      "Tratados de Roma (CEE y EURATOM, 1957)",
-      "Acta Única Europea (1986)",
-      "Tratado de Maastricht (TUE, 1992/1993)",
-      "Tratado de Ámsterdam (1997/1999)",
-      "Tratado de Niza (2001/2003)",
-      "Tratado de Lisboa (2007/2009)",
+      "Tratados de Roma (CEE y Euratom, 1957)",
+      "Acta Única Europea (Mercado interior, 1986)",
+      "Tratado de Maastricht (Unión Europea y tres pilares, 1992)",
+      "Tratado de Lisboa (Personalidad jurídica única, TUE y TFUE, 2007/2009)"
+    ]
+  },
+  "boss": {
+    "name": "Guardián de la Soberanía",
+    "kind": "veto",
+    "intro": [
+      "¡El Derecho de la Unión no rige aquí sin ratificación unánime constante!"
     ],
+    "defeat": [
+      "¡Principio de primacía establecido desde la sentencia Costa c. ENEL (1964)!"
+    ]
   },
-  boss: {
-    name: "El Cronista de Roma",
-    kind: "veto",
-    intro: ["¡Soy la memoria histórica de Europa! Demuestra que conoces la evolución desde la CECA hasta Lisboa."],
-    defeat: ["¡Impresionante! El camino hacia una unión cada vez más estrecha te pertenece."],
-  },
-  summary: [
-    "Orígenes: CECA 1951 (París), CEE y EURATOM 1957 (Roma). España ingresa el 01/01/1986.",
-    "Tratados modificativos: Acta Única 1986, Maastricht 1992/93 (crea la UE), Ámsterdam 1997, Niza 2001, Lisboa 2007/2009.",
-    "Lisboa: personalidad jurídica única, suprime pilares, TUE + TFUE con idéntico rango y valor legal.",
-    "Retirada art. 50 TUE (Brexit 31/01/2020; 27 Estados actuales). Cooperaciones reforzadas: mínimo 9 Estados (art. 20 TUE).",
-  ],
+  "summary": [
+    "Tratados originarios: París (1951, CECA), Roma (1957, CEE y Euratom).",
+    "Tratados modificativos clave: Acta Única (1986), Maastricht (1992, crea la UE), Ámsterdam (1997), Niza (2001).",
+    "Tratado de Lisboa (2007/2009): TUE y TFUE con igual valor. Suprime pilares, dota de personalidad jurídica.",
+    "Retirada de la UE: art. 50 TUE.",
+    "Cooperación reforzada (art. 20 TUE): mínimo de 9 Estados miembros."
+  ]
 };
 
 export const W2_T2: MiniWorldDef = {
-  id: "ue-t2",
-  num: 2,
-  temaTitle: "Tema 2: El Consejo Europeo y el Consejo de la UE",
-  name: "Torre de la Cumbre Europea",
-  emoji: "🏛️",
-  theme: "ue",
-  color: "#2858b8",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t2",
+  "num": 2,
+  "temaTitle": "Tema 2: La organización de la Unión Europea (I): el Consejo Europeo, el Consejo y la Comisión Europea. Composición y funciones. El procedimiento decisorio. La participación de los Estados miembros en las diferentes fases del proceso.",
+  "name": "Consejo y Comisión",
+  "emoji": "🏛️",
+  "theme": "ue",
+  "color": "#1e52b5",
+  "enemy": "estrella",
+  "enemyName": "Comisarios rebeldes",
+  "npcs": [
     {
-      name: "Presidenta de la Cumbre",
-      role: "Consejo Europeo y Consejo de la UE",
-      look: { skin: "#e5b48a", hair: "#2b2b2b", hairStyle: "short", shirt: "#1f4287", pants: "#112244", acc: ["badge", "glasses"], accColor: "#ffd84d" },
-      pages: [
-        "El Consejo Europeo (art. 15 TUE) está compuesto por los Jefes de Estado o de Gobierno de los Estados miembros, así como por su Presidente y el Presidente de la Comisión. Participa en sus trabajos el Alto Representante.",
-        "Su función: define las orientaciones y prioridades políticas generales. ¡No ejerce función legislativa! Su Presidente es elegido por mayoría cualificada por 2 años y medio, renovable una sola vez.",
-        "El Consejo (de la Unión Europea, art. 16 TUE) reúne a los ministros de los Estados miembros. Ejerce conjuntamente con el Parlamento las funciones legislativa y presupuestaria.",
-        "Votación en el Consejo: la regla general es la Mayoría Cualificada (art. 16.4 TUE): al menos el 55% de los Estados miembros (mínimo 15) que representen como mínimo el 65% de la población de la UE.",
-        "La minoría de bloqueo debe incluir al menos a 4 miembros del Consejo. La Presidencia del Consejo rota cada 6 meses entre los Estados miembros (salvo la de Asuntos Exteriores, que preside el Alto Representante).",
+      "name": "Euroburócrata",
+      "role": "Consejo Europeo, Consejo y Comisión Europea",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#2e2e2e",
+        "hairStyle": "short",
+        "shirt": "#1565c0",
+        "pants": "#0d47a1",
+        "acc": [
+          "tie",
+          "headset"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El triángulo institucional de la UE: Consejo Europeo, Consejo de la UE y Comisión Europea.",
+        "Consejo Europeo (art. 15 TUE): define las orientaciones y prioridades políticas generales, sin función legislativa. Reúne a los Jefes de Estado o de Gobierno, a su Presidente (mandato 2 años y medio, renovable una vez) y al Presidente de la Comisión.",
+        "El Consejo (de Ministros) (art. 16 TUE): ejerce junto con el Parlamento la función legislativa y presupuestaria. Compuesto por un representante ministerial por Estado. Sistema de doble mayoría cualificada (55% Estados, mínimo 15, que representen el 65% de la población). Minoría de bloqueo: al menos 4 Estados.",
+        "Comisión Europea (art. 17 TUE): colegiada, independiente, guardiana de los Tratados. Monopolio de la iniciativa legislativa. Mandato de 5 años. 1 comisario por Estado miembro.",
+        "Alto Representante de la Unión para Asuntos Exteriores y Política de Seguridad: vicepresidente de la Comisión y preside el Consejo de Asuntos Exteriores."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t2-q1",
+      "q": "¿Cómo se define la mayoría cualificada ordinaria en el Consejo de la Unión Europea (art. 16.4 TUE)?",
+      "options": [
+        "Al menos el 55% de los Estados miembros (mínimo 15) que representen al menos el 65% de la población de la UE",
+        "Mayoría de dos tercios de los Estados miembros",
+        "El 60% de los Estados y el 60% de la población",
+        "Mayoría simple de Estados"
       ],
+      "answer": 0,
+      "explain": "Art. 16.4 TUE: Mayoría cualificada: al menos el 55% de los miembros del Consejo que incluya al menos a quince de ellos y represente a Estados que sumen al menos el 65% de la población de la Unión."
     },
+    {
+      "id": "w2-t2-q2",
+      "q": "¿Cuántos Estados miembros se requieren como mínimo para constituir una minoría de bloqueo en el Consejo?",
+      "options": [
+        "Al menos cuatro miembros del Consejo",
+        "Al menos tres miembros",
+        "Al menos cinco miembros",
+        "El 35% de los Estados miembros"
+      ],
+      "answer": 0,
+      "explain": "Art. 16.4 TUE in fine: La minoría de bloqueo deberá incluir al menos a cuatro miembros del Consejo; en caso contrario, la mayoría cualificada se considerará alcanzada."
+    },
+    {
+      "id": "w2-t2-q3",
+      "q": "¿A qué institución corresponde con carácter general el monopolio de la iniciativa legislativa en la Unión Europea?",
+      "options": [
+        "A la Comisión Europea",
+        "Al Consejo Europeo",
+        "Al Parlamento Europeo en exclusiva",
+        "Al Tribunal de Justicia de la UE"
+      ],
+      "answer": 0,
+      "explain": "Art. 17.2 TUE: Los actos legislativos de la Unión sólo podrán adoptarse a propuesta de la Comisión, salvo que los Tratados dispongan otra cosa."
+    }
   ],
-  blockQs: [
-    Q("w2-t2-q1", "¿Quién ostenta la Presidencia del Consejo Europeo y cuál es la duración de su mandato?", ["Un Presidente elegido por el propio Consejo Europeo por 2 años y medio, renovable una vez", "El Presidente de la Comisión Europea", "El Jefe de Gobierno del Estado que ostenta la presidencia semestral", "El Presidente del Parlamento Europeo"], 0, "Art. 15.5 TUE: el Consejo Europeo elegirá a su Presidente por mayoría cualificada para un mandato de dos años y medio, que podrá renovarse una sola vez."),
-    Q("w2-t2-q2", "¿Qué porcentaje de Estados y de población exige la mayoría cualificada ordinaria en el Consejo de la UE?", ["55% de los Estados miembros (al menos 15) que reúnan el 65% de la población de la UE", "50% de Estados y 50% de población", "Dos tercios de Estados y tres quintos de población", "75% de Estados miembros"], 0, "Art. 16.4 TUE: a partir del 1 de noviembre de 2014, la mayoría cualificada se define como un mínimo del 55% de los miembros del Consejo que incluya al menos a quince de ellos y represente a Estados que reúnan al menos el 65% de la población de la Unión."),
-    Q("w2-t2-q3", "La minoría de bloqueo para frenar una decisión por mayoría cualificada en el Consejo debe incluir como mínimo:", ["Al menos cuatro Estados miembros del Consejo", "Al menos tres Estados miembros", "Dos Estados con derecho de veto", "Cualquier Estado con más del 20% de población"], 0, "Art. 16.4 TUE: la minoría de bloqueo estará compuesta por al menos cuatro miembros del Consejo, a falta de lo cual la mayoría cualificada se considerará alcanzada."),
+  "bossQs": [
+    {
+      "id": "w2-t2-b1",
+      "q": "¿Cuánto dura el mandato del Presidente del Consejo Europeo y por qué mayoría es elegido?",
+      "options": [
+        "Dos años y medio, reelegible una vez, elegido por mayoría cualificada",
+        "Cinco años no renovables, elegido por unanimidad",
+        "Tres años, elegido por el Parlamento",
+        "Un año por turno rotatorio"
+      ],
+      "answer": 0,
+      "explain": "Art. 15.5 TUE: El Consejo Europeo elegirá a su Presidente por mayoría cualificada para un mandato de dos años y medio, que podrá renovarse una sola vez."
+    },
+    {
+      "id": "w2-t2-b2",
+      "q": "¿Quién preside el Consejo de Asuntos Exteriores de la Unión Europea?",
+      "options": [
+        "El Alto Representante de la Unión para Asuntos Exteriores y Política de Seguridad",
+        "El Ministro de Asuntos Exteriores del Estado que ostenta la Presidencia rotatoria",
+        "El Presidente de la Comisión Europea",
+        "El Presidente del Consejo Europeo"
+      ],
+      "answer": 0,
+      "explain": "Art. 18.3 TUE: El Alto Representante presidirá el Consejo de Asuntos Exteriores y es a su vez uno de los vicepresidentes de la Comisión."
+    },
+    {
+      "id": "w2-t2-b3",
+      "q": "¿Qué instrumento político tiene el Parlamento Europeo para exigir la dimisión colectiva de la Comisión Europea?",
+      "options": [
+        "Moción de censura aprobada por mayoría de dos tercios de los votos emitidos que represente la mayoría de los diputados",
+        "Cuestión prejudicial de inhabilitación ante el TJUE",
+        "Veto presupuestario",
+        "Moción de reprobación por mayoría simple"
+      ],
+      "answer": 0,
+      "explain": "Art. 17.8 TUE y art. 234 TFUE: Si se aprueba la moción de censura por mayoría de 2/3 de los votos emitidos que represente a su vez la mayoría de los miembros del Parlamento Europeo, los miembros de la Comisión deberán dimitir colectivamente."
+    }
   ],
-  bossQs: [
-    Q("w2-t2-b1", "¿Cuál de las siguientes formaciones del Consejo de la UE está presidida de forma permanente por el Alto Representante?", ["El Consejo de Asuntos Exteriores", "El Consejo de Asuntos Generales", "El Consejo ECOFIN", "El Consejo de Justicia e Interior"], 0, "Art. 18.3 TUE: el Alto Representante de la Unión para Asuntos Exteriores y Política de Seguridad presidirá el Consejo de Asuntos Exteriores."),
-    Q("w2-t2-b2", "¿Ejerce el Consejo Europeo funciones legislativas?", ["No, no ejerce función legislativa alguna (art. 15.1 TUE)", "Sí, aprueba los reglamentos en primera lectura", "Solo en materia penal", "Sí, conjuntamente con el TJUE"], 0, "Art. 15.1 TUE: el Consejo Europeo dará a la Unión los impulsos necesarios para su desarrollo y definirá sus orientaciones y prioridades políticas generales. No ejercerá función legislativa alguna."),
-    Q("w2-t2-b3", "La periodicidad de la Presidencia rotatoria del Consejo de la Unión Europea es de:", ["6 meses", "1 año", "2 años y medio", "3 meses"], 0, "Art. 16.9 TUE: la presidencia de las formaciones del Consejo, con excepción de Asuntos Exteriores, será desempeñada por los representantes de los Estados miembros en el Consejo mediante un sistema de rotación igual por semestres."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de las Instituciones del Consejo",
-    prompt: "Relaciona cada concepto con el Consejo Europeo o con el Consejo de la UE.",
-    pairs: [
-      ["Consejo Europeo", "Reúne a Jefes de Estado o de Gobierno y define prioridades sin legislar"],
-      ["Presidente del Consejo Europeo", "Mandato de 2 años y medio renovable una vez"],
-      ["Consejo de la UE (Ministros)", "Ejerce la función legislativa y presupuestaria con el Parlamento"],
-      ["Mayoría cualificada", "55% de Estados miembros y 65% de la población"],
+  "mini": {
+    "type": "match",
+    "title": "Instituciones y Funciones Comunitarias",
+    "prompt": "Empareja cada institución europea con su función principal según los Tratados.",
+    "pairs": [
+      [
+        "Consejo Europeo",
+        "Define las orientaciones y prioridades políticas generales (sin función legislativa)"
+      ],
+      [
+        "Comisión Europea",
+        "Iniciativa legislativa y guardiana de los Tratados (independiente)"
+      ],
+      [
+        "Consejo de la UE",
+        "Poder colegislador y presupuestario (representa a los Estados)"
+      ],
+      [
+        "Alto Representante",
+        "Dirige la PESC y preside el Consejo de Asuntos Exteriores"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Gran Bloqueador",
+    "kind": "veto",
+    "intro": [
+      "¡Represento al 34% de la población en solitario y bloquearé la directiva!"
     ],
+    "defeat": [
+      "¡Art. 16.4 TUE! La minoría de bloqueo exige al menos 4 Estados miembros. ¡Directiva aprobada por mayoría cualificada!"
+    ]
   },
-  boss: {
-    name: "El Canciller de la Minoría de Bloqueo",
-    kind: "veto",
-    intro: ["¡Pretendo bloquear la votación del Consejo! ¿Conoces las reglas de la mayoría cualificada para derrotarme?"],
-    defeat: ["¡Alcanzaste el 55% de Estados y el 65% de la población! Tu propuesta ha sido adoptada."],
-  },
-  summary: [
-    "Consejo Europeo (art. 15 TUE): Jefes de Estado/Gobierno + Presidente + Pte Comisión. No legisla; define impulsos y prioridades. Presidente: 2,5 años (renovable una vez).",
-    "Consejo de la UE (art. 16 TUE): nivel ministerial. Legisla y aprueba presupuestos con el PE. Presidencia rotatoria semestral (excepto Exteriores: Alto Representante).",
-    "Mayoría cualificada (art. 16.4 TUE): 55% de Estados (mínimo 15) que sumen el 65% de la población de la UE.",
-    "Minoría de bloqueo: mínimo 4 Estados miembros.",
-  ],
+  "summary": [
+    "Consejo Europeo (art. 15 TUE): impulsos políticos, sin legislar. Presidente por 2,5 años (reelegible una vez).",
+    "Consejo (art. 16 TUE): colegislador con PE. Mayoría cualificada: 55% Estados (mín. 15) + 65% población. Minoría de bloqueo: mín. 4 Estados.",
+    "Comisión Europea (art. 17 TUE): iniciativa legislativa, ejecutiva y guardiana. 1 comisario por Estado. Mandato de 5 años.",
+    "Alto Representante (art. 18 TUE): preside Asuntos Exteriores y es Vicepresidente de la Comisión.",
+    "Moción de censura del PE a la Comisión: 2/3 de votos que sumen mayoría de diputados (art. 234 TFUE)."
+  ]
 };
 
 export const W2_T3: MiniWorldDef = {
-  id: "ue-t3",
-  num: 3,
-  temaTitle: "Tema 3: La Comisión Europea",
-  name: "Sede del Berlaymont",
-  emoji: "🇪🇺",
-  theme: "ue",
-  color: "#214aa0",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t3",
+  "num": 3,
+  "temaTitle": "Tema 3: La organización de la Unión Europea (II): el Parlamento Europeo. El Tribunal de Justicia de la Unión Europea. El Tribunal de Cuentas. El Banco Central Europeo.",
+  "name": "Estrasburgo y Luxemburgo",
+  "emoji": "⚖️",
+  "theme": "ue",
+  "color": "#1565c0",
+  "enemy": "estrella",
+  "enemyName": "Cuentas oscuras",
+  "npcs": [
     {
-      name: "Comisario Berlay",
-      role: "Comisión Europea",
-      look: { skin: "#d9a577", hair: "#222233", hairStyle: "short", shirt: "#f0f0f5", pants: "#232b4d", acc: ["tie", "badge"], accColor: "#2f6fe0" },
-      pages: [
-        "La Comisión Europea (art. 17 TUE) promueve el interés general de la Unión y toma las iniciativas adecuadas con este fin.",
-        "Posee el monopolio casi exclusivo de la iniciativa legislativa: salvo que los Tratados dispongan otra cosa, los actos legislativos solo podrán adoptarse a propuesta de la Comisión.",
-        "Es la 'guardiana de los Tratados': vela por la aplicación de los Tratados y de las medidas adoptadas por las instituciones; supervisa la aplicación del Derecho de la UE bajo el control del TJUE (recurso por incumplimiento, art. 258 TFUE).",
-        "Composición: un nacional de cada Estado miembro (27 comisarios), incluidos su Presidente y el Alto Representante (que es Vicepresidente de la Comisión). Mandato de 5 años. Colegialidad e independencia absoluta de sus miembros.",
+      "name": "Eurodiputada Ponente",
+      "role": "Parlamento, TJUE, Tribunal de Cuentas y BCE",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#8d5b4c",
+        "hairStyle": "long",
+        "shirt": "#1976d2",
+        "pants": "#0d47a1",
+        "acc": [
+          "headset",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Parlamento Europeo (art. 14 TUE): elegido por sufragio universal directo cada 5 años. Máximo 750 diputados más el Presidente (criterio de proporcionalidad decreciente, mín. 6 y máx. 96 por Estado). Co-legislador con el Consejo.",
+        "Tribunal de Justicia de la Unión Europea (TJUE, art. 19 TUE): garantiza el respeto del Derecho en la interpretación y aplicación de los Tratados. Sede en Luxemburgo. Integrado por el Tribunal de Justicia (1 juez por Estado + 11 abogados generales) y el Tribunal General (2 jueces por Estado). Mandato 6 años, renovación trienal por mitades.",
+        "Tribunal de Cuentas Europeo (art. 285 TFUE): fiscaliza las cuentas y la legalidad de ingresos y gastos de la UE. 1 miembro por Estado por 6 años.",
+        "Banco Central Europeo (BCE, art. 282 TFUE): personalidad jurídica propia, gobierna el Eurosistema y emite el euro. Objetivo prioritario: estabilidad de precios."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t3-q1",
+      "q": "¿Cuál es el número máximo de diputados que puede tener el Parlamento Europeo según el Tratado de Lisboa?",
+      "options": [
+        "750 diputados más el Presidente (751)",
+        "700 diputados",
+        "800 diputados",
+        "650 diputados"
       ],
+      "answer": 0,
+      "explain": "Art. 14.2 TUE: La composición del Parlamento Europeo no excederá de setecientos cincuenta diputados, más el Presidente."
     },
+    {
+      "id": "w2-t3-q2",
+      "q": "¿Qué instrumento procesal permite a los jueces nacionales consultar al TJUE sobre la interpretación o validez del Derecho de la UE?",
+      "options": [
+        "La cuestión prejudicial (art. 267 TFUE)",
+        "El recurso por omisión",
+        "El recurso de anulación",
+        "El dictamen consultivo de urgencia"
+      ],
+      "answer": 0,
+      "explain": "Art. 267 TFUE: El TJUE es competente para pronunciarse, con carácter prejudicial, sobre la interpretación de los Tratados y la validez e interpretación de los actos de las instituciones."
+    },
+    {
+      "id": "w2-t3-q3",
+      "q": "¿Cuál es el objetivo primordial del Sistema Europeo de Bancos Centrales (SEBC) y del BCE según el art. 127 TFUE?",
+      "options": [
+        "Mantener la estabilidad de precios",
+        "Financiar directamente el déficit de los Estados miembros",
+        "Maximizar el crecimiento económico a corto plazo",
+        "Fijar el tipo de cambio fijo frente al dólar"
+      ],
+      "answer": 0,
+      "explain": "Art. 127.1 TFUE: El objetivo principal del SEBC será mantener la estabilidad de precios."
+    }
   ],
-  blockQs: [
-    Q("w2-t3-q1", "¿Cuál es la función institucional primordial de la Comisión Europea respecto a la legislación comunitaria?", ["Monopolio de la iniciativa legislativa en el procedimiento ordinario", "Aprobación definitiva de las directivas en solitario", "Sanción y promulgación obligatoria", "Control de constitucionalidad previo de las leyes nacionales"], 0, "Art. 17.2 TUE: los actos legislativos de la Unión solo podrán adoptarse a propuesta de la Comisión, salvo que los Tratados dispongan otra cosa."),
-    Q("w2-t3-q2", "¿Cuánto dura el mandato de los miembros de la Comisión Europea?", ["5 años", "4 años", "6 años", "2 años y medio"], 0, "Art. 17.3 TUE: el mandato de la Comisión será de cinco años, coincidente con la legislatura del Parlamento Europeo."),
-    Q("w2-t3-q3", "Por qué motivo se conoce comúnmente a la Comisión Europea como la 'guardiana de los Tratados'?", ["Porque vela por la aplicación de los Tratados y del Derecho de la UE bajo el control del TJUE", "Porque custodia físicamente los Tratados originales en Roma", "Porque redacta las sentencias del Tribunal de Justicia", "Porque nombra a los jueces del TJUE"], 0, "Art. 17.1 TUE: la Comisión velará por que se apliquen los Tratados y las medidas adoptadas por las instituciones en virtud de éstos, supervisando la aplicación del Derecho de la Unión."),
+  "bossQs": [
+    {
+      "id": "w2-t3-b1",
+      "q": "¿Cuánto dura el mandato de los jueces y abogados generales del Tribunal de Justicia de la UE (art. 253 TFUE)?",
+      "options": [
+        "Seis años, con renovaciones parciales cada tres años",
+        "Nueve años no renovables",
+        "Cinco años coincidentes con la Comisión",
+        "Vitalicio hasta los 70 años"
+      ],
+      "answer": 0,
+      "explain": "Art. 253 TFUE: Los Jueces y Abogados Generales del TJUE son designados para un período de seis años. Cada tres años tiene lugar una renovación parcial."
+    },
+    {
+      "id": "w2-t3-b2",
+      "q": "¿En qué plazo debe interponerse el recurso de anulación contra actos legislativos comunitarios (art. 263 TFUE)?",
+      "options": [
+        "En un plazo de dos meses a partir de su publicación o notificación",
+        "En el plazo de un mes",
+        "En un plazo de tres meses",
+        "En el plazo de seis meses"
+      ],
+      "answer": 0,
+      "explain": "Art. 263 TFUE in fine: Los recursos deberán interponerse en el plazo de dos meses a partir de la publicación de la medida, o de su notificación al recurrente."
+    },
+    {
+      "id": "w2-t3-b3",
+      "q": "¿Cómo se compone el Tribunal de Cuentas Europeo según el art. 286 TFUE?",
+      "options": [
+        "Un nacional de cada Estado miembro, nombrados por el Consejo por seis años tras consulta al Parlamento",
+        "Quince miembros elegidos por el Parlamento Europeo",
+        "Doce auditores nombrados por el BCE",
+        "Veinte miembros rotatorios por cuatro años"
+      ],
+      "answer": 0,
+      "explain": "Art. 285 y 286 TFUE: El Tribunal de Cuentas estará compuesto por un nacional de cada Estado miembro, nombrados para un período de seis años por el Consejo tras consultar al Parlamento Europeo."
+    }
   ],
-  bossQs: [
-    Q("w2-t3-b1", "¿Cómo se elige al Presidente de la Comisión Europea según el art. 17.7 TUE?", ["Propuesto por el Consejo Europeo por mayoría cualificada y elegido por el Parlamento Europeo por mayoría de los miembros que lo componen", "Elegido por votación popular directa de los ciudadanos de la UE", "Designado por rotación entre los 27 Estados", "Nombrado directamente por el TJUE"], 0, "Art. 17.7 TUE: el Consejo Europeo propone candidato teniendo en cuenta las elecciones al PE; el candidato es elegido por el Parlamento Europeo por mayoría de los miembros que lo componen."),
-    Q("w2-t3-b2", "El Parlamento Europeo puede obligar a la dimisión colectiva de la Comisión mediante la aprobación de una:", ["Moción de censura por mayoría de 2/3 de los votos emitidos que representen la mayoría de los diputados", "Cuestión prejudicial ante el TJUE", "Resolución ordinaria por mayoría simple", "Moción de reprobación individual"], 0, "Art. 234 TFUE: si la moción de censura es aprobada por mayoría de dos tercios de los votos emitidos que representen a su vez la mayoría de los diputados del Parlamento, los miembros de la Comisión deberán dimitir colectivamente."),
-    Q("w2-t3-b3", "El Alto Representante de la Unión para Asuntos Exteriores y Política de Seguridad es nombrado por:", ["El Consejo Europeo con la aprobación del Presidente de la Comisión", "El Parlamento Europeo en solitario", "La Asamblea General de la ONU", "El Tribunal de Justicia de la UE"], 0, "Art. 18.1 TUE: el Consejo Europeo nombrará al Alto Representante por mayoría cualificada, con la aprobación del Presidente de la Comisión."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba de Nombramiento de la Comisión",
-    prompt: "Ordena los pasos para el nombramiento de la Comisión Europea (art. 17.7 TUE).",
-    items: [
-      "El Consejo Europeo propone candidato a Presidente tras las elecciones al PE",
-      "El Parlamento Europeo elige al Presidente por mayoría de miembros que lo componen",
-      "El Consejo y el Presidente electo adoptan la lista de los demás Comisarios propuestos",
-      "Audiencias de evaluación de los comisarios designados ante las comisiones del Parlamento",
-      "Votación de investidura colegiada del Parlamento y nombramiento por el Consejo Europeo",
+  "mini": {
+    "type": "match",
+    "title": "Vías Procesales ante el TJUE",
+    "prompt": "Empareja cada recurso jurisdiccional con su finalidad esencial.",
+    "pairs": [
+      [
+        "Cuestión prejudicial (art. 267 TFUE)",
+        "Juez nacional consulta interpretación o validez del Derecho UE"
+      ],
+      [
+        "Recurso de anulación (art. 263 TFUE)",
+        "Controlar la legalidad de los actos comunitarios (plazo 2 meses)"
+      ],
+      [
+        "Recurso por incumplimiento (arts. 258-260)",
+        "Comisión o Estado demanda a Estado miembro infractor"
+      ],
+      [
+        "Recurso por omisión (art. 265 TFUE)",
+        "Sancionar la abstención ilegal de actuar de una institución"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Auditor Rebelde",
+    "kind": "cloud",
+    "intro": [
+      "¡He ocultado irregularidades contables en los fondos comunitarios!"
     ],
+    "defeat": [
+      "¡Informe anual del Tribunal de Cuentas remitido al Parlamento Europeo y a la OLAF!"
+    ]
   },
-  boss: {
-    name: "El Comisario Disidente",
-    kind: "veto",
-    intro: ["¡Quiero actuar en beneficio de mi propio país y no de la Unión! Demuestra que conoces la independencia de la Comisión."],
-    defeat: ["¡El principio de colegialidad e interés general europeo ha triunfado!"],
-  },
-  summary: [
-    "Comisión Europea (art. 17 TUE): 27 miembros (1 por Estado), mandato 5 años, sede en Bruselas (edificio Berlaymont).",
-    "Funciones: monopolio de la iniciativa legislativa, guardiana de los Tratados (art. 258 TFUE recurso de incumplimiento), ejecución del presupuesto y representación exterior (salvo PESC).",
-    "Elección: Consejo Europeo propone, Parlamento elige por mayoría de miembros componentes. Moción de censura del PE (art. 234 TFUE: 2/3 votos y mayoría diputados).",
-    "Alto Representante (art. 18 TUE): Vicepresidente de la Comisión y presidente del Consejo de Asuntos Exteriores.",
-  ],
+  "summary": [
+    "Parlamento Europeo (art. 14 TUE): 750 + 1 Presidente. Elegido por sufragio cada 5 años. Colegislador.",
+    "TJUE (art. 19 TUE): Sede Luxemburgo. Tribunal de Justicia (1 juez/Estado + 11 abogados generales) y Tribunal General (2 jueces/Estado). Mandato 6 años (renovación cada 3).",
+    "Cuestión prejudicial (art. 267 TFUE): clave de la uniformidad del Derecho comunitario.",
+    "Tribunal de Cuentas (art. 285 TFUE): 1 miembro por Estado por 6 años. Fiscalización externa.",
+    "BCE (art. 282 TFUE): personalidad jurídica, gobierna el euro. Objetivo supremo: estabilidad de precios."
+  ]
 };
 
 export const W2_T4: MiniWorldDef = {
-  id: "ue-t4",
-  num: 4,
-  temaTitle: "Tema 4: Parlamento Europeo, TJUE, Tribunal de Cuentas y BCE",
-  name: "Corte de Estrasburgo y Luxemburgo",
-  emoji: "⚖️",
-  theme: "ue",
-  color: "#1d3d82",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t4",
+  "num": 4,
+  "temaTitle": "Tema 4: Las fuentes del derecho de la Unión Europea. Derecho originario. Derecho derivado: Reglamentos, directivas y decisiones. Otras fuentes. Las relaciones entre el Derecho de la Unión Europea y el ordenamiento jurídico de los Estados miembros.",
+  "name": "Fuentes del Derecho UE",
+  "emoji": "📜",
+  "theme": "ue",
+  "color": "#0d47a1",
+  "enemy": "estrella",
+  "enemyName": "Transposiciones nulas",
+  "npcs": [
     {
-      name: "Eurodiputada Lex",
-      role: "Parlamento Europeo, TJUE, Cuentas y BCE",
-      look: { skin: "#f3c9a0", hair: "#c0392b", hairStyle: "curly", shirt: "#f4d03f", pants: "#2c3e8c", acc: ["headset"], accColor: "#222" },
-      pages: [
-        "El Parlamento Europeo (art. 14 TUE) representa a la ciudadanía europea. Elegido por sufragio universal directo cada 5 años. Máximo 750 diputados más el Presidente (criterio de proporcionalidad degresiva: min 6, max 96 por Estado). Sede oficial en Estrasburgo.",
-        "Tribunal de Justicia de la UE (art. 19 TUE, sede en Luxemburgo): comprende el Tribunal de Justicia (1 juez por Estado y 11 abogados generales) y el Tribunal General (al menos 2 jueces por Estado). Garantiza el respeto del Derecho en la interpretación y aplicación de los Tratados.",
-        "Cuestión prejudicial (art. 267 TFUE): mecanismo clave de cooperación con jueces nacionales sobre validez e interpretación del Derecho de la UE.",
-        "Banco Central Europeo (BCE, sede en Fráncfort, art. 127 TFUE): objetivo prioritario: la estabilidad de precios. Tribunal de Cuentas Europeo (sede en Luxemburgo, art. 285 TFUE): 1 miembro por Estado, fiscaliza las cuentas y la gestión financiera.",
+      "name": "Jurisconsulto Europeo",
+      "role": "Fuentes y relación con el Derecho interno",
+      "look": {
+        "skin": "#f5c6a5",
+        "hair": "#37474f",
+        "hairStyle": "short",
+        "shirt": "#0d47a1",
+        "pants": "#263238",
+        "acc": [
+          "robe",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El ordenamiento jurídico de la UE es un ordenamiento propio e integrado en el de los Estados miembros.",
+        "Derecho originario: Tratados constitutivos (TUE, TFUE, Tratado Euratom) y sus modificaciones, Protocolos y la Carta de los Derechos Fundamentales de la UE (art. 6.1 TUE, mismo valor que los Tratados).",
+        "Derecho derivado (art. 288 TFUE):",
+        "• Reglamento: alcance general, obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro.",
+        "• Directiva: obligará al Estado miembro destinatario en cuanto al resultado que deba conseguirse, dejando a las autoridades nacionales la elección de la forma y de los medios (requiere transposición).",
+        "• Decisión: obligatoria en todos sus elementos; si designa destinatarios sólo será obligatoria para éstos.",
+        "• Recomendaciones y dictámenes: no son vinculantes.",
+        "Principios de relación: Primacía (Costa c. ENEL, 1964), Efecto directo (Van Gend en Loos, 1963) y Responsabilidad del Estado por daños derivados del incumplimiento del Derecho de la UE (Francovich, 1991)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t4-q1",
+      "q": "¿Cuáles son las características definitorias del Reglamento de la UE según el art. 288 TFUE?",
+      "options": [
+        "Alcance general, obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro",
+        "Obliga en el resultado dejando a los Estados los medios y formas",
+        "Sólo es vinculante para las instituciones comunitarias",
+        "Carece de efecto vinculante hasta su ratificación parlamentaria"
       ],
+      "answer": 0,
+      "explain": "Art. 288 TFUE: El reglamento tendrá un alcance general. Será obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro."
     },
+    {
+      "id": "w2-t4-q2",
+      "q": "¿Qué caracteriza a la Directiva comunitaria según el artículo 288 TFUE?",
+      "options": [
+        "Obliga al Estado destinatario en el resultado que deba conseguirse, dejando a las autoridades nacionales la elección de la forma y de los medios",
+        "Es directamente aplicable sin necesidad de norma interna de transposición",
+        "No vincula a los Estados miembros y sólo tiene carácter de recomendación",
+        "Se aplica de forma idéntica y simultánea a todos los particulares"
+      ],
+      "answer": 0,
+      "explain": "Art. 288 TFUE: La directiva obligará al Estado miembro destinatario en cuanto al resultado que deba conseguirse, dejando a las autoridades nacionales la elección de la forma y de los medios."
+    },
+    {
+      "id": "w2-t4-q3",
+      "q": "¿Qué valor jurídico tiene la Carta de los Derechos Fundamentales de la UE según el artículo 6.1 TUE?",
+      "options": [
+        "El mismo valor jurídico que los Tratados constitutivos (Derecho originario)",
+        "El valor de un reglamento general",
+        "Mera declaración política sin valor vinculante",
+        "Valor subordinado a las directivas comunitarias"
+      ],
+      "answer": 0,
+      "explain": "Art. 6.1 TUE: La Unión reconoce los derechos, libertades y principios enunciados en la Carta de los Derechos Fundamentales de la Unión Europea, la cual tendrá el mismo valor jurídico que los Tratados."
+    }
   ],
-  blockQs: [
-    Q("w2-t4-q1", "¿Dónde se encuentra la sede oficial del Parlamento Europeo en la que se celebran las sesiones plenarias mensuales?", ["Estrasburgo", "Bruselas", "Luxemburgo", "Fráncfort"], 0, "Protocolo nº 6 sobre las sedes de las instituciones: el Parlamento Europeo tiene su sede oficial en Estrasburgo, donde se celebran los períodos parciales de sesiones mensuales."),
-    Q("w2-t4-q2", "¿Cuál es el objetivo principal asignado al Banco Central Europeo en el art. 127.1 del TFUE?", ["Mantener la estabilidad de precios", "Financiar el déficit público de los Estados", "Emitir deuda pública para infraestructuras", "Controlar las elecciones parlamentarias"], 0, "Art. 127.1 TFUE: el objetivo principal del Sistema Europeo de Bancos Centrales (SEBC) y del BCE es mantener la estabilidad de precios."),
-    Q("w2-t4-q3", "La cuestión prejudicial regulada en el art. 267 TFUE puede ser planteada ante el TJUE por:", ["Cualquier órgano jurisdiccional de un Estado miembro", "Cualquier ciudadano particular que presente una demanda", "Exclusivamente el Parlamento Europeo", "Solo la Comisión Europea"], 0, "Art. 267 TFUE: cualquier órgano judicial nacional ante el cual se plantee una duda de interpretación o validez del Derecho de la UE puede pedir al TJUE que se pronuncie."),
+  "bossQs": [
+    {
+      "id": "w2-t4-b1",
+      "q": "¿Qué consagró la histórica sentencia del TJUE 'Van Gend en Loos' (1963)?",
+      "options": [
+        "El principio de efecto directo del Derecho comunitario sobre los ciudadanos",
+        "El principio de primacía absoluta de los reglamentos",
+        "La responsabilidad extracontractual de los Estados",
+        "La creación de la moneda única europea"
+      ],
+      "answer": 0,
+      "explain": "La sentencia Van Gend en Loos (1963) sentó el principio del efecto directo: las normas comunitarias claras e incondicionales engendran derechos individuales directamente invocables ante los tribunales nacionales."
+    },
+    {
+      "id": "w2-t4-b2",
+      "q": "¿Qué estableció la sentencia 'Costa contra ENEL' (1964) del Tribunal de Justicia de la UE?",
+      "options": [
+        "El principio de primacía del Derecho de la Unión sobre el derecho interno de los Estados miembros",
+        "La prohibición de monopolios públicos",
+        "La libre circulación de capitales",
+        "La nulidad de las aduanas interiores"
+      ],
+      "answer": 0,
+      "explain": "Costa c. ENEL (1964) proclamó la primacía del Derecho comunitario sobre las normas de derecho interno, incluso posteriores o de rango constitucional interno."
+    },
+    {
+      "id": "w2-t4-b3",
+      "q": "¿Qué actos del Derecho derivado de la UE NO tienen carácter vinculante según el art. 288 TFUE?",
+      "options": [
+        "Las recomendaciones y los dictámenes",
+        "Las decisiones individuales",
+        "Las directivas marco",
+        "Los reglamentos de ejecución"
+      ],
+      "answer": 0,
+      "explain": "Art. 288 TFUE in fine: Las recomendaciones y los dictámenes no serán vinculantes."
+    }
   ],
-  bossQs: [
-    Q("w2-t4-b1", "¿Qué límites fija el Tratado de Lisboa para la composición del Parlamento Europeo (art. 14.2 TUE)?", ["No excederá de setecientos cincuenta diputados más el Presidente, con un mínimo de 6 y un máximo de 96 por Estado", "Exactamente 500 diputados repartidos por igual", "Entre 300 y 600 diputados", "Un máximo de 1000 diputados"], 0, "Art. 14.2 TUE: el número no superará los setecientos cincuenta, más el Presidente. La representación será degresivamente proporcional, con un mínimo de seis y un máximo de noventa y seis escaños por Estado."),
-    Q("w2-t4-b2", "¿Cuál es la función esencial de los Abogados Generales en el Tribunal de Justicia de la UE (art. 252 TFUE)?", ["Presentar públicamente, con toda imparcialidad e independencia, conclusiones motivadas sobre los asuntos que requieran su intervención", "Representar jurídicamente a los Estados miembros demandados", "Presidir las salas de deliberación", "Ejecutar las sanciones económicas a los Estados"], 0, "Art. 252 TFUE: el Abogado General presenta conclusiones jurídicas motivadas para auxiliar al Tribunal en la adopción de su sentencia."),
-    Q("w2-t4-b3", "¿Por cuánto tiempo son nombrados los miembros del Tribunal de Cuentas Europeo (art. 286 TFUE)?", ["6 años, renovable", "5 años, coincidente con el PE", "4 años", "Vitalicios"], 0, "Art. 286 TFUE: los miembros del Tribunal de Cuentas serán nombrados por un período de seis años por el Consejo, previa consulta al Parlamento Europeo."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de las Sedes de los Organismos de la UE",
-    prompt: "Empareja cada institución con la ciudad de su sede principal.",
-    pairs: [
-      ["Parlamento Europeo (plenos oficiales)", "Estrasburgo"],
-      ["Tribunal de Justicia de la UE (TJUE)", "Luxemburgo"],
-      ["Banco Central Europeo (BCE)", "Fráncfort"],
-      ["Tribunal de Cuentas Europeo", "Luxemburgo"],
-      ["Frontex (Guardia Europea de Fronteras)", "Varsovia"],
+  "mini": {
+    "type": "match",
+    "title": "Actos Jurídicos de la UE (Art. 288 TFUE)",
+    "prompt": "Empareja cada instrumento con su régimen vinculante y alcance.",
+    "pairs": [
+      [
+        "Reglamento",
+        "Alcance general, obligatorio en todos sus elementos y directamente aplicable"
+      ],
+      [
+        "Directiva",
+        "Obliga en el resultado a los Estados, exigiendo transposición nacional"
+      ],
+      [
+        "Decisión",
+        "Obligatoria en todos sus elementos para sus destinatarios específicos"
+      ],
+      [
+        "Recomendación y Dictamen",
+        "Actos no vinculantes para orientar o emitir juicios"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Infractor Comunitario",
+    "kind": "veto",
+    "intro": [
+      "¡No he transpuesto la directiva en plazo y nadie podrá exigirme nada!"
     ],
+    "defeat": [
+      "¡Doctrina del efecto directo vertical y principio de responsabilidad patrimonial del Estado infractor (sentencia Francovich)!"
+    ]
   },
-  boss: {
-    name: "El Jurisconsulto Escéptico",
-    kind: "veto",
-    intro: ["¡Pongo en duda la jurisdicción comunitaria y el control contable! ¿Conoces las atribuciones del TJUE y del Tribunal de Cuentas?"],
-    defeat: ["¡La jurisprudencia y el rigor financiero de la Unión son incuestionables!"],
-  },
-  summary: [
-    "Parlamento Europeo (art. 14 TUE): máx 750 + Pte; 5 años; sede en Estrasburgo (comisiones en Bruselas, Secretaría en Luxemburgo).",
-    "TJUE (art. 19 TUE, Luxemburgo): Tribunal de Justicia (27 jueces + 11 abogados generales) y Tribunal General (54 jueces). Cuestión prejudicial art. 267 TFUE.",
-    "BCE (art. 127 TFUE, Fráncfort): estabilidad de precios, política monetaria del euro.",
-    "Tribunal de Cuentas (art. 285 TFUE, Luxemburgo): 1 miembro por Estado, mandato 6 años, informe anual sobre el presupuesto.",
-  ],
+  "summary": [
+    "Derecho originario: Tratados (TUE, TFUE, Euratom), Protocolos y Carta de Derechos Fundamentales (art. 6.1 TUE).",
+    "Derecho derivado vinculante (art. 288 TFUE): Reglamento (general y directo), Directiva (resultado, transposición), Decisión (obligatoria para destinatarios).",
+    "Derecho no vinculante: Recomendaciones y Dictámenes.",
+    "Primacía: Costa c. ENEL (1964).",
+    "Efecto directo: Van Gend en Loos (1963). Responsabilidad del Estado: Francovich (1991)."
+  ]
 };
 
 export const W2_T5: MiniWorldDef = {
-  id: "ue-t5",
-  num: 5,
-  temaTitle: "Tema 5: Fuentes del Derecho de la Unión Europea",
-  name: "Sala de la Pirámide Comunitaria",
-  emoji: "⚖️",
-  theme: "ue",
-  color: "#16306a",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t5",
+  "num": 5,
+  "temaTitle": "Tema 5: El presupuesto comunitario. Los fondos europeos. La cohesión económica y social.",
+  "name": "Erario Comunitario",
+  "emoji": "💶",
+  "theme": "ue",
+  "color": "#1976d2",
+  "enemy": "moneda",
+  "enemyName": "Fraude presupuestario",
+  "npcs": [
     {
-      name: "Magistrada Ordenamiento",
-      role: "Derecho originario, derivado y principios",
-      look: { skin: "#f1c7a0", hair: "#333", hairStyle: "bun", shirt: "#3498db", pants: "#1a365d", acc: ["glasses", "robe"], accColor: "#ffd84d" },
-      pages: [
-        "El ordenamiento de la UE es un ordenamiento jurídico autónomo e integrado en el de los Estados miembros.",
-        "Derecho originario: los Tratados constitutivos (TUE, TFUE, Tratado EURATOM), sus protocolos, modificaciones y la Carta de los Derechos Fundamentales (art. 6 TUE).",
-        "Derecho derivado (art. 288 TFUE): los actos jurídicos de la Unión se dividen en vinculantes (Reglamento, Directiva y Decisión) y no vinculantes (Recomendaciones y Dictámenes).",
-        "El Reglamento tiene alcance general, es obligatorio en todos sus elementos y directamente aplicable en cada Estado. La Directiva obliga al Estado destinatario en cuanto al resultado que deba conseguirse, dejando a las autoridades nacionales la elección de la forma y los medios (requiere transposición).",
-        "Principios vertebradores: Primacía del Derecho de la UE sobre el nacional (sentencia Costa c. ENEL, 1964) y Efecto Directo (sentencia Van Gend en Loos, 1963).",
+      "name": "Comisario de Presupuestos",
+      "role": "MFP, Fondos Estructurales y Cohesión",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#424242",
+        "hairStyle": "short",
+        "shirt": "#0288d1",
+        "pants": "#01579b",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El presupuesto de la UE se rige por el Marco Financiero Plurianual (MFP, mínimo 5 años, habitualmente 7 años, art. 312 TFUE). Aprobado por el Consejo por unanimidad, previa aprobación del Parlamento Europeo.",
+        "Principios presupuestarios: unidad y veracidad, anualidad, equilibrio (ingresos = gastos, no cabe déficit presupuestario comunitario), unidad de cuenta (euro), universalidad y especialidad.",
+        "Recursos propios (art. 311 TFUE): recursos propios tradicionales (aranceles aduaneros), recurso IVA, recurso RNB (Renta Nacional Bruta, principal fuente de ingresos) y recurso sobre residuos de envases de plástico no reciclados.",
+        "Fondos Europeos: Fondos Estructurales y de Inversión (FEDER, FSE+, Fondo de Cohesión, FEADER, FEMPA).",
+        "Fondo de Cohesión: apoya a Estados miembros cuya RNB per cápita sea inferior al 90% de la media de la UE en medio ambiente y redes transeuropeas de transporte."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t5-q1",
+      "q": "¿Cuál es la principal fuente de ingresos del presupuesto de la Unión Europea dentro de sus recursos propios?",
+      "options": [
+        "El recurso basado en la Renta Nacional Bruta (RNB) de los Estados miembros",
+        "Los aranceles de aduanas exteriores exclusivamente",
+        "El impuesto europeo sobre la renta de las personas físicas",
+        "Las multas a empresas por competencia"
       ],
+      "answer": 0,
+      "explain": "El recurso basado en la Renta Nacional Bruta (RNB) es la principal fuente de ingresos del presupuesto comunitario, aportando más del 65% del total de recursos de la UE."
     },
+    {
+      "id": "w2-t5-q2",
+      "q": "¿Qué principio presupuestario prohíbe el déficit en el presupuesto de la Unión Europea (art. 310.1 TFUE)?",
+      "options": [
+        "Principio de equilibrio presupuestario",
+        "Principio de anualidad",
+        "Principio de especialidad",
+        "Principio de no afectación"
+      ],
+      "answer": 0,
+      "explain": "Art. 310.1 TFUE: Los ingresos y los gastos consignados en el presupuesto deberán estar equilibrados. La UE no puede endeudarse para financiar déficit ordinario."
+    },
+    {
+      "id": "w2-t5-q3",
+      "q": "¿Para qué países está reservado el acceso a las ayudas del Fondo de Cohesión de la UE?",
+      "options": [
+        "Para Estados miembros cuya RNB per cápita sea inferior al 90% de la media de la UE",
+        "Para todos los países que tengan frontera exterior",
+        "Exclusivamente para países con tasa de paro superior al 20%",
+        "Para los países de la zona euro exclusivamente"
+      ],
+      "answer": 0,
+      "explain": "Art. 177 TFUE: El Fondo de Cohesión financia proyectos de medio ambiente y redes transeuropeas en Estados miembros cuya RNB per cápita sea inferior al 90% de la media comunitaria."
+    }
   ],
-  blockQs: [
-    Q("w2-t5-q1", "Según el art. 288 del TFUE, ¿qué acto legislativo tiene alcance general, es obligatorio en todos sus elementos y directamente aplicable?", ["El Reglamento", "La Directiva", "La Recomendación", "El Dictamen"], 0, "Art. 288 TFUE: el reglamento tendrá un alcance general. Será obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro."),
-    Q("w2-t5-q2", "Una Directiva de la Unión Europea se caracteriza por:", ["Obligar al Estado en cuanto al resultado, dejando a las autoridades nacionales la elección de la forma y de los medios", "Ser directamente aplicable a los ciudadanos sin necesidad de transposición", "Carecer de efectos jurídicos vinculantes", "Aplicarse exclusivamente a las empresas públicas"], 0, "Art. 288 TFUE: la directiva obligará al Estado miembro destinatario en cuanto al resultado que deba conseguirse, dejando a las autoridades nacionales la elección de la forma y de los medios."),
-    Q("w2-t5-q3", "El principio de primacía del Derecho de la Unión Europea sobre el Derecho nacional fue consagrado jurisprudencialmente en la sentencia:", ["Costa c. ENEL (1964)", "Van Gend en Loos (1963)", "Cassis de Dijon (1979)", "Francovich (1991)"], 0, "La sentencia Costa contra ENEL (asunto 6/64) sentó el principio de primacía: el Derecho comunitario no puede ser derogado por normas de Derecho interno, con independencia de su rango."),
+  "bossQs": [
+    {
+      "id": "w2-t5-b1",
+      "q": "¿Por qué procedimiento y mayoría se aprueba el Marco Financiero Plurianual (MFP) según el art. 312 TFUE?",
+      "options": [
+        "Por el Consejo por unanimidad, previa aprobación del Parlamento Europeo por mayoría de los miembros que lo componen",
+        "Por mayoría cualificada del Consejo sin intervención del Parlamento",
+        "Por el Parlamento Europeo en exclusiva",
+        "Por la Comisión Europea mediante reglamento de ejecución"
+      ],
+      "answer": 0,
+      "explain": "Art. 312.2 TFUE: El Consejo adoptará un reglamento que fije el marco financiero plurianual por unanimidad, previa aprobación del Parlamento Europeo por mayoría de los miembros que lo componen."
+    },
+    {
+      "id": "w2-t5-b2",
+      "q": "¿Cuál es el fondo estructural europeo centrado en promover el empleo, la educación y la inclusión social?",
+      "options": [
+        "El Fondo Social Europeo Plus (FSE+)",
+        "El Fondo Europeo de Desarrollo Regional (FEDER)",
+        "El Fondo de Cohesión",
+        "El FEAGA"
+      ],
+      "answer": 0,
+      "explain": "El Fondo Social Europeo Plus (FSE+) es el principal instrumento financiero de la UE para invertir en capital humano, empleo, formación y lucha contra la pobreza."
+    },
+    {
+      "id": "w2-t5-b3",
+      "q": "¿Qué institución europea ostenta la competencia exclusiva para conceder la 'aprobación de la gestión' del presupuesto (discharge)?",
+      "options": [
+        "El Parlamento Europeo, a recomendación del Consejo",
+        "El Tribunal de Cuentas Europeo",
+        "La Comisión Europea",
+        "El Banco Europeo de Inversiones"
+      ],
+      "answer": 0,
+      "explain": "Art. 319 TFUE: El Parlamento Europeo, a recomendación del Consejo, aprobará la gestión de la Comisión en la ejecución del presupuesto."
+    }
   ],
-  bossQs: [
-    Q("w2-t5-b1", "El principio del 'efecto directo' consagrado en la sentencia Van Gend en Loos implica que:", ["Las normas comunitarias claras, precisas e incondicionales engendran derechos directos que los particulares pueden invocar ante los tribunales nacionales", "Las directivas no obligan a los Estados hasta pasados 10 años", "El Derecho de la UE solo vincula a los Gobiernos y no a los jueces", "Solo los reglamentos pueden ser aplicados en España"], 0, "Van Gend en Loos (asunto 26/62): las normas de la UE que cumplan los requisitos de claridad, precisión e incondicionalidad producen efectos jurídicos directos para los ciudadanos."),
-    Q("w2-t5-b2", "De los siguientes actos contemplados en el art. 288 TFUE, ¿cuáles NO son jurídicamente vinculantes?", ["Las recomendaciones y los dictámenes", "Las decisiones individuales", "Los reglamentos delegados", "Las directivas comunitarias"], 0, "Art. 288 TFUE último párrafo: las recomendaciones y los dictámenes no serán vinculantes."),
-    Q("w2-t5-b3", "La Decisión comunitaria (art. 288 TFUE) se distingue porque:", ["Es obligatoria en todos sus elementos; cuando designe destinatarios, solo será obligatoria para éstos", "Siempre requiere ley de transposición previa", "Nunca puede tener destinatarios individuales", "Es idéntica en todo a una recomendación"], 0, "Art. 288 TFUE: la decisión será obligatoria en todos sus elementos. Cuando designe destinatarios, solo será obligatoria para éstos."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba de la Jerarquía de Fuentes de la UE",
-    prompt: "Ordena las fuentes del Derecho de la Unión Europea de mayor a menor rango normativo.",
-    items: [
-      "Tratados constitutivos (TUE y TFUE) y Carta de Derechos Fundamentales (Derecho originario)",
-      "Principios generales del Derecho de la UE y Acuerdos Internacionales de la Unión",
-      "Actos legislativos: Reglamentos, Directivas y Decisiones legislativas",
-      "Actos no legislativos: Actos delegados (art. 290 TFUE) y Actos de ejecución (art. 291 TFUE)",
-      "Actos no vinculantes: Recomendaciones y Dictámenes",
+  "mini": {
+    "type": "match",
+    "title": "Fondos Estructurales y de Cohesión de la UE",
+    "prompt": "Empareja cada fondo europeo con su finalidad de gasto específica.",
+    "pairs": [
+      [
+        "FEDER",
+        "Inversión productiva, infraestructuras, digitalización e innovación regional"
+      ],
+      [
+        "FSE+",
+        "Empleo, formación continua, educación e inclusión social"
+      ],
+      [
+        "Fondo de Cohesión",
+        "Medio ambiente y redes transeuropeas en Estados con RNB < 90%"
+      ],
+      [
+        "FEADER",
+        "Desarrollo rural y sostenibilidad del sector agrícola"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Deficitario Comunitario",
+    "kind": "ghost",
+    "intro": [
+      "¡Aprobaré un presupuesto comunitario deficitario con deuda estructural no autorizada!"
     ],
+    "defeat": [
+      "¡Art. 310 TFUE! Principio de equilibrio presupuestario. ¡Ingresos y gastos deben cuadrar al céntimo!"
+    ]
   },
-  boss: {
-    name: "El Juez Soberanista",
-    kind: "veto",
-    intro: ["¡Sostengo que una ley interna posterior deroga cualquier directiva europea! Demuestra la primacía comunitaria."],
-    defeat: ["¡Costa c. ENEL y Van Gend en Loos disipan toda duda! El ordenamiento de la UE prevalece."],
-  },
-  summary: [
-    "Derecho originario: TUE, TFUE, Tratados de Adhesión, Carta de Derechos Fundamentales (mismo valor, art. 6 TUE).",
-    "Derecho derivado (art. 288 TFUE): Reglamento (general, obligatorio, aplicable), Directiva (resultado, transposición), Decisión (obligatoria para destinatarios), Recomendaciones y Dictámenes (no vinculantes).",
-    "Actos delegados (art. 290) y de ejecución (art. 291).",
-    "Principios fundamentales: Primacía (Costa/ENEL 1964) y Efecto Directo (Van Gend en Loos 1963). Responsabilidad patrimonial del Estado por infracción del Derecho de la UE (Francovich 1991).",
-  ],
+  "summary": [
+    "MFP (art. 312 TFUE): marco de 7 años. Aprobado por el Consejo por unanimidad con aprobación del PE.",
+    "Principios: equilibrio (no cabe déficit, art. 310), unidad, universalidad, anualidad, especialidad.",
+    "Recursos propios (art. 311): RNB (principal fuente), IVA, recursos tradicionales (aranceles) y plásticos no reciclados.",
+    "Fondos estructurales: FEDER (desarrollo regional), FSE+ (empleo/formación), Fondo de Cohesión (países RNB < 90%).",
+    "Aprobación de la gestión presupuestaria (art. 319): Parlamento Europeo a recomendación del Consejo."
+  ]
 };
 
 export const W2_T6: MiniWorldDef = {
-  id: "ue-t6",
-  num: 6,
-  temaTitle: "Tema 6: Presupuesto, Fondos y Políticas Comunes de la UE",
-  name: "Cámara de la Cohesión Europea",
-  emoji: "💶",
-  theme: "ue",
-  color: "#102350",
-  enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
-  npcs: [
+  "id": "ue-t6",
+  "num": 6,
+  "temaTitle": "Tema 6: Políticas de la Unión Europea: mercado interior. Política económica y monetaria. Política exterior y de seguridad común. El espacio de seguridad, libertad y justicia. Defensa de la competencia. Política agrícola y pesquera.",
+  "name": "Mercado y Políticas Comunes",
+  "emoji": "🌐",
+  "theme": "ue",
+  "color": "#005cb2",
+  "enemy": "estrella",
+  "enemyName": "Aranceles encubiertos",
+  "npcs": [
     {
-      name: "Tesorero Comunitario",
-      role: "Presupuesto, Fondos y Políticas",
-      look: { skin: "#f0bf94", hair: "#6e2c00", hairStyle: "short", shirt: "#27ae60", pants: "#1c2c5c", acc: ["badge", "tie"], accColor: "#f4d03f" },
-      pages: [
-        "El Presupuesto de la Unión Europea se rige por el principio de equilibrio presupuestario obligatorio (ingresos = gastos; ¡no puede haber déficit presupuestario!).",
-        "El Marco Financiero Plurianual (MFP, art. 312 TFUE) fija los techos de gasto por categorías para un período de al menos 5 años (el actual abarca 2021-2027). Es aprobado por el Consejo por unanimidad, previa aprobación del Parlamento.",
-        "Recursos propios: derechos de aduana (recursos tradicionales), porcentaje sobre el IVA, porcentaje sobre la Renta Nacional Bruta (RNB, principal fuente) y la contribución sobre residuos de plástico no reciclados.",
-        "Fondos de cohesión y estructurales: FEDER (desarrollo regional e infraestructuras), FSE+ (empleo e inclusión social), Fondo de Cohesión (para Estados con RNB <90% de la media), FEADER y FEMPA. A ellos se suma NextGenerationEU con el Mecanismo de Recuperación y Resiliencia (MRR).",
+      "name": "Comisario de Mercado Interior",
+      "role": "Las 4 libertades, UEM, PESC y PAC",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#212121",
+        "hairStyle": "short",
+        "shirt": "#0d47a1",
+        "pants": "#1565c0",
+        "acc": [
+          "tie",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Mercado Interior (art. 26 TFUE): espacio sin fronteras interiores en el que la libre circulación de mercancías, personas, servicios y capitales está garantizada (las 4 libertades).",
+        "Política de Competencia (arts. 101 a 109 TFUE): prohibición de acuerdos colusorios/cárteles (art. 101), prohibición del abuso de posición dominante (art. 102) y control estricto de las ayudas de Estado (art. 107).",
+        "Unión Económica y Monetaria (UEM): moneda única (euro), Banco Central Europeo, Pacto de Estabilidad y Crecimiento (límites déficit 3% y deuda 60% PIB).",
+        "Espacio de Libertad, Seguridad y Justicia (ELSJ, arts. 67 a 89 TFUE): Espacio Schengen (supresión de controles interiores), política común de asilo e inmigración, Eurojust y Europol.",
+        "Política Agrícola Común (PAC): financiada por FEAGA (pagos directos) y FEADER (desarrollo rural).",
+        "Política Exterior y de Seguridad Común (PESC, Título V TUE): regida por normas y procedimientos específicos intergubernamentales, dirigida por el Alto Representante."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w2-t6-q1",
+      "q": "¿Cuáles son las cuatro libertades fundamentales del mercado interior europeo consagradas en el art. 26 TFUE?",
+      "options": [
+        "Libre circulación de mercancías, personas, servicios y capitales",
+        "Libre circulación de mercancías, armas, divisas y patentes",
+        "Libre establecimiento de aranceles, subsidios, cuotas y visas",
+        "Libre comercio, doble nacionalidad, impuestos fijos y banca única"
       ],
+      "answer": 0,
+      "explain": "Art. 26.2 TFUE: El mercado interior implicará un espacio sin fronteras interiores, en el que la libre circulación de mercancías, personas, servicios y capitales estará garantizada."
     },
+    {
+      "id": "w2-t6-q2",
+      "q": "¿Qué prohíbe taxativamente el artículo 102 del Tratado de Funcionamiento de la Unión Europea?",
+      "options": [
+        "La explotación abusiva de una posición dominante en el mercado común",
+        "Cualquier fusión entre empresas europeas",
+        "La inversión de capitales de terceros países",
+        "La publicidad comparativa de productos"
+      ],
+      "answer": 0,
+      "explain": "Art. 102 TFUE: Será incompatible con el mercado interior y quedará prohibida la explotación abusiva, por parte de una o más empresas, de una posición dominante."
+    },
+    {
+      "id": "w2-t6-q3",
+      "q": "¿Qué regla general rige para las ayudas otorgadas por los Estados miembros según el art. 107.1 TFUE?",
+      "options": [
+        "Son incompatibles con el mercado interior en la medida en que falseen o amenacen falsear la competencia",
+        "Están plenamente autorizadas si las concede un gobierno autonómico",
+        "No están sujetas a supervisión comunitaria",
+        "Se autorizan libremente siempre que no superen el 10% del PIB"
+      ],
+      "answer": 0,
+      "explain": "Art. 107.1 TFUE: Salvo que los Tratados dispongan otra cosa, serán incompatibles con el mercado interior las ayudas otorgadas por los Estados que falseen o amenacen falsear la competencia."
+    }
   ],
-  blockQs: [
-    Q("w2-t6-q1", "El principio presupuestario que prohíbe que el presupuesto anual de la UE presente déficit o endeudamiento es el:", ["Principio de equilibrio presupuestario", "Principio de anualidad", "Principio de especialidad de crédito", "Principio de universalidad"], 0, "Art. 310.1 TFUE: en el presupuesto los ingresos y los gastos deberán estar equilibrados; la UE no puede emitir deuda para financiar déficits de gasto operativo ordinario."),
-    Q("w2-t6-q2", "¿Por cuántos años está fijado el Marco Financiero Plurianual (MFP) vigente en la Unión Europea?", ["7 años (2021-2027)", "5 años (2020-2025)", "10 años (2020-2030)", "3 años renovables"], 0, "El MFP actual cubre un período de 7 años, desde 2021 hasta 2027, con un límite máximo de compromisos de gasto fijado por categorías."),
-    Q("w2-t6-q3", "¿Cuál de los siguientes fondos europeos tiene por objeto exclusivo financiar proyectos de infraestructuras y medio ambiente en Estados con una RNB per cápita inferior al 90% de la media de la UE?", ["Fondo de Cohesión", "Fondo Social Europeo Plus (FSE+)", "Fondo Europeo Agrícola de Garantía (FEAGA)", "Fondo Europeo de Adaptación a la Globalización"], 0, "El Fondo de Cohesión se destina específicamente a Estados miembros cuya renta nacional bruta (RNB) por habitante sea inferior al 90% de la media de la UE."),
+  "bossQs": [
+    {
+      "id": "w2-t6-b1",
+      "q": "¿Cuáles son los dos fondos comunitarios a través de los cuales se financia la Política Agrícola Común (PAC)?",
+      "options": [
+        "El FEAGA (garantía/pagos directos) y el FEADER (desarrollo rural)",
+        "El FEDER y el Fondo de Cohesión",
+        "El FSE+ y el Mecanismo Conectar Europa",
+        "El BEI y el Fondo Next Generation"
+      ],
+      "answer": 0,
+      "explain": "La PAC se financia mediante el FEAGA (Fondo Europeo Agrícola de Garantía) y el FEADER (Fondo Europeo Agrícola de Desarrollo Rural)."
+    },
+    {
+      "id": "w2-t6-b2",
+      "q": "¿Cuáles son los valores de referencia del Tratado de Maastricht para el déficit y la deuda pública en el Pacto de Estabilidad?",
+      "options": [
+        "Déficit máximo del 3% del PIB y deuda pública máxima del 60% del PIB",
+        "Déficit del 0% y deuda del 50%",
+        "Déficit del 5% y deuda del 100%",
+        "Déficit del 1% y deuda del 80%"
+      ],
+      "answer": 0,
+      "explain": "Protocolo sobre el procedimiento aplicable en caso de déficit excesivo (anexo al TFUE): 3% para la relación entre el déficit público y el PIB, y 60% para la relación entre la deuda pública y el PIB."
+    },
+    {
+      "id": "w2-t6-b3",
+      "q": "¿Qué regla de adopción de acuerdos predomina en la Política Exterior y de Seguridad Común (PESC)?",
+      "options": [
+        "La regla de la unanimidad en el Consejo Europeo y Consejo (art. 31 TUE)",
+        "La mayoría simple del Parlamento Europeo",
+        "La mayoría cualificada automática de la Comisión",
+        "El veto exclusivo del Tribunal de Justicia"
+      ],
+      "answer": 0,
+      "explain": "Art. 31.1 TUE: Las decisiones en el marco de la PESC serán adoptadas por el Consejo Europeo y por el Consejo por unanimidad, salvo excepciones tasadas."
+    }
   ],
-  bossQs: [
-    Q("w2-t6-b1", "¿Cuál es la principal fuente de ingresos del sistema de recursos propios de la Unión Europea en la actualidad?", ["El recurso basado en la Renta Nacional Bruta (RNB) de los Estados miembros", "Los aranceles de aduanas exteriores", "El impuesto sobre transacciones financieras", "Las multas a empresas impuestas por la Comisión"], 0, "El recurso basado en la RNB es la mayor fuente de ingresos de la UE, aportando en torno al 70% de la totalidad de los recursos presupuestarios."),
-    Q("w2-t6-b2", "El Fondo Europeo de Desarrollo Regional (FEDER) tiene como finalidad prioritaria:", ["Corregir los principales desequilibrios regionales y promover la cohesión económica, social y territorial", "Subvencionar directamente el precio de los cereales", "Pagar las pensiones de jubilación en zonas rurales", "Financiar misiones militares en el extranjero"], 0, "Art. 176 TFUE: el FEDER está destinado a contribuir a la corrección de los principales desequilibrios regionales dentro de la Unión."),
-    Q("w2-t6-b3", "El instrumento extraordinario de recuperación creado por la UE para afrontar el impacto socioeconómico de la pandemia de COVID-19 se denomina:", ["NextGenerationEU (y el Mecanismo de Recuperación y Resiliencia - MRR)", "Plan Marshall Comunitario", "Tratado de Estabilidad Financiera", "Fondo Monetario Europeo"], 0, "NextGenerationEU, dotado con más de 750.000 millones de euros, canaliza ayudas no reembolsables y préstamos mediante el MRR vinculado a los Planes Nacionales de Recuperación."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de los Fondos Estructurales Europeos",
-    prompt: "Relaciona cada fondo europeo con su objetivo principal.",
-    pairs: [
-      ["FEDER", "Desarrollo regional, innovación e infraestructuras"],
-      ["FSE+ (Fondo Social Europeo Plus)", "Empleo, formación profesional e inclusión social"],
-      ["Fondo de Cohesión", "Estados con RNB per cápita <90% de la media de la UE"],
-      ["NextGenerationEU / MRR", "Recuperación, transformación digital y transición verde"],
+  "mini": {
+    "type": "match",
+    "title": "Pilares del Mercado y Políticas Comunitarias",
+    "prompt": "Asocia cada política común con su principio o instrumento rector.",
+    "pairs": [
+      [
+        "Las 4 libertades (art. 26 TFUE)",
+        "Mercancías, personas, servicios y capitales sin fronteras"
+      ],
+      [
+        "Competencia (arts. 101-102)",
+        "Prohibición de cárteles y abuso de posición dominante"
+      ],
+      [
+        "PAC (FEAGA y FEADER)",
+        "Pagos directos, mercados agrarios y desarrollo rural sostenible"
+      ],
+      [
+        "PESC (Título V TUE)",
+        "Regla general de unanimidad dirigida por el Alto Representante"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Cartel Antitrust",
+    "kind": "dragon",
+    "intro": [
+      "¡Hemos pactado precios y cuotas secretas para distorsionar el mercado interior!"
     ],
+    "defeat": [
+      "¡Multa sancionadora de la Comisión Europea con arreglo al artículo 101 TFUE! Libre competencia restablecida."
+    ]
   },
-  boss: {
-    name: "El Defraudador de Fondos",
-    kind: "veto",
-    intro: ["¡Desviaré las subvenciones del FEDER y el FSE! ¿Sabrás aplicar las reglas del presupuesto europeo para protegerme?"],
-    defeat: ["¡La fiscalización de la OLAF y el Tribunal de Cuentas han recuperado hasta el último euro!"],
-  },
-  summary: [
-    "Presupuesto de la UE (arts. 310-324 TFUE): equilibrio estricto (ingresos = gastos, sin déficit).",
-    "MFP (art. 312 TFUE): mínimo 5 años; actual 2021-2027 (7 años). Aprobado por el Consejo por unanimidad con aprobación del PE.",
-    "Recursos propios: aranceles aduaneros, IVA, recurso basado en la RNB (principal fuente) y tasa sobre plástico no reciclado.",
-    "Fondos: FEDER (desequilibrios regionales), FSE+ (empleo y políticas sociales), Fondo de Cohesión (RNB <90%), FEADER, FEMPA y NextGenerationEU (MRR).",
-  ],
+  "summary": [
+    "Mercado interior (art. 26 TFUE): 4 libertades (mercancías, personas, servicios y capitales).",
+    "Competencia: art. 101 (prohíbe cárteles/acuerdos), art. 102 (abuso de posición dominante), art. 107 (control ayudas de Estado).",
+    "UEM: euro, BCE, estabilidad de precios. Límites Maastricht: 3% déficit y 60% deuda/PIB.",
+    "PAC: FEAGA (mercados/pagos) y FEADER (desarrollo rural).",
+    "PESC: carácter intergubernamental, regla de unanimidad (art. 31 TUE), dirigida por el Alto Representante."
+  ]
 };
-
-/* ==================== MUNDO 2 (BLOQUE II COMPLETO) ==================== */
 
 export const W2: WorldDef = {
   id: "ue",
   num: 2,
   bloque: "Bloque II",
-  title: "Unión Europea",
-  name: "Eurolandia",
+  title: "II. Unión Europea",
+  name: "Imperio Comunitario",
   emoji: "🇪🇺",
   theme: "ue",
   color: "#2f6fe0",
   enemy: "estrella",
-  enemyName: "Estrellas enfadadas",
+  enemyName: "Estrellas euroescépticas",
   temas: [
-    "Tema 1: Orígenes, Tratados y ampliaciones de la UE",
-    "Tema 2: Consejo Europeo y Consejo de la UE",
-    "Tema 3: La Comisión Europea",
-    "Tema 4: Parlamento Europeo, TJUE, Tribunal de Cuentas y BCE",
-    "Tema 5: Fuentes del Derecho de la UE",
-    "Tema 6: Presupuesto, Fondos y Políticas Comunes",
-  ],
+    "Tema 1: La Unión Europea: Antecedentes. Objetivos y naturaleza jurídica. Los Tratados originarios y modificativos. El Tratado de la Unión Europea y el Tratado de Funcionamiento de la Unión Europea. El proceso de ampliación. Las cooperaciones reforzadas.",
+    "Tema 2: La organización de la Unión Europea (I): el Consejo Europeo, el Consejo y la Comisión Europea. Composición y funciones. El procedimiento decisorio. La participación de los Estados miembros en las diferentes fases del proceso.",
+    "Tema 3: La organización de la Unión Europea (II): el Parlamento Europeo. El Tribunal de Justicia de la Unión Europea. El Tribunal de Cuentas. El Banco Central Europeo.",
+    "Tema 4: Las fuentes del derecho de la Unión Europea. Derecho originario. Derecho derivado: Reglamentos, directivas y decisiones. Otras fuentes. Las relaciones entre el Derecho de la Unión Europea y el ordenamiento jurídico de los Estados miembros.",
+    "Tema 5: El presupuesto comunitario. Los fondos europeos. La cohesión económica y social.",
+    "Tema 6: Políticas de la Unión Europea: mercado interior. Política económica y monetaria. Política exterior y de seguridad común. El espacio de seguridad, libertad y justicia. Defensa de la competencia. Política agrícola y pesquera."
+],
   miniWorlds: [W2_T1, W2_T2, W2_T3, W2_T4, W2_T5, W2_T6],
   npcs: [
     W2_T1.npcs[0],
     W2_T2.npcs[0],
     W2_T3.npcs[0],
-    W2_T4.npcs[0],
+    W2_T4.npcs[0]
   ],
   blockQs: [
     W2_T1.blockQs[0],
-    W2_T2.blockQs[1],
+    W2_T2.blockQs[0],
     W2_T3.blockQs[0],
     W2_T4.blockQs[0],
     W2_T5.blockQs[0],
-    W2_T6.blockQs[1],
+    W2_T6.blockQs[0]
   ],
   bossQs: [
     W2_T1.bossQs[0],
     W2_T2.bossQs[0],
     W2_T3.bossQs[0],
-    W2_T4.bossQs[2],
+    W2_T4.bossQs[0],
     W2_T5.bossQs[0],
-    W2_T6.bossQs[0],
+    W2_T6.bossQs[0]
   ],
   mini: {
-    type: "match",
-    title: "Gran Desafío del Bloque II: Las Sedes de la Unión",
-    prompt: "Empareja cada institución europea con su sede oficial.",
-    pairs: [
-      ["Parlamento Europeo (plenos oficiales)", "Estrasburgo"],
-      ["Comisión Europea y Consejo de la UE", "Bruselas"],
-      ["Tribunal de Justicia de la UE y Tribunal de Cuentas", "Luxemburgo"],
-      ["Banco Central Europeo", "Fráncfort"],
-      ["Frontex", "Varsovia"],
-    ],
-  },
+  "type": "order",
+  "title": "Gran Desafío del Bloque II: Pirámide Jurídica e Institucional de la UE",
+  "prompt": "Ordena las fuentes e hitos del Derecho de la Unión Europea por jerarquía normativa.",
+  "items": [
+    "Derecho Originario: Tratados constitutivos (TUE y TFUE) y Carta de Derechos Fundamentales",
+    "Principios Generales del Derecho de la Unión (Primacía y Efecto Directo)",
+    "Acuerdos Internacionales celebrados por la Unión Europea",
+    "Derecho Derivado Vinculante: Reglamentos, Directivas y Decisiones (art. 288 TFUE)",
+    "Derecho Derivado No Vinculante: Recomendaciones y Dictámenes"
+  ]
+},
   boss: {
-    name: "Lord Veto",
-    kind: "veto",
-    intro: [
-      "¡Exijo UNANIMIDAD absoluta en todas las políticas! ¡Vetaré cada iniciativa de integración comunitaria!",
-      "Solo quien domine los 6 temas de la Unión Europea podrá derribar mi bloqueo. ¡Adelante!",
-    ],
-    defeat: ["¡Imposible! ¡Me han superado por mayoría cualificada! Uniti in diversitate... ¡Europa avanza!"],
-  },
-  summary: [
-    "Tratados: CECA 1951, Roma 1957, AUE 1986, Maastricht 1992/93, Ámsterdam 1997, Niza 2001, Lisboa 2007/09 (TUE + TFUE). España 1986. 27 Estados.",
-    "Consejo Europeo (prioridades, no legisla, Pte 2,5 años) vs Consejo de la UE (ministros, colegisla con PE, mayoría cualificada: 55% Estados y 65% población).",
-    "Comisión (27 comisarios, 5 años, monopolio legislativo, guardiana tratados ex art. 258 TFUE).",
-    "PE (Estrasburgo, máx 750+1), TJUE (Luxemburgo, prejudicial art. 267), BCE (Fráncfort, estabilidad precios) y Cuentas (6 años).",
-    "Derecho derivado (art. 288): reglamento (aplicable), directiva (resultado), decisión. Principios de primacía (Costa/ENEL) y efecto directo (Van Gend en Loos).",
-    "Finanzas: equilibrio obligatorio, MFP 2021-2027 (7 años), RNB recurso principal. Fondos: FEDER, FSE+, Cohesión y NextGenEU.",
+  "name": "Lord Veto, el Euroescéptico",
+  "kind": "veto",
+  "intro": [
+    "¡JA, JA, JA! ¡Pretendo bloquear la integración europea y vulnerar los Tratados!",
+    "Para vencerme deberás superar las preguntas de todos los temas del Bloque II. ¡Adelante!"
   ],
+  "defeat": [
+    "¡Imposible! La primacía y el efecto directo del acervo comunitario han triunfado."
+  ]
+},
+  summary: [
+  "Tratados: Roma 1957, Maastricht 1992, Lisboa 2007 (TUE y TFUE). Retirada: art. 50 TUE.",
+  "Instituciones: Consejo Europeo (directrices, presidente 2,5 años); Consejo (colegislador, mayoría cualificada 55% Estados + 65% pob); Comisión (iniciativa y guardiana); Parlamento (750+1, sufragio 5 años).",
+  "TJUE (Luxemburgo): 1 juez/Estado en TJ + 11 AG. Cuestión prejudicial art. 267 TFUE. Tribunal de Cuentas: 1/Estado por 6 años.",
+  "Fuentes: art. 288 TFUE (Reglamento general/directo; Directiva resultado; Decisión). Principios: Primacía (Costa/ENEL) y Efecto directo (Van Gend en Loos).",
+  "Presupuesto: MFP (7 años, Consejo unanimidad + PE). Principio de equilibrio. RNB recurso principal.",
+  "Mercado Interior: 4 libertades (art. 26 TFUE). Competencia arts. 101-102. PAC (FEAGA/FEADER). PESC (unanimidad)."
+],
 };

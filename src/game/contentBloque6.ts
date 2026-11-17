@@ -1,393 +1,1281 @@
-import type { MiniWorldDef, WorldDef } from "./types";
-import { Q } from "./contentBloque1";
+import type { MiniWorldDef, Question, WorldDef } from "./types";
 
-/* ==================== BLOQUE VI: MINI-MUNDOS ==================== */
+export const Q = (id: string, q: string, options: string[], answer: number, explain: string): Question => ({
+  id,
+  q,
+  options,
+  answer,
+  explain,
+});
+
+/* ==================== BLOQUE VI: GESTIÓN FINANCIERA Y SEGURIDAD SOCIAL (8 TEMAS BOE) ==================== */
 
 export const W6_T1: MiniWorldDef = {
-  id: "hacienda-t1",
-  num: 1,
-  temaTitle: "Tema 1: El Presupuesto del Estado en España y la Ley General Presupuestaria",
-  name: "Cámara de la Ley de Presupuestos",
-  emoji: "💰",
-  theme: "hacienda",
-  color: "#d4a017",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t1",
+  "num": 1,
+  "temaTitle": "Tema 1: El presupuesto. Concepto y clases. La Ley General Presupuestaria: principios generales y estructura. Las leyes de estabilidad presupuestaria.",
+  "name": "Bóveda de la Ley Presupuestaria",
+  "emoji": "🏦",
+  "theme": "hacienda",
+  "color": "#eab308",
+  "enemy": "moneda",
+  "enemyName": "Déficits descontrolados",
+  "npcs": [
     {
-      name: "Contable Presupuestón",
-      role: "Presupuestos del Estado (art. 134 CE y Ley 47/2003 LGP)",
-      look: { skin: "#f1c7a0", hair: "#7f8c8d", hairStyle: "short", shirt: "#f4d03f", pants: "#1b2631", acc: ["tophat", "glasses", "tie"], accColor: "#7d6608" },
-      pages: [
-        "¡Bienvenida al Castillo del Tesoro Público! El artículo 134 de la Constitución establece que corresponde al Gobierno la elaboración de los Presupuestos Generales del Estado (PGE) y a las Cortes Generales su examen, enmienda y aprobación.",
-        "Principios presupuestarios constitucionales: anualidad (coincide con el año natural), unidad y universalidad (incluyen la totalidad de gastos e ingresos del sector público estatal y el importe de beneficios fiscales). No pueden crear tributos (solo modificarlos cuando una ley sustantiva lo prevea).",
-        "Plazos constitucionales: el Gobierno debe presentar los PGE al Congreso al menos tres meses antes de la expiración de los del año anterior (antes del 1 de octubre).",
-        "Prórroga presupuestaria automática (art. 134.4 CE): si la Ley de Presupuestos no se aprueba antes del primer día del ejercicio económico correspondiente, se considerarán automáticamente prorrogados los del ejercicio anterior hasta la aprobación de los nuevos.",
-        "Ley 47/2003, de 26 de noviembre, General Presupuestaria (LGP): es la norma de cabecera de la hacienda pública estatal.",
+      "name": "Director General de Presupuestos",
+      "role": "Concepto presupuestario, LGP 47/2003 y estabilidad presupuestaria (LO 2/2012)",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#ca8a04",
+        "pants": "#713f12",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El presupuesto es la expresión cifrada, conjunta y sistemática de los derechos y obligaciones a liquidar durante el ejercicio por cada uno de los órganos del sector público estatal (art. 32 Ley 47/2003 General Presupuestaria, LGP).",
+        "Principios presupuestarios clásicos:",
+        "1. Principio de legalidad presupuestaria (art. 134.1 CE): corresponde a las Cortes Generales examinar, enmendar y aprobar los PGE.",
+        "2. Principio de anualidad (art. 134.2 CE): coinciden con el año natural (1 de enero al 31 de diciembre).",
+        "3. Principio de unidad y universalidad (art. 27 LGP): presupuesto único que contiene la totalidad de los ingresos y gastos sin compensaciones entre sí (presupuesto bruto).",
+        "4. Principio de especialidad de los créditos: cualitativa (gastarse en el fin legal art. 42), cuantitativa (no rebasar el límite fijado art. 43) y temporal (ejercicio anual art. 49).",
+        "Leyes de estabilidad presupuestaria (art. 135 CE y LO 2/2012): equilibrio estructural, sostenibilidad de la deuda pública y prioridad absoluta del pago del servicio de la deuda."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t1-q1",
+      "q": "¿En qué consiste la triple vertiente del principio de especialidad presupuestaria según los artículos 42, 43 y 49 de la LGP?",
+      "options": [
+        "Especialidad cualitativa (destino del crédito), cuantitativa (importe máximo) y temporal (ejercicio corriente)",
+        "Especialidad territorial, funcional y bancaria",
+        "Especialidad en nóminas, inversiones y deuda",
+        "Especialidad contable, fiscal y mercantil"
       ],
+      "answer": 0,
+      "explain": "Arts. 42, 43 y 49 Ley 47/2003 (LGP): Los créditos para gastos se destinarán exclusivamente a la finalidad específica para la que hayan sido autorizados (cualitativa), no podrán adquirirse compromisos de gasto por cuantía superior a su importe (cuantitativa) y con cargo a los créditos de un ejercicio sólo podrán contraerse obligaciones de ese año (temporal)."
     },
+    {
+      "id": "w6-t1-q2",
+      "q": "¿Qué exige el principio presupuestario de universalidad según el artículo 27.2 de la Ley 47/2003?",
+      "options": [
+        "Los derechos y obligaciones se consignarán por su importe íntegro, sin que puedan atenderse gastos mediante minoración de derechos",
+        "Que el presupuesto sea universalmente traducido a todas las lenguas",
+        "Que todos los ciudadanos reciban una subvención",
+        "Que no existan límites de gasto para ningún ministerio"
+      ],
+      "answer": 0,
+      "explain": "Art. 27.2 LGP: Los derechos liquidados y las obligaciones reconocidas se aplicarán a los presupuestos por su importe íntegro, quedando terminantemente prohibido atender gastos mediante una minoración en la recaudación (presupuesto bruto)."
+    },
+    {
+      "id": "w6-t1-q3",
+      "q": "¿Qué fecha límite fija el artículo 134.3 de la Constitución para que el Gobierno presente el proyecto de PGE ante el Congreso?",
+      "options": [
+        "Al menos tres meses antes de la expiración de los del año anterior (antes del 1 de octubre)",
+        "Antes del 31 de diciembre",
+        "Antes del 1 de julio",
+        "Antes del 15 de noviembre"
+      ],
+      "answer": 0,
+      "explain": "Art. 134.3 CE: El Gobierno deberá presentar ante el Congreso de los Diputados los Presupuestos Generales del Estado al menos tres meses antes de la expiración de los del año anterior (es decir, antes del 1 de octubre)."
+    }
   ],
-  blockQs: [
-    Q("w6-t1-q1", "¿Con qué antelación mínima respecto a la expiración del ejercicio anterior debe presentar el Gobierno los PGE al Congreso (art. 134.3 CE)?", ["Al menos tres meses antes (antes del 1 de octubre)", "Un mes antes", "Seis meses antes", "Dos meses antes"], 0, "Art. 134.3 CE: el Gobierno deberá presentar ante el Congreso de los Diputados los Presupuestos Generales del Estado al menos tres meses antes de la expiración de los del año anterior."),
-    Q("w6-t1-q2", "Si la Ley de Presupuestos Generales del Estado no se aprueba antes del primer día del ejercicio económico (art. 134.4 CE):", ["Se consideran automáticamente prorrogados los Presupuestos del ejercicio anterior hasta la aprobación de los nuevos", "El Gobierno queda cesado automáticamente", "Se paralizan todos los pagos de nóminas públicas", "Se aprueba obligatoriamente un Decreto-ley"], 0, "Art. 134.4 CE: si la Ley de Presupuestos no se aprobara antes del primer día del ejercicio económico correspondiente, se considerarán automáticamente prorrogados los Presupuestos del ejercicio anterior hasta la aprobación de los nuevos."),
-    Q("w6-t1-q3", "¿Puede la Ley de Presupuestos Generales del Estado crear nuevos tributos según el art. 134.7 CE?", ["No, no puede crear tributos; solo puede modificarlos cuando una ley tributaria sustantiva así lo prevea", "Sí, tiene plena libertad para crear cualquier impuesto", "Solo impuestos especiales sobre hidrocarburos", "Sí, pero solo por un año"], 0, "Art. 134.7 CE: la Ley de Presupuestos no puede crear tributos. Podrá modificarlos cuando una ley tributaria sustantiva así lo prevea."),
+  "bossQs": [
+    {
+      "id": "w6-t1-b1",
+      "q": "¿Qué ocurre automáticamente si la Ley de Presupuestos Generales del Estado no se aprueba antes del primer día del ejercicio económico (art. 134.4 CE)?",
+      "options": [
+        "Se consideran automáticamente prorrogados los presupuestos del ejercicio anterior hasta la aprobación de los nuevos",
+        "El Estado paraliza todos los pagos y se cierra la Administración",
+        "Se convocan inmediatamente elecciones generales",
+        "Se aprueba el presupuesto provisional por decreto del Rey"
+      ],
+      "answer": 0,
+      "explain": "Art. 134.4 CE: Si la Ley de Presupuestos no se aprobara antes del primer día del ejercicio económico correspondiente, se considerarán automáticamente prorrogados los Presupuestos del ejercicio anterior hasta la aprobación de los nuevos."
+    },
+    {
+      "id": "w6-t1-b2",
+      "q": "¿Qué principio presupuestario consagra la Ley Orgánica 2/2012 definiéndolo como la capacidad para financiar los compromisos de gasto presentes y futuros dentro de los límites de déficit y deuda?",
+      "options": [
+        "Principio de sostenibilidad financiera (art. 4 LO 2/2012)",
+        "Principio de anualidad de caja",
+        "Principio de no afectación de ingresos",
+        "Principio de neutralidad impositiva"
+      ],
+      "answer": 0,
+      "explain": "Art. 4 LO 2/2012: Se entenderá por sostenibilidad financiera la capacidad para financiar los compromisos de gasto presentes y futuros dentro de los límites de déficit y de deuda pública fijados en la ley y en la normativa europea."
+    },
+    {
+      "id": "w6-t1-b3",
+      "q": "¿Puede la Ley de Presupuestos Generales del Estado crear nuevos tributos según el artículo 134.7 de la Constitución?",
+      "options": [
+        "No puede crear tributos; solo puede modificarlos cuando una ley tributaria sustantiva así lo prevea",
+        "Sí, puede crear cualquier impuesto libremente",
+        "Puede crear tributos siempre que lo autorice el Senado",
+        "Solo puede crear impuestos especiales sobre el tabaco y alcohol"
+      ],
+      "answer": 0,
+      "explain": "Art. 134.7 CE: La Ley de Presupuestos no puede crear tributos. Podrá modificarlos cuando una ley tributaria sustantiva así lo prevea."
+    }
   ],
-  bossQs: [
-    Q("w6-t1-b1", "El principio presupuestario que exige que los créditos se destinen exclusivamente a la finalidad específica para la que hayan sido autorizados se denomina:", ["Principio de especialidad cualitativa", "Principio de universalidad", "Principio de no afectación", "Principio de anualidad"], 0, "Art. 42 LGP: los créditos para gastos se destinarán exclusivamente a la finalidad específica para la que hayan sido autorizados por la Ley de Presupuestos o por las modificaciones realizadas conforme a esta Ley (especialidad cualitativa)."),
-    Q("w6-t1-b2", "¿Cuál es la norma de cabecera que regula el régimen presupuestario y económico-financiero del sector público estatal?", ["La Ley 47/2003, de 26 de noviembre, General Presupuestaria (LGP)", "La Ley 58/2003 General Tributaria", "La Ley 38/2003 General de Subvenciones", "La Ley Orgánica 2/2012"], 0, "La Ley 47/2003, de 26 de noviembre, General Presupuestaria (LGP), regula el presupuesto, tesorería, deuda pública y contabilidad del Estado."),
-    Q("w6-t1-b3", "Toda proposición o enmienda parlamentaria que suponga aumento de los créditos o disminución de los ingresos presupuestarios (art. 134.6 CE):", ["Requerirá la conformidad del Gobierno para su tramitación", "Se aprueba automáticamente por mayoría simple", "Debe ser aprobada previamente por el TC", "Está prohibida en todo caso"], 0, "Art. 134.6 CE: toda proposición o enmienda que suponga aumento de los créditos o disminución de los ingresos presupuestarios requerirá la conformidad del Gobierno para su tramitación."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de los Principios Presupuestarios",
-    prompt: "Relaciona cada principio presupuestario con su definición técnica.",
-    pairs: [
-      ["Principio de legalidad", "El presupuesto debe ser aprobado formalmente por las Cortes mediante Ley"],
-      ["Principio de anualidad", "El presupuesto tiene vigencia durante un año (del 1 de enero al 31 de diciembre)"],
-      ["Principio de universalidad", "Todos los ingresos y gastos deben figurar por su importe íntegro sin compensaciones"],
-      ["Principio de no afectación", "Los recursos del Estado se destinan a satisfacer el conjunto de gastos sin distinción"],
+  "mini": {
+    "type": "match",
+    "title": "Principios Presupuestarios Básicos",
+    "prompt": "Empareja cada principio con su definición legal en la CE y la LGP.",
+    "pairs": [
+      [
+        "Legalidad presupuestaria",
+        "Aprobación exclusiva de los PGE por las Cortes Generales (art. 134 CE)"
+      ],
+      [
+        "Universalidad / Presupuesto bruto",
+        "Prohibición de minorar ingresos para atender gastos (art. 27 LGP)"
+      ],
+      [
+        "Especialidad cualitativa",
+        "Créditos destinados exclusivamente al fin para el que se aprobaron (art. 42)"
+      ],
+      [
+        "Prórroga automática",
+        "Si no hay ley aprobada el 1 de enero, prorrogan los anteriores (art. 134.4)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Derrochador Ilegal",
+    "kind": "moneda",
+    "intro": [
+      "¡Comprometeré gastos por encima del crédito aprobado sin cobertura presupuestaria!"
     ],
+    "defeat": [
+      "¡Art. 46 LGP! Los compromisos de gastos que excedan del límite del crédito presupuestario son nulos de pleno derecho."
+    ]
   },
-  boss: {
-    name: "El Derrochador del Erario",
-    kind: "dragon",
-    intro: ["¡Crearé impuestos ilegales en los Presupuestos y gastaré sin crédito presupuestario!"],
-    defeat: ["¡El artículo 134 de la Constitución y la Ley General Presupuestaria han restablecido la legalidad financiera!"],
-  },
-  summary: [
-    "PGE (art. 134 CE y Ley 47/2003 LGP): Gobierno elabora, Cortes aprueban. Presentación al Congreso antes del 1 de octubre.",
-    "Prórroga automática: si el 1 de enero no hay PGE aprobados, se prorrogan los anteriores.",
-    "Límites materiales: prohibición de crear tributos en la Ley de Presupuestos (art. 134.7 CE). Veto presupuestario gubernamental a enmiendas (art. 134.6).",
-    "Principios: anualidad, legalidad, unidad, universalidad, no afectación y triple especialidad (cualitativa, cuantitativa y temporal).",
-  ],
+  "summary": [
+    "Presupuesto (art. 32 LGP): expresión cifrada, conjunta y sistemática de derechos y obligaciones.",
+    "Principios: legalidad (Cortes aprueban art. 134 CE), anualidad (año natural), universalidad (bruto, sin compensaciones art. 27 LGP), especialidad (cualitativa, cuantitativa y temporal).",
+    "Plazo de presentación (art. 134.3 CE): antes del 1 de octubre. Prórroga automática si no se aprueba el 1 de enero.",
+    "Tributos en PGE (art. 134.7 CE): no pueden crearse; solo modificarse si lo prevé ley sustantiva.",
+    "LO 2/2012: estabilidad presupuestaria, sostenibilidad financiera y regla de gasto."
+  ]
 };
 
 export const W6_T2: MiniWorldDef = {
-  id: "hacienda-t2",
-  num: 2,
-  temaTitle: "Tema 2: Estabilidad presupuestaria y sostenibilidad financiera (LO 2/2012)",
-  name: "Torre del Escudo Fiscal",
-  emoji: "🛡️",
-  theme: "hacienda",
-  color: "#c29110",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t2",
+  "num": 2,
+  "temaTitle": "Tema 2: Las leyes anuales de presupuestos. Su contenido. El presupuesto del Estado. Principios de programación y de gestión. Contenido, elaboración y estructura. Desglose de aplicaciones presupuestarias.",
+  "name": "Taller de la Estructura Presupuestaria",
+  "emoji": "📊",
+  "theme": "hacienda",
+  "color": "#ca8a04",
+  "enemy": "moneda",
+  "enemyName": "Partidas desviadas",
+  "npcs": [
     {
-      name: "Comisaria Estabilidad",
-      role: "Estabilidad presupuestaria (art. 135 CE y LO 2/2012)",
-      look: { skin: "#e5b48a", hair: "#34495e", hairStyle: "short", shirt: "#2980b9", pants: "#17202a", acc: ["badge", "glasses"], accColor: "#ffd84d" },
-      pages: [
-        "El artículo 135 de la Constitución Española, reformado en septiembre de 2011, consagra el principio de estabilidad presupuestaria para todas las Administraciones Públicas.",
-        "Se desarrolla en la Ley Orgánica 2/2012, de 27 de abril, de Estabilidad Presupuestaria y Sostenibilidad Financiera (LOEPSF). Principios rectores: estabilidad presupuestaria (equilibrio o superávit estructural), sostenibilidad financiera (capacidad para financiar compromisos de deuda presentes y futuros), plurianualidad, transparencia y eficiencia.",
-        "Límites de Deuda Pública: el volumen de deuda pública del conjunto de las Administraciones no podrá superar el 60% del PIB nacional (en línea con el Tratado de Maastricht): 44% para la AGE, 13% para las CCAA y 3% para las Entidades Locales.",
-        "Prioridad absoluta de pago (art. 135.3 CE): los créditos para satisfacer los intereses y el capital de la deuda pública gozan de prioridad absoluta frente a cualquier otro gasto. La AIReF (Autoridad Independiente de Responsabilidad Fiscal) vela por su estricto cumplimiento.",
+      "name": "Jefe de Servicio de Estructura Presupuestaria",
+      "role": "Clasificación orgánica, funcional y económica de los créditos",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#2e2e2e",
+        "hairStyle": "short",
+        "shirt": "#a16207",
+        "pants": "#713f12",
+        "acc": [
+          "glasses",
+          "tie"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Estructura del presupuesto de gastos en la AGE (art. 39 a 41 LGP):",
+        "Toda aplicación presupuestaria de gasto se define por tres clasificaciones:",
+        "1. Clasificación orgánica (¿Quién gasta?): identifica la sección (departamento ministerial u órgano constitucional: Secciones 01 a 37) y el servicio presupuestario (dirección general o centro directivo).",
+        "2. Clasificación funcional por programas (¿Para qué se gasta?): clasifica los créditos según los objetivos públicos a alcanzar (Área de gasto, Política de gasto, Grupo de programas y Programa de gasto).",
+        "3. Clasificación económica (¿En qué se gasta?): naturaleza económica del gasto agrupada en capítulos:",
+        "• Operaciones corrientes: Cap. 1 (Gastos de personal), Cap. 2 (Gastos corrientes en bienes y servicios), Cap. 3 (Gastos financieros) y Cap. 4 (Transferencias corrientes).",
+        "• Operaciones de capital: Cap. 6 (Inversiones reales) y Cap. 7 (Transferencias de capital).",
+        "• Operaciones financieras: Cap. 8 (Activos financieros) y Cap. 9 (Pasivos financieros: amortización de deuda).",
+        "Presupuesto de ingresos: clasificado orgánicamente y económicamente (Capítulos 1 a 9)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t2-q1",
+      "q": "¿A qué capítulo de la clasificación económica de gastos de los PGE corresponden los 'Gastos de personal'?",
+      "options": [
+        "Capítulo 1",
+        "Capítulo 2",
+        "Capítulo 4",
+        "Capítulo 6"
       ],
+      "answer": 0,
+      "explain": "En la clasificación económica de los PGE, el Capítulo 1 recoge todos los gastos de personal (retribuciones básicas, complementarias, cuotas a la Seguridad Social, etc.)."
     },
+    {
+      "id": "w6-t2-q2",
+      "q": "¿Cuáles son los capítulos del estado de gastos de los PGE que constituyen las 'operaciones corrientes'?",
+      "options": [
+        "Capítulos 1 (Personal), 2 (Bienes y servicios), 3 (Financieros) y 4 (Transferencias corrientes)",
+        "Capítulos 6 y 7 exclusivamente",
+        "Capítulos 8 y 9 exclusivamente",
+        "Capítulos 1 a 9 íntegramente"
+      ],
+      "answer": 0,
+      "explain": "La estructura económica de gastos clasifica como operaciones corrientes los Capítulos 1 a 4; como operaciones de capital los Capítulos 6 y 7; y como operaciones financieras los Capítulos 8 y 9."
+    },
+    {
+      "id": "w6-t2-q3",
+      "q": "¿Qué información proporciona la 'clasificación orgánica' en una aplicación presupuestaria de los PGE?",
+      "options": [
+        "Indica el órgano gestor responsable del gasto (Sección ministerial y Servicio presupuestario)",
+        "La naturaleza del bien adquirido",
+        "El objetivo social del programa público",
+        "El banco donde está depositado el dinero"
+      ],
+      "answer": 0,
+      "explain": "La clasificación orgánica responde a la pregunta de '¿quién gasta?', agrupando los créditos por secciones presupuestarias (Ministerios u órganos constitucionales) y servicios (centros directivos)."
+    }
   ],
-  blockQs: [
-    Q("w6-t2-q1", "¿Cuál es el valor límite de referencia para la deuda pública del conjunto de las Administraciones según el art. 135 CE y la LO 2/2012?", ["El 60% del Producto Interior Bruto (PIB)", "El 100% del PIB", "El 3% del PIB", "El 40% del PIB"], 0, "Art. 135.2 CE y art. 13 LO 2/2012: el volumen de deuda pública del conjunto de las Administraciones Públicas no podrá superar el 60 por ciento del Producto Interior Bruto nacional expresado en términos nominales."),
-    Q("w6-t2-q2", "El principio por el cual los créditos presupuestarios para satisfacer intereses y capital de la deuda pública se entienden siempre incluidos y no pueden enmendarse a la baja es:", ["Prioridad absoluta de pago de la deuda pública (art. 135.3 CE)", "Regla de gasto vinculante", "Principio de caja única", "Principio de compensación de créditos"], 0, "Art. 135.3 CE: los créditos para satisfacer los intereses y el capital de la deuda pública de las Administraciones se entenderán siempre incluidos en el estado de gastos y gozarán de prioridad absoluta frente a cualquier otro gasto."),
-    Q("w6-t2-q3", "¿Qué autoridad independiente fue creada para velar por el cumplimiento del principio de estabilidad presupuestaria y sostenibilidad financiera?", ["La Autoridad Independiente de Responsabilidad Fiscal (AIReF)", "La Comisión Nacional del Mercado de Valores (CNMV)", "El Tribunal Económico-Administrativo Central", "El Banco de España en solitario"], 0, "La Ley Orgánica 6/2013 creó la AIReF (Autoridad Independiente de Responsabilidad Fiscal) para garantizar el cumplimiento efectivo por las AAPP del principio de estabilidad presupuestaria mediante la evaluación continua del ciclo presupuestario."),
+  "bossQs": [
+    {
+      "id": "w6-t2-b1",
+      "q": "¿A qué capítulo de la clasificación económica corresponden las 'Inversiones reales' según la LGP?",
+      "options": [
+        "Capítulo 6",
+        "Capítulo 2",
+        "Capítulo 7",
+        "Capítulo 9"
+      ],
+      "answer": 0,
+      "explain": "El Capítulo 6 de la estructura económica de gastos agrupa los créditos destinados a inversiones reales directas de la Administración (obras, edificios, maquinaria, infraestructuras)."
+    },
+    {
+      "id": "w6-t2-b2",
+      "q": "¿A qué capítulo del presupuesto de gastos corresponde la amortización de la deuda pública (pasivos financieros)?",
+      "options": [
+        "Capítulo 9",
+        "Capítulo 3",
+        "Capítulo 8",
+        "Capítulo 5"
+      ],
+      "answer": 0,
+      "explain": "El Capítulo 9 agrupa los pasivos financieros (amortización y devolución del principal de la deuda pública); mientras que los intereses de la deuda se imputan al Capítulo 3 (gastos financieros)."
+    },
+    {
+      "id": "w6-t2-b3",
+      "q": "¿Cuál es la unidad básica presupuestaria a efectos de la asignación y seguimiento de objetivos en los PGE?",
+      "options": [
+        "El programa de gasto",
+        "El capítulo contable",
+        "La partida provincial",
+        "La subcuenta bancaria"
+      ],
+      "answer": 0,
+      "explain": "Art. 35 LGP: Los créditos presupuestarios se estructuran a través de programas de gasto, que constituyen la unidad básica para la presupuestación por objetivos y la rendición de cuentas."
+    }
   ],
-  bossQs: [
-    Q("w6-t2-b1", "En la distribución del límite del 60% de deuda pública del PIB entre subsectores (art. 13 LO 2/2012), el límite correspondiente a las Comunidades Autónomas es de:", ["13% del PIB", "44% del PIB", "3% del PIB", "25% del PIB"], 0, "Art. 13.1 LO 2/2012: el 60% se distribuye en: 44% para la Administración central, 13% para el conjunto de Comunidades Autónomas y 3% para el conjunto de Corporaciones Locales."),
-    Q("w6-t2-b2", "La 'regla de gasto' recogida en el art. 12 de la LO 2/2012 establece que la variación del gasto computable de las Administraciones Públicas:", ["No podrá superar la tasa de referencia de crecimiento del Producto Interior Bruto a medio plazo de la economía española", "Debe ser siempre igual a cero", "No puede superar la inflación del mes de diciembre", "Solo se aplica a los Ayuntamientos"], 0, "Art. 12.1 LO 2/2012: la variación del gasto computable de la Administración central, de las Comunidades Autónomas y de las Corporaciones Locales no podrá superar la tasa de referencia de crecimiento del PIB a medio plazo."),
-    Q("w6-t2-b3", "Los límites de déficit estructural y de volumen de deuda pública solo pueden superarse según el art. 135.4 CE en caso de:", ["Catástrofes naturales, recesión económica grave o situaciones de emergencia extraordinaria fuera del control del Estado, apreciadas por mayoría absoluta del Congreso", "Decisión discrecional del Ministro de Hacienda", "Elecciones generales anticipadas", "Acuerdo unánime de las Comunidades Autónomas"], 0, "Art. 135.4 CE: solo podrán superarse en caso de catástrofes naturales, recesión económica grave o situaciones de emergencia extraordinaria apreciadas por la mayoría absoluta del Congreso."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de la Distribución de Límites de Deuda Pública",
-    prompt: "Asocia cada subsector de las AAPP con su límite legal de deuda pública respecto al PIB (art. 13 LO 2/2012).",
-    pairs: [
-      ["Conjunto de las Administraciones Públicas", "60% del PIB nacional"],
-      ["Administración Central del Estado", "44% del PIB nacional"],
-      ["Comunidades Autónomas", "13% del PIB nacional"],
-      ["Corporaciones Locales (Ayuntamientos y Diputaciones)", "3% del PIB nacional"],
+  "mini": {
+    "type": "match",
+    "title": "Capítulos de la Clasificación Económica de Gastos",
+    "prompt": "Empareja cada Capítulo económico de gasto con su contenido sustantivo.",
+    "pairs": [
+      [
+        "Capítulo 1",
+        "Gastos de personal (nóminas, trienios y cotizaciones)"
+      ],
+      [
+        "Capítulo 2",
+        "Gastos corrientes en bienes y servicios (suministros, alquileres)"
+      ],
+      [
+        "Capítulo 3",
+        "Gastos financieros (intereses de la deuda pública y préstamos)"
+      ],
+      [
+        "Capítulo 6",
+        "Inversiones reales (infraestructuras, obras y equipamientos)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Imputador Indebido",
+    "kind": "moneda",
+    "intro": [
+      "¡He pagado la compra de un edificio de 20 millones con cargo al Capítulo 2 de material de oficina!"
     ],
+    "defeat": [
+      "¡Vulneración de la especialidad cualitativa (art. 42 LGP)! Reparo contable e imputación obligatoria al Capítulo 6 de Inversiones Reales."
+    ]
   },
-  boss: {
-    name: "El Monstruo del Déficit Excesivo",
-    kind: "dragon",
-    intro: ["¡Dispararé el déficit y endeudaré al Estado por encima del 150% del PIB sin control!"],
-    defeat: ["¡El artículo 135 CE, la Ley Orgánica 2/2012 y la AIReF han impuesto la sostenibilidad financiera!"],
-  },
-  summary: [
-    "Art. 135 CE (reforma 2011) y LO 2/2012 (LOEPSF): equilibrio estructural, sostenibilidad, regla de gasto y transparencia.",
-    "Límite deuda pública 60% PIB (44% Estado, 13% CCAA, 3% EELL).",
-    "Prioridad absoluta de pago para intereses y capital de la deuda pública (art. 135.3 CE).",
-    "AIReF (LO 6/2013): órgano fiscalizador independiente del cumplimiento de las reglas fiscales.",
-  ],
+  "summary": [
+    "Estructura presupuestaria de gastos: Orgánica (¿quién gasta? Secciones y Servicios), Funcional por programas (¿para qué se gasta? Programas) y Económica (¿en qué se gasta? Capítulos 1 a 9).",
+    "Operaciones corrientes (Cap. 1 a 4): 1 Personal, 2 Bienes y servicios, 3 Financieros (intereses), 4 Transferencias corrientes.",
+    "Operaciones de capital (Cap. 6 y 7): 6 Inversiones reales, 7 Transferencias de capital.",
+    "Operaciones financieras (Cap. 8 y 9): 8 Activos financieros, 9 Pasivos financieros (amortización de deuda).",
+    "Presupuesto por programas (art. 35 LGP): asignación eficiente de recursos vinculada a objetivos medibles."
+  ]
 };
 
 export const W6_T3: MiniWorldDef = {
-  id: "hacienda-t3",
-  num: 3,
-  temaTitle: "Tema 3: Estructura de los PGE y el ciclo presupuestario",
-  name: "Bóveda de las Clasificaciones Contables",
-  emoji: "📊",
-  theme: "hacienda",
-  color: "#b0820d",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t3",
+  "num": 3,
+  "temaTitle": "Tema 3: Gastos plurianuales. Modificaciones de los créditos iniciales. Transferencias de crédito. Créditos extraordinarios. Suplementos de crédito. Ampliaciones de créditos. Incorporaciones de créditos. Generaciones de créditos.",
+  "name": "Laboratorio de Modificaciones Presupuestarias",
+  "emoji": "🔄",
+  "theme": "hacienda",
+  "color": "#a16207",
+  "enemy": "moneda",
+  "enemyName": "Créditos inflados",
+  "npcs": [
     {
-      name: "Archivero Mayor del Tesoro",
-      role: "Estructura del presupuesto y ciclo",
-      look: { skin: "#f3c9a0", hair: "#333", hairStyle: "short", shirt: "#27ae60", pants: "#1c2833", acc: ["glasses", "visor"], accColor: "#ffd84d" },
-      pages: [
-        "El estado de gastos de los PGE se clasifica con un triple criterio: 1) Orgánica: ¿quién gasta? (secciones y servicios); 2) Por programas o funcional: ¿para qué se gasta? (políticas de gasto, programas); y 3) Económica: ¿en qué se gasta? (capítulos, artículos, conceptos y subconceptos).",
-        "Capítulos del presupuesto de GASTOS: Operaciones corrientes: Cap. I Gastos de personal, Cap. II Gastos corrientes en bienes y servicios, Cap. III Gastos financieros, Cap. IV Transferencias corrientes. Operaciones de capital: Cap. VI Inversiones reales, Cap. VII Transferencias de capital. Operaciones financieras: Cap. VIII Activos financieros, Cap. IX Pasivos financieros (amortización de deuda).",
-        "Capítulos del presupuesto de INGRESOS: Cap. I Impuestos directos, Cap. II Impuestos indirectos, Cap. III Tasas y otros ingresos, Cap. IV Transferencias corrientes, Cap. V Ingresos patrimoniales, Cap. VI Enajenación inversiones reales, Cap. VII Transferencias de capital, Cap. VIII Activos financieros, Cap. IX Pasivos financieros (emisión de deuda).",
-        "El ciclo presupuestario: 1) Elaboración por el Gobierno; 2) Examen, enmienda y aprobación por las Cortes; 3) Ejecución por la Administración; y 4) Control interno (IGAE) y externo (Tribunal de Cuentas).",
+      "name": "Jefe de Modificaciones de Crédito",
+      "role": "Gastos plurianuales y modificaciones presupuestarias (LGP)",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#854d0e",
+        "pants": "#543007",
+        "acc": [
+          "glasses",
+          "tie"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Gastos plurianuales (art. 47 LGP): compromisos de gasto que hayan de extenderse a ejercicios posteriores (contratos, convenios, subvenciones). Límites temporales: no podrán exceder de 4 ejercicios posteriores. Límites porcentuales: año 1 (70%), año 2 (60%), año 3 (50%) y año 4 (50%) calculados sobre el crédito inicial a nivel de vinculación.",
+        "Modificaciones de crédito (arts. 51 a 60 LGP):",
+        "1. Transferencias de crédito (art. 52): trasvasan crédito de una aplicación a otra sin alterar la cuantía total. Limitaciones: no entre distintas secciones, no de operaciones de capital a corrientes, ni minorar créditos ampliables o extraordinarios.",
+        "2. Créditos extraordinarios y suplementos de crédito (arts. 55 y 56): para gastos inaplazables sin crédito (extraordinario) o con crédito insuficiente (suplemento). Competencia: Ley de Cortes si afecta a PGE y se financia con deuda pública, o Acuerdo de Consejo de Ministros si se financia con el Fondo de Contingencia.",
+        "3. Ampliaciones de crédito (art. 54): créditos tasados en el anexo de la Ley de PGE (pensiones de clases pasivas, deuda pública, cuotas de Seguridad Social).",
+        "4. Generaciones de crédito (art. 53): por ingresos no previstos o superiores (reintegros, venta de bienes, prestación de servicios).",
+        "5. Incorporaciones de crédito (art. 58): remanentes de crédito del ejercicio anterior en supuestos tasados."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t3-q1",
+      "q": "¿Cuáles son los límites temporales y porcentuales ordinarios de los gastos plurianuales según el artículo 47 de la LGP?",
+      "options": [
+        "Máximo de 4 ejercicios posteriores; porcentajes: 70% (año 1), 60% (año 2), 50% (año 3 y 4)",
+        "Máximo de 2 años al 100%",
+        "Hasta 10 años sin límite de porcentaje",
+        "Máximo de 3 años al 30% anual"
       ],
+      "answer": 0,
+      "explain": "Art. 47.2 LGP: El número de ejercicios a los que pueden aplicarse los gastos no será superior a cuatro, con los siguientes límites máximos: 70% en el ejercicio inmediato siguiente, 60% en el segundo ejercicio, y 50% en los ejercicios tercero y cuarto."
     },
+    {
+      "id": "w6-t3-q2",
+      "q": "¿Cuál es la modificación de crédito que traslada importes entre aplicaciones presupuestarias sin alterar el importe global del presupuesto?",
+      "options": [
+        "La transferencia de crédito (art. 52 LGP)",
+        "El suplemento de crédito",
+        "La generación de crédito",
+        "La incorporación de crédito"
+      ],
+      "answer": 0,
+      "explain": "Art. 52.1 LGP: Las transferencias son modificaciones del presupuesto de gastos que trasladan el importe total o parcial de un crédito entre distintas partidas presupuestarias sin alterar la cuantía total del presupuesto."
+    },
+    {
+      "id": "w6-t3-q3",
+      "q": "¿En qué se diferencia un 'crédito extraordinario' de un 'suplemento de crédito' en la LGP?",
+      "options": [
+        "El crédito extraordinario se aplica cuando no existe consignación presupuestaria; el suplemento cuando el crédito existente es insuficiente",
+        "El crédito extraordinario solo es para desastres naturales",
+        "El suplemento de crédito no necesita financiación",
+        "Son términos exactamente sinónimos sin diferencia"
+      ],
+      "answer": 0,
+      "explain": "Art. 55.1 LGP: Cuando haya de realizarse con cargo al presupuesto un gasto específico y urgente que no pueda demorarse y no exista crédito (crédito extraordinario) o sea insuficiente (suplemento de crédito)."
+    }
   ],
-  blockQs: [
-    Q("w6-t3-q1", "En la clasificación económica del presupuesto de gastos de los PGE, ¿a qué corresponde el Capítulo I?", ["Gastos de personal", "Inversiones reales", "Gastos financieros", "Transferencias de capital"], 0, "La clasificación económica de gastos sitúa en el Capítulo I los Gastos de personal (retribuciones de funcionarios, laborales y cuotas a la Seguridad Social)."),
-    Q("w6-t3-q2", "¿Qué clasificación del estado de gastos informa sobre la finalidad y objetivos a los que se destinan los créditos públicos ('¿para qué se gasta?')?", ["Clasificación por programas (o funcional)", "Clasificación orgánica", "Clasificación económica", "Clasificación territorial"], 0, "La clasificación por programas agrupa los créditos según los objetivos, actividades y finalidades que persigue cada política pública."),
-    Q("w6-t3-q3", "En el presupuesto de ingresos de los PGE, el Capítulo IX corresponde a:", ["Pasivos financieros (ingresos por emisión de deuda pública y préstamos recibidos)", "Impuestos sobre la renta y sociedades", "Tasas consulares", "Enajenación de edificios públicos"], 0, "El Capítulo IX del presupuesto de ingresos recoge los Pasivos financieros, que son los recursos obtenidos mediante la emisión de Deuda Pública y concertación de préstamos."),
+  "bossQs": [
+    {
+      "id": "w6-t3-b1",
+      "q": "¿Qué fondo presupuestario consignado en el Capítulo 5 financia las necesidades imprevistas y no discrecionales a lo largo del año?",
+      "options": [
+        "El Fondo de Contingencia de ejecución presupuestaria (art. 50 LGP)",
+        "La caja de ahorros postal",
+        "El Fondo de Reserva de pensiones",
+        "La cuenta de depósitos judiciales"
+      ],
+      "answer": 0,
+      "explain": "Art. 50 LGP: La Ley de Presupuestos incluirá en la Sección 36 un crédito denominado 'Fondo de Contingencia de ejecución presupuestaria', por importe del dos por ciento del límite de gasto no financiero, para atender necesidades imprevistas no discrecionales."
+    },
+    {
+      "id": "w6-t3-b2",
+      "q": "¿Qué limitación expresa impone el art. 52.1 de la LGP a las transferencias de crédito?",
+      "options": [
+        "No podrán realizarse entre créditos de distintas secciones presupuestarias, ni minorar créditos de capital para destinarlos a operaciones corrientes",
+        "Solo pueden hacerse en el mes de diciembre",
+        "Requieren siempre ley formal de las Cortes",
+        "No pueden realizarse dentro del mismo ministerio"
+      ],
+      "answer": 0,
+      "explain": "Art. 52.1 LGP: Las transferencias de crédito no podrán minorar créditos extraordinarios o ampliados, ni transferirse entre distintas secciones, ni minorar operaciones de capital para aumentar créditos de operaciones corrientes."
+    },
+    {
+      "id": "w6-t3-b3",
+      "q": "¿Qué órgano es competente para autorizar gastos plurianuales que superen los límites de porcentaje o número de ejercicios (art. 47.3 LGP)?",
+      "options": [
+        "El Consejo de Ministros, a propuesta del Ministro de Hacienda",
+        "El Director General del Presupuesto",
+        "El Defensor del Pueblo",
+        "El Presidente del Tribunal de Cuentas"
+      ],
+      "answer": 0,
+      "explain": "Art. 47.3 LGP: El Consejo de Ministros, a propuesta del Ministro de Hacienda y previo informe de la Dirección General de Presupuestos, podrá acordar la modificación de los porcentajes, incrementar el número de anualidades o autorizar compromisos adicionales."
+    }
   ],
-  bossQs: [
-    Q("w6-t3-b1", "En la clasificación económica del estado de gastos, ¿cuál de los siguientes capítulos forma parte de las 'operaciones de capital'?", ["Capítulo VI: Inversiones reales", "Capítulo II: Gastos corrientes en bienes y servicios", "Capítulo I: Gastos de personal", "Capítulo III: Gastos financieros"], 0, "Las operaciones de capital en gastos comprenden los Capítulos VI (Inversiones reales) y VII (Transferencias de capital)."),
-    Q("w6-t3-b2", "La clasificación orgánica del presupuesto del Estado se articula básicamente en:", ["Secciones (Ministerios y Órganos constitucionales) y Servicios (organismos y centros directivos)", "Capítulos y conceptos económicos", "Áreas de gasto y programas", "Provincias y municipios"], 0, "La clasificación orgánica agrupa los créditos por centros gestores: Secciones (primer nivel: ministerios, órganos constitucionales, clases pasivas) y Servicios (segundo nivel: subsecretarías, secretarías de estado, etc.)."),
-    Q("w6-t3-b3", "En el ciclo presupuestario, ¿a quién corresponde constitucionalmente de forma exclusiva la función de 'elaboración' del proyecto de Presupuestos Generales del Estado?", ["Al Gobierno (art. 134.1 CE)", "Al Congreso de los Diputados", "Al Tribunal de Cuentas", "Al Banco de España"], 0, "Art. 134.1 CE: corresponde al Gobierno la elaboración de los Presupuestos Generales del Estado y a las Cortes Generales su examen, enmienda y aprobación."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba de los Capítulos de Gastos de los PGE",
-    prompt: "Ordena los primeros 7 Capítulos de la clasificación económica de gastos de los PGE.",
-    items: [
-      "Capítulo I: Gastos de personal",
-      "Capítulo II: Gastos corrientes en bienes y servicios",
-      "Capítulo III: Gastos financieros (intereses)",
-      "Capítulo IV: Transferencias corrientes",
-      "Capítulo VI: Inversiones reales (infraestructuras y obras)",
-      "Capítulo VII: Transferencias de capital",
-      "Capítulo VIII: Activos financieros",
-      "Capítulo IX: Pasivos financieros (amortización de deuda)",
+  "mini": {
+    "type": "match",
+    "title": "Tipología de Modificaciones de Crédito (LGP)",
+    "prompt": "Empareja cada modificación presupuestaria con su causa habilitante.",
+    "pairs": [
+      [
+        "Transferencia de crédito",
+        "Trasvase de crédito entre partidas sin variar el gasto total (art. 52)"
+      ],
+      [
+        "Crédito extraordinario",
+        "Gasto específico, urgente e inaplazable para el que no existe consignación"
+      ],
+      [
+        "Suplemento de crédito",
+        "Gasto urgente e inaplazable para el que el crédito existente resulta insuficiente"
+      ],
+      [
+        "Generación de crédito",
+        "Incremento de crédito derivado de ingresos no previstos o superiores (art. 53)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Trasvasador Ilegal",
+    "kind": "moneda",
+    "intro": [
+      "¡He transferido 50 millones de inversiones reales a dietas de altos cargos entre ministerios distintos!"
     ],
+    "defeat": [
+      "¡Art. 52 LGP! Prohibición legal taxativa de transferir de capital a corriente y entre secciones distintas. Modificación nula."
+    ]
   },
-  boss: {
-    name: "El Confusor de Capítulos",
-    kind: "dragon",
-    intro: ["¡Mezclaré el Capítulo I con el Capítulo VI e imputaré el sueldo de los funcionarios a inversiones reales!"],
-    defeat: ["¡La clasificación económica y orgánica de la LGP es inflexible! Cada euro tiene su correcta imputación contable."],
-  },
-  summary: [
-    "Estructura gastos: Orgánica (¿quién?: Secciones y Servicios), Funcional/Programas (¿para qué?: Programas) y Económica (¿en qué?: Capítulos I a IX).",
-    "Gastos: Corrientes (I Personal, II Bienes/Servicios, III Financieros, IV Transf. corrientes); Capital (VI Inversiones, VII Transf. capital); Financieros (VIII Activos, IX Pasivos).",
-    "Ingresos: I Imp. directos, II Imp. indirectos, III Tasas, IV Transf. corrientes, V Patrimoniales, VI Enajenación, VII Transf. capital, VIII Activos, IX Pasivos.",
-    "Ciclo: Elaboración (Gobierno antes de 1 oct), Aprobación (Cortes), Ejecución (AGE), Control (IGAE y Tribunal de Cuentas).",
-  ],
+  "summary": [
+    "Gastos plurianuales (art. 47 LGP): máx. 4 ejercicios. Porcentajes: 70% (año 1), 60% (año 2), 50% (año 3 y 4). Superación por Acuerdo de Consejo de Ministros.",
+    "Modificaciones presupuestarias: transferencias (no entre secciones, no de capital a corriente), generaciones (por mayores ingresos art. 53), ampliaciones (tasadas art. 54).",
+    "Créditos extraordinarios (no hay crédito) y Suplementos (insuficiente). Financiados por el Fondo de Contingencia (Sección 36, 2% del límite de gasto).",
+    "Incorporación de remanentes (art. 58): supuestos tasados de créditos del ejercicio anterior."
+  ]
 };
 
 export const W6_T4: MiniWorldDef = {
-  id: "hacienda-t4",
-  num: 4,
-  temaTitle: "Tema 4: Modificaciones presupuestarias y gastos plurianuales",
-  name: "Cámara de las Modificaciones de Crédito",
-  emoji: "🔄",
-  theme: "hacienda",
-  color: "#997108",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t4",
+  "num": 4,
+  "temaTitle": "Tema 4: Control del gasto público en España. La Intervención General de la Administración del Estado. Función interventora, control financiero permanente y auditoría pública. El Tribunal de Cuentas.",
+  "name": "Corte del Control Financiero e IGAE",
+  "emoji": "🛡️",
+  "theme": "hacienda",
+  "color": "#ca8a04",
+  "enemy": "reloj",
+  "enemyName": "Reparos desatendidos",
+  "npcs": [
     {
-      name: "Don Euro",
-      role: "Modificaciones presupuestarias y plurianuales (Ley 47/2003)",
-      look: { skin: "#f0bf94", hair: "#1c1c1c", hairStyle: "short", shirt: "#27ae60", pants: "#17202a", acc: ["tie", "visor"], accColor: "#f1c40f" },
-      pages: [
-        "El presupuesto es vinculante, pero la realidad cambia: por eso la LGP regula las modificaciones presupuestarias en los artículos 50 a 59.",
-        "Tipos de modificaciones: 1) Créditos extraordinarios (cuando no existe crédito presupuestario para un gasto que no puede demorarse) y Suplementos de crédito (cuando el crédito existente es insuficiente). Si afectan al presupuesto del Estado, se aprueban por Ley de las Cortes (o Real Decreto-ley si hay urgencia y necesidad ex art. 55 LGP).",
-        "2) Transferencias de crédito (traspaso de dotaciones entre aplicaciones; limitaciones art. 52: no de capital a corriente, etc.); 3) Ampliaciones de crédito (en créditos tasados legalmente ampliables); 4) Generaciones de crédito (por mayores ingresos); y 5) Incorporaciones de crédito (remanentes del ejercicio anterior).",
-        "Gastos plurianuales (art. 47 LGP): compromisos que se extienden a ejercicios futuros (máximo 4 años posteriores). Límites máximos sobre el crédito inicial: 70% en el año 1, 60% en el año 2, y 50% en los años 3 y 4.",
+      "name": "Interventor General del Estado",
+      "role": "Función interventora, control permanente, auditoría pública y Tribunal de Cuentas",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#2e2e2e",
+        "hairStyle": "short",
+        "shirt": "#854d0e",
+        "pants": "#3f2c06",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Control del gasto público en España: interno (IGAE) y externo (Tribunal de Cuentas).",
+        "1. Control interno: Intervención General de la Administración del Estado (IGAE, Título VI LGP, arts. 140 a 175):",
+        "• Función interventora (control de legalidad previa): fiscalización previa de actos que reconozcan derechos o gastos. Si el interventor encuentra disconformidad emite un REPARO. Si es reparo suspensivo, paraliza el expediente hasta su subsanación o resolución de discrepancia por el Consejo de Ministros.",
+        "• Control financiero permanente: verificación continua de la legalidad, eficacia, eficiencia y economía de la gestión económico-financiera.",
+        "• Auditoría pública: revisión ex post de cuentas anuales y sistemas de gestión de entidades públicas.",
+        "2. Control externo: Tribunal de Cuentas (art. 136 CE y LO 2/1982):",
+        "• Supremo órgano fiscalizador de las cuentas y de la gestión económica del Estado y del sector público.",
+        "• Depende directamente de las Cortes Generales. Ejerce dos funciones: fiscalizadora (informe o Declaración de la Cuenta General del Estado) y jurisdiccional (enjuiciamiento contable de la responsabilidad contable de quienes manejen caudales públicos)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t4-q1",
+      "q": "¿Cuáles son las tres modalidades que integran el control interno de la gestión económico-financiera ejercido por la IGAE (art. 141 LGP)?",
+      "options": [
+        "La función interventora, el control financiero permanente y la auditoría pública",
+        "La inspección de policía, el arbitraje y la mediación",
+        "El control civil, el penal y el mercantil",
+        "La fiscalización parlamentaria, la prensa libre y el defensor del pueblo"
       ],
+      "answer": 0,
+      "explain": "Art. 141 LGP: El control interno de la gestión económico-financiera del sector público estatal se ejercerá por la Intervención General de la Administración del Estado mediante la función interventora, el control financiero permanente y la auditoría pública."
     },
+    {
+      "id": "w6-t4-q2",
+      "q": "¿Qué efecto inmediato produce la formalización de un reparo en el ejercicio de la función interventora según el art. 154 LGP?",
+      "options": [
+        "Suspende la tramitación del expediente hasta que sea subsanada la falta o resuelta la discrepancia",
+        "El archivo definitivo y destrucción del expediente",
+        "La dimisión automática del subsecretario",
+        "La derivación obligatoria al juzgado de guardia en 24 horas"
+      ],
+      "answer": 0,
+      "explain": "Art. 154.1 LGP: Si la Intervención se manifiesta en desacuerdo con el contenido de los actos examinados formulará sus reparos por escrito. La formulación del reparo suspenderá la tramitación del expediente."
+    },
+    {
+      "id": "w6-t4-q3",
+      "q": "¿Cuáles son las dos funciones constitucionales esenciales del Tribunal de Cuentas (art. 136 CE y LO 2/1982)?",
+      "options": [
+        "La función fiscalizadora del sector público y la función de enjuiciamiento contable de la responsabilidad contable",
+        "La función legislativa y la ejecutiva presupuestaria",
+        "La función de emitir moneda y recaudar tributos",
+        "La fijación del IPC y la inspección laboral"
+      ],
+      "answer": 0,
+      "explain": "Art. 136 CE y LO 2/1982: El Tribunal de Cuentas ejerce la función fiscalizadora de las cuentas del sector público y la función jurisdiccional de enjuiciamiento de la responsabilidad contable en que incurran quienes manejen caudales públicos."
+    }
   ],
-  blockQs: [
-    Q("w6-t4-q1", "Cuando haya de realizarse con cargo al Presupuesto del Estado algún gasto específico y determinado que no pueda demorarse y NO exista crédito presupuestario, se tramitará (art. 55 LGP):", ["Un crédito extraordinario", "Un suplemento de crédito", "Una transferencia interna", "Un anticipo de nómina"], 0, "Art. 55.1 LGP: cuando haya de realizarse con cargo al Presupuesto del Estado algún gasto que no pueda demorarse hasta el ejercicio siguiente y no exista crédito, se incoará expediente de concesión de crédito extraordinario (si el crédito es insuficiente, es suplemento de crédito)."),
-    Q("w6-t4-q2", "Según el art. 47 de la LGP, ¿a cuántos ejercicios posteriores como máximo pueden extenderse con carácter general los compromisos por gastos plurianuales?", ["A un máximo de cuatro ejercicios posteriores", "A dos años", "A diez años", "A seis ejercicios"], 0, "Art. 47.2 LGP: el número de ejercicios posteriores a que pueden aplicarse los gastos no será superior a cuatro, con los porcentajes máximos fijados en la ley."),
-    Q("w6-t4-q3", "¿Cuál es el porcentaje máximo sobre el crédito inicial que puede comprometerse en el año inmediatamente siguiente en un gasto plurianual (art. 47.2 LGP)?", ["El 70 por ciento", "El 50 por ciento", "El 60 por ciento", "El 100 por ciento"], 0, "Art. 47.2 LGP: el gasto que se impute a cada uno de los ejercicios posteriores no podrá exceder de la cantidad que resulte de aplicar al crédito inicial los porcentajes siguientes: en el ejercicio inmediato siguiente, el 70%; en el segundo, el 60%; y en el tercero y cuarto, el 50%."),
+  "bossQs": [
+    {
+      "id": "w6-t4-b1",
+      "q": "Si el órgano gestor discrepa de un reparo de la Intervención Delegada ministerial, ¿quién resuelve en última instancia la discrepancia (art. 155 LGP)?",
+      "options": [
+        "El Consejo de Ministros, si se mantiene la discrepancia tras el informe de la IGAE",
+        "El Ministro de Justicia en exclusiva",
+        "El Tribunal Supremo en Sala Plena",
+        "El Delegado del Gobierno territorial"
+      ],
+      "answer": 0,
+      "explain": "Art. 155.2 LGP: Cuando se mantenga la discrepancia frente al criterio de la Intervención General, corresponderá al Consejo de Ministros adoptar la resolución definitiva."
+    },
+    {
+      "id": "w6-t4-b2",
+      "q": "¿A través de qué documento anual remite el Tribunal de Cuentas a las Cortes Generales el resultado de su fiscalización de las cuentas públicas?",
+      "options": [
+        "La Declaración sobre la Cuenta General del Estado (informe o memoria anual)",
+        "El anteproyecto de presupuestos generales",
+        "El boletín de liquidación tributaria",
+        "El certificado de caja única"
+      ],
+      "answer": 0,
+      "explain": "Art. 136.2 CE: Las cuentas del Estado y del sector público estatal se rendirán al Tribunal de Cuentas y serán censuradas por éste. El Tribunal de Cuentas remitirá a las Cortes Generales un informe anual sobre la Cuenta General del Estado."
+    },
+    {
+      "id": "w6-t4-b3",
+      "q": "¿Qué carácter tiene la responsabilidad contable exigible por el Tribunal de Cuentas?",
+      "options": [
+        "Eminentemente reparatoria o indemnizatoria de los daños y perjuicios económicos causados a los caudales públicos",
+        "Sancionadora privativa de libertad",
+        "Moral y sin consecuencias pecuniarias",
+        "Exclusivamente penal de prisión"
+      ],
+      "answer": 0,
+      "explain": "Art. 38 LO 2/1982: El enjuiciamiento contable tiene por objeto la reparación del menoscabo patrimonial producido a los caudales o efectos públicos, teniendo carácter resarcitorio o indemnizatorio."
+    }
   ],
-  bossQs: [
-    Q("w6-t4-b1", "¿Cuál de las siguientes limitaciones a las transferencias de crédito está recogida expresamente en el art. 52 de la LGP?", ["No podrán minorar créditos para operaciones de capital para destinarlos a financiar créditos para operaciones corrientes", "No pueden realizarse entre distintos ministerios en ningún caso", "No pueden superar los 1.000 euros", "Están prohibidas en el mes de diciembre"], 0, "Art. 52.1.b LGP: las transferencias de crédito no podrán minorar créditos para operaciones de capital con el fin de incrementar créditos para operaciones corrientes."),
-    Q("w6-t4-b2", "La modificación presupuestaria que incrementa los créditos como consecuencia de la efectiva recaudación de ingresos no previstos o superiores a los previstos se denomina:", ["Generación de crédito (art. 53 LGP)", "Incorporación de remanente", "Ampliación de crédito", "Suplemento de crédito"], 0, "Art. 53 LGP: las generaciones son modificaciones que incrementan los créditos como consecuencia de la realización de determinados ingresos no previstos o mayores a los estimados en el presupuesto."),
-    Q("w6-t4-b3", "La autorización para modificar los porcentajes o el número de anualidades de los gastos plurianuales regulados en el art. 47 de la LGP corresponde a:", ["El Consejo de Ministros, a propuesta del Ministro de Hacienda", "El Congreso de los Diputados mediante ley orgánica", "El Tribunal de Cuentas", "Exclusivamente al Presidente del Gobierno"], 0, "Art. 47.3 LGP: el Consejo de Ministros, en casos especialmente justificados y previo informe del Ministerio de Hacienda, podrá acordar la modificación de los porcentajes, incrementar el número de anualidades o autorizar la adquisición de compromisos."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de las Modificaciones Presupuestarias",
-    prompt: "Relaciona cada figura de modificación presupuestaria con su causa determinante.",
-    pairs: [
-      ["Crédito extraordinario", "No existe crédito para un gasto inaplazable"],
-      ["Suplemento de crédito", "Existe crédito pero resulta insuficiente para la obligación"],
-      ["Generación de crédito", "Obtención de mayores ingresos de los previstos"],
-      ["Incorporación de crédito", "Remanentes no comprometidos procedentes del ejercicio anterior"],
+  "mini": {
+    "type": "match",
+    "title": "Órganos y Modalidades del Control del Gasto",
+    "prompt": "Empareja cada organismo o instrumento con su régimen jurídico definitorio.",
+    "pairs": [
+      [
+        "Función interventora (IGAE)",
+        "Control previo de legalidad formal con efecto suspensivo ante reparos (art. 154)"
+      ],
+      [
+        "Control financiero permanente",
+        "Comprobación continua de la eficacia y legalidad en entidades públicas"
+      ],
+      [
+        "Tribunal de Cuentas (fiscalizador)",
+        "Examen externo anual y remisión de la Cuenta General a las Cortes"
+      ],
+      [
+        "Tribunal de Cuentas (jurisdiccional)",
+        "Enjuiciamiento y resarcimiento de la responsabilidad contable"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Malversador de Fondos",
+    "kind": "ogre",
+    "intro": [
+      "¡He levantado el reparo suspensivo verbalmente y desviado caudales a un paraíso fiscal!"
     ],
+    "defeat": [
+      "¡Art. 155 LGP y Sección de Enjuiciamiento del Tribunal de Cuentas! Reclamación íntegra del alcance contable con embargo preventivo."
+    ]
   },
-  boss: {
-    name: "El Malversador de Partidas",
-    kind: "dragon",
-    intro: ["¡Transferiré fondos del Capítulo VI de inversiones a gastos de protocolo sin autorización!"],
-    defeat: ["¡Las limitaciones taxativas del art. 52 de la LGP han bloqueado tus transferencias ilegales!"],
-  },
-  summary: [
-    "Modificaciones (arts. 50-59 LGP): Crédito extraordinario (no hay crédito) vs Suplemento de crédito (crédito insuficiente). Aprueba Cortes por Ley (o RD-ley ex art. 55).",
-    "Transferencias (art. 52): traspaso entre aplicaciones; límite: no de capital a corriente, ni de créditos ampliables o extraordinarios.",
-    "Otras figuras: Ampliaciones (créditos tasados), Generaciones (mayores ingresos art. 53) e Incorporaciones (remanentes año anterior art. 58).",
-    "Plurianuales (art. 47): máx 4 años posteriores. Techos: año 1 (70%), año 2 (60%), años 3 y 4 (50%). Modificación por Consejo de Ministros.",
-  ],
+  "summary": [
+    "Control interno: IGAE (adscrita a Hacienda con autonomía funcional).",
+    "Modalidades IGAE: Función interventora (previa y suspensiva ante reparo; discrepancias al Consejo de Ministros art. 155), Control financiero permanente y Auditoría pública.",
+    "Control externo: Tribunal de Cuentas (art. 136 CE y LO 2/1982). Depende de las Cortes Generales.",
+    "Funciones TCu: Fiscalizadora (Cuenta General del Estado) y Jurisdiccional (responsabilidad contable resarcitoria o indemnizatoria)."
+  ]
 };
 
 export const W6_T5: MiniWorldDef = {
-  id: "hacienda-t5",
-  num: 5,
-  temaTitle: "Tema 5: Ejecución del gasto (A-D-O-P), pagos y subvenciones",
-  name: "Cámara de la Contabilidad y la Ordenación de Pagos",
-  emoji: "💳",
-  theme: "hacienda",
-  color: "#805e04",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t5",
+  "num": 5,
+  "temaTitle": "Tema 5: El procedimiento administrativo de ejecución del presupuesto de gasto. Órganos competentes. Fases del procedimiento y su relación con la actuación administrativa. Especial referencia a la contratación administrativa y la gestión de subvenciones. Documentos contables que intervienen en la ejecución de los gastos y de los pagos. Gestión de la tesorería del Estado.",
+  "name": "Cámara del Procedimiento de Gasto (A-D-O-P)",
+  "emoji": "💳",
+  "theme": "hacienda",
+  "color": "#a16207",
+  "enemy": "moneda",
+  "enemyName": "Órdenes de pago irregulares",
+  "npcs": [
     {
-      name: "Tesorero Mayor",
-      role: "Fases del gasto (A-D-O-P) y Ley General de Subvenciones (Ley 38/2003)",
-      look: { skin: "#f3c9a0", hair: "#333", hairStyle: "short", shirt: "#3498db", pants: "#1a252f", acc: ["glasses", "badge"], accColor: "#ffd84d" },
-      pages: [
-        "La gestión del gasto público se desarrolla en cuatro fases sucesivas regladas en el art. 73 de la LGP:",
-        "1) Aprobación o Autorización del gasto (A): acto por el que se acuerda la realización de un gasto, calculado de forma cierta o aproximada, reservando el crédito.",
-        "2) Compromiso o Disposición del gasto (D): acto por el que se acuerda formalmente con un tercero la realización del gasto por un importe y condiciones exactamente determinadas.",
-        "3) Reconocimiento de la obligación (O): acto por el que se declara la existencia de un crédito exigible contra la Hacienda Pública derivado del cumplimiento de la prestación (albarán conforme, factura). Da paso a la propuesta de pago.",
-        "4) Ordenación del pago (P): acto por el que el ordenador general de pagos expide la orden de pago material contra la Tesorería.",
-        "Acumulación: un mismo acto puede acumular varias fases: AD, ADO o ADOP.",
-        "Subvenciones: Ley 38/2003 General de Subvenciones: principios de publicidad, concurrencia, transparencia, objetividad, igualdad y no discriminación. Exige Plan Estratégico de Subvenciones y bases reguladoras.",
+      "name": "Jefe de Contabilidad Presupuestaria",
+      "role": "Fases de ejecución del gasto (A-D-O-P), documentos contables y Tesorería",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#713f12",
+        "pants": "#451a03",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Procedimiento de ejecución del gasto público en la AGE (arts. 73 a 79 LGP):",
+        "Cuatro fases sucesivas y regladas:",
+        "1. Aprobación del gasto (Fase A): acto que autoriza la realización de un gasto determinado por una cuantía estimada, reservando crédito presupuestario. Documento contable: A.",
+        "2. Compromiso o disposición del gasto (Fase D): acto con relevancia jurídica frente a terceros por el que se formaliza la relación (contrato firmado, resolución de subvención). Documento contable: D. (Cabe fase mixta AD).",
+        "3. Reconocimiento de la obligación (Fase O): acto administrativo mediante el cual se declara la existencia de un crédito exigible contra la Hacienda Pública derivado del cumplimiento de la prestación (factura conformada, obra recibida). Documento contable: OK (Obligación) o ADOK.",
+        "4. Ordenación del pago (Fase P): el ordenador de pagos (Director General del Tesoro) expide la orden formal de pago frente al Banco de España o entidad financiera. Documento contable: P.",
+        "Pago material: entrega efectiva de los fondos al acreedor mediante transferencia bancaria.",
+        "Gestión de la Tesorería del Estado (art. 90 LGP): principio de unidad de caja en el Banco de España."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t5-q1",
+      "q": "¿Cuáles son las cuatro fases sucesivas del procedimiento administrativo de ejecución del gasto público (art. 73 LGP)?",
+      "options": [
+        "Aprobación del gasto (A), Compromiso del gasto (D), Reconocimiento de la obligación (O) y Ordenación del pago (P)",
+        "Petición, examen, votación y entrega de fondos",
+        "Iniciación contable, auditoría previa, giro bancario y liquidación",
+        "Presupuestación, adjudicación, retención y amortización"
       ],
+      "answer": 0,
+      "explain": "Art. 73.1 LGP: La gestión del presupuesto de gastos del Estado y de sus organismos autónomos se realizará a través de las siguientes fases: a) Aprobación del gasto; b) Compromiso del gasto; c) Reconocimiento de la obligación; d) Ordenación del pago."
     },
+    {
+      "id": "w6-t5-q2",
+      "q": "¿Qué documento contable se expide cuando en un solo acto administrativo se autoriza, compromete, reconoce la obligación y se propone el pago?",
+      "options": [
+        "Documento mixto ADOK",
+        "Documento A simple",
+        "Documento D provisional",
+        "Documento P exclusivo"
+      ],
+      "answer": 0,
+      "explain": "En contabilidad pública, el documento ADOK acumula simultáneamente las cuatro fases: Autorización (A), Disposición (D), Obligación (O) y propuesta de pago (K) en un único expediente."
+    },
+    {
+      "id": "w6-t5-q3",
+      "q": "¿Qué acto de la gestión presupuestaria acredita la realización de la prestación por el contratista y hace la deuda líquida y exigible (art. 73.4 LGP)?",
+      "options": [
+        "El reconocimiento de la obligación (fase O)",
+        "La aprobación previa del gasto (fase A)",
+        "El compromiso inicial (fase D)",
+        "La ordenación abstracta de fondos"
+      ],
+      "answer": 0,
+      "explain": "Art. 73.4 LGP: El reconocimiento de la obligación es el acto mediante el que se declara la existencia de un crédito exigible contra la Hacienda Pública derivado de la realización de la prestación de acuerdo con la ley."
+    }
   ],
-  blockQs: [
-    Q("w6-t5-q1", "¿Cuál es el orden cronológico estricto de las fases de ejecución del gasto público según el art. 73 de la LGP?", ["Aprobación (A), Compromiso (D), Reconocimiento de la obligación (O) y Ordenación del pago (P)", "Disposición, Autorización, Pago y Reconocimiento", "Reconocimiento, Disposición, Autorización y Pago", "Pago, Ordenación, Compromiso y Aprobación"], 0, "Art. 73.1 LGP: la gestión del gasto público se realizará a través de las siguientes fases: a) Aprobación del gasto (A); b) Compromiso del gasto (D); c) Reconocimiento de la obligación (O); d) Ordenación del pago (P)."),
-    Q("w6-t5-q2", "El acto administrativo mediante el cual se declara formalmente la existencia de un crédito exigible contra la Hacienda Pública derivado de la realización de la prestación debida se denomina:", ["Reconocimiento de la obligación (O)", "Aprobación del gasto (A)", "Disposición del gasto (D)", "Compromiso de crédito"], 0, "Art. 73.4 LGP: el reconocimiento de la obligación es el acto mediante el que se declara la existencia de un crédito exigible contra la Hacienda Pública estatal, derivado de un gasto aprobado y comprometido y que comporta la propuesta de pago."),
-    Q("w6-t5-q3", "Los fondos librados a justificar regulados en el art. 79 de la LGP tienen carácter excepcional y se aplican cuando:", ["No pueda aportarse la documentación justificativa de las órdenes de pago en el momento de su expedición", "Para pagar nóminas ordinarias fijas", "Para adjudicar contratos de obras mayores", "Para financiar a partidos políticos"], 0, "Art. 79.1 LGP: tendrán el carácter de 'a justificar' las órdenes de pago cuyos documentos justificativos no puedan aportarse en el momento de su expedición, debiendo justificarse en el plazo máximo legal."),
+  "bossQs": [
+    {
+      "id": "w6-t5-b1",
+      "q": "¿A qué autoridad le corresponde con carácter general la función de Ordenador General de Pagos del Estado según el art. 75 de la LGP?",
+      "options": [
+        "Al Director General del Tesoro y Política Financiera",
+        "Al Ministro de Hacienda en exclusiva",
+        "Al Presidente del Gobierno",
+        "Al Interventor General del Estado"
+      ],
+      "answer": 0,
+      "explain": "Art. 75.1 LGP: Bajo la superior autoridad del Ministro de Hacienda, las funciones de ordenador general de pagos del Estado corresponden al Director General del Tesoro y Política Financiera."
+    },
+    {
+      "id": "w6-t5-b2",
+      "q": "¿Qué principio financiero rige la Tesorería General del Estado según el artículo 90 de la LGP?",
+      "options": [
+        "Principio de unidad de caja",
+        "Principio de dispersión de fondos en bancos comerciales",
+        "Principio de caja cerrada provincial",
+        "Principio de custodia en metálico"
+      ],
+      "answer": 0,
+      "explain": "Art. 90 LGP: Todos los recursos financieros del sector público estatal se gestionarán conforme al principio de unidad de caja a través de las cuentas en el Banco de España."
+    },
+    {
+      "id": "w6-t5-b3",
+      "q": "¿En qué plazo prescriben los derechos a percibir pagos de la Hacienda Pública estatal según el art. 25 de la LGP?",
+      "options": [
+        "A los cuatro años, computados desde la fecha en que concluyó el servicio o prestación",
+        "Al año",
+        "A los cinco años",
+        "A los diez años"
+      ],
+      "answer": 0,
+      "explain": "Art. 25.1 LGP: Salvo lo establecido por las leyes especiales, prescribirá a los cuatro años el derecho al reconocimiento o liquidación por la Hacienda Pública estatal de toda obligación, y el derecho a exigir el pago de las ya reconocidas."
+    }
   ],
-  bossQs: [
-    Q("w6-t5-b1", "¿Cuál de los siguientes principios rectores de la concesión de subvenciones está consagrado en el art. 8 de la Ley 38/2003 General de Subvenciones?", ["Publicidad, transparencia, concurrencia, objetividad, igualdad y no discriminación", "Adjudicación discrecional sin convocatoria", "Silencio positivo en la concesión", "Exención permanente de justificación"], 0, "Art. 8.3 Ley 38/2003: la gestión de las subvenciones se realizará de acuerdo con los principios de publicidad, transparencia, concurrencia, objetividad, igualdad y no discriminación, eficacia y eficiencia."),
-    Q("w6-t5-b2", "Los 'anticipos de caja fija' regulados en el art. 78 de la LGP se definen como:", ["Provisiones de fondos extrapresupuestarias de carácter permanente que se hacen a habilitaciones para gastos periódicos o repetitivos", "Préstamos bancarios a devolver al día siguiente", "Adelantos de sueldo a cuenta sin justificar", "Fondos reservados para misiones secretas"], 0, "Art. 78.1 LGP: se entienden por anticipos de caja fija las provisiones de fondos de carácter permanente que se realicen a pagadurías o habilitaciones para la atención inmediata de gastos periódicos o repetitivos."),
-    Q("w6-t5-b3", "En la tramitación de subvenciones, las entidades que pretendan otorgarlas deben elaborar previamente de forma preceptiva (art. 8.1 Ley 38/2003):", ["Un Plan Estratégico de Subvenciones", "Una Ley Orgánica específica", "Un informe favorable del Tribunal de Cuentas", "Una consulta vinculante al Defensor del Pueblo"], 0, "Art. 8.1 Ley 38/2003: los órganos de las Administraciones públicas o cualesquiera entes que propongan el establecimiento de subvenciones deberán concretar previamente en un plan estratégico de subvenciones los objetivos y plazos necesarios."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba de las Fases del Gasto (A-D-O-P)",
-    prompt: "Ordena las fases del procedimiento de ejecución del gasto público.",
-    items: [
-      "Aprobación o Autorización del gasto (A): reserva del crédito presupuestario",
-      "Compromiso o Disposición del gasto (D): acuerdo vinculante con el tercero licitador",
-      "Reconocimiento de la Obligación (O): verificación de factura y prestación realizada",
-      "Ordenación del Pago (P): expedición formal de la orden de pago al Tesoro",
-      "Pago material efectivo por transferencia bancaria de la Tesorería General",
+  "mini": {
+    "type": "order",
+    "title": "Secuencia Contable de Ejecución del Gasto (A-D-O-P)",
+    "prompt": "Ordena cronológicamente las fases de ejecución del gasto presupuestario.",
+    "items": [
+      "Aprobación del gasto (Fase A): reserva de crédito previa",
+      "Compromiso del gasto (Fase D): relación vinculante con tercero (contrato/adjudicación)",
+      "Reconocimiento de la obligación (Fase O): comprobación material y crédito exigible",
+      "Ordenación del pago (Fase P): orden librada por el Director General del Tesoro",
+      "Pago material y transferencia efectiva al acreedor a través del Banco de España"
+    ]
+  },
+  "boss": {
+    "name": "El Ordenador Arbitrario",
+    "kind": "moneda",
+    "intro": [
+      "¡He pagado una factura millonaria sin certificar que la obra se ha realizado!"
     ],
+    "defeat": [
+      "¡Art. 73.4 LGP! El reconocimiento de la obligación exige certificación formal de prestación conforme. Pago suspendido."
+    ]
   },
-  boss: {
-    name: "El Ordenador Irregular",
-    kind: "dragon",
-    intro: ["¡Pagaré facturas sin comprobar que las obras se hayan realizado ni reconocer la obligación!"],
-    defeat: ["¡El procedimiento A-D-O-P de la LGP y la fiscalización previa han interceptado el pago fraudulento!"],
-  },
-  summary: [
-    "Fases del gasto (art. 73 LGP): Aprobación (A) -> Disposición (D) -> Reconocimiento de la obligación (O) -> Ordenación del pago (P).",
-    "Acumulaciones: AD, ADO, ADOP en expedientes de tramitación unificada.",
-    "Pagos especiales: 'A justificar' (art. 79, justificación a posteriori) y 'Anticipos de caja fija' (art. 78, fondos permanentes gastos repetitivos).",
-    "Subvenciones (Ley 38/2003): Plan Estratégico obligatorio, bases reguladoras, concurrencia competitiva como regla general y reintegro por incumplimiento.",
-  ],
+  "summary": [
+    "Fases del gasto (art. 73 LGP): A (aprobación) -> D (compromiso) -> O (reconocimiento obligación) -> P (ordenación pago).",
+    "Documentos contables: A, D, OK, ADOK, P.",
+    "Reconocimiento obligación (O): deuda líquida, vencida y exigible tras comprobar la prestación.",
+    "Ordenador General de Pagos: Director General del Tesoro y Política Financiera (art. 75).",
+    "Tesorería: principio de unidad de caja (Banco de España art. 90 LGP).",
+    "Prescripción de obligaciones (art. 25 LGP): 4 años."
+  ]
 };
 
 export const W6_T6: MiniWorldDef = {
-  id: "hacienda-t6",
-  num: 6,
-  temaTitle: "Tema 6: Control del gasto (IGAE y Tribunal de Cuentas) y Seguridad Social",
-  name: "Corte de Fiscalización y Seguridad Social",
-  emoji: "🏛️",
-  theme: "hacienda",
-  color: "#6b4e02",
-  enemy: "moneda",
-  enemyName: "Monedas falsas",
-  npcs: [
+  "id": "hacienda-t6",
+  "num": 6,
+  "temaTitle": "Tema 6: Gastos para la compra de bienes y servicios. Gastos de inversión. Gastos de transferencias: corrientes y de capital. Anticipos de caja fija. Pagos «a justificar». Justificación de libramientos.",
+  "name": "Bóveda de Pagos a Justificar y Caja Fija",
+  "emoji": "🗄️",
+  "theme": "hacienda",
+  "color": "#a16207",
+  "enemy": "moneda",
+  "enemyName": "Libramientos no justificados",
+  "npcs": [
     {
-      name: "Interventora Cuentas",
-      role: "Control interno (IGAE), externo (Tribunal de Cuentas) y Seguridad Social (TRLGSS)",
-      look: { skin: "#e5b48a", hair: "#34495e", hairStyle: "bun", shirt: "#ecf0f1", pants: "#512e5f", acc: ["glasses", "badge"], accColor: "#c0392b" },
-      pages: [
-        "El control del sector público estatal se divide en control interno y control externo.",
-        "Control interno: ejercido por la Intervención General de la Administración del Estado (IGAE, arts. 140-175 LGP) a través de tres modalidades: 1) Función interventora (control previo de legalidad de los actos que originan derechos y gastos); 2) Control financiero permanente; y 3) Auditoría pública.",
-        "Control externo: atribuido constitucionalmente al Tribunal de Cuentas (art. 136 CE y LO 2/1982): supremo órgano fiscalizador de las cuentas y la gestión económica del Estado y del sector público. Depende directamente de las Cortes Generales. Ejerce doble función: fiscalizadora (informe anual sobre la Cuenta General del Estado) y jurisdiccional (enjuiciamiento contable de los responsables de menoscabo de caudales públicos). Integrado por 12 Consejeros de Cuentas nombrados por 9 años por las Cortes (3/5 de cada Cámara).",
-        "Seguridad Social: TRLGSS (RDL 8/2015, de 30 de octubre). Niveles contributivo y no contributivo. Estructura: Régimen General y regímenes especiales (autónomos - RETA, trabajadores del mar, minería). Entidades gestoras (INSS para prestaciones económicas, IMSERSO, ISM, INGESA) y servicio común: Tesorería General de la Seguridad Social (TGSS: caja única, afiliación, altas, bajas, recaudación y cotización).",
+      "name": "Cajera Pagadora de Anticipos",
+      "role": "Anticipos de caja fija, pagos a justificar y transferencias corrientes y de capital",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#4b5563",
+        "hairStyle": "bun",
+        "shirt": "#854d0e",
+        "pants": "#3f2c06",
+        "acc": [
+          "glasses",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Excepciones al principio de pago tras previa justificación documental:",
+        "1. Anticipos de Caja Fija (ACF, art. 78 LGP y RD 640/1987):",
+        "• Provisión de fondos extrapresupuestaria permanente a cajas pagadoras para gastos periódicos o repetitivos (material de oficina, suministros menores, dietas y locomoción).",
+        "• Cuantía máxima global del anticipo: no podrá exceder del 7 por ciento del total de los créditos del capítulo del presupuesto en que se apliquen.",
+        "• Límite por gasto individual: no puede superar los límites del contrato menor.",
+        "• Reposición periódica de fondos a medida que se justifican los gastos realizados con facturas.",
+        "2. Pagos 'a justificar' (art. 79 LGP):",
+        "• Libramientos presupuestarios excepcionales cuando no se pueda aportar la documentación justificativa previamente al pago (urgencia, servicios en el extranjero).",
+        "• Plazo de justificación estricto: tres meses con carácter general (seis meses si son gastos en el extranjero). Prohibido librar nuevos fondos a justificar a perceptores que tengan fondos pendientes de justificar transcurrido el plazo.",
+        "3. Gastos de transferencias: corrientes (Capítulo 4, financian gastos ordinarios del beneficiario) vs de capital (Capítulo 7, financian inversiones o activos fijos)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t6-q1",
+      "q": "¿Cuál es el plazo general en el que deben rendir cuenta justificativa los perceptores de libramientos 'a justificar' (art. 79.4 LGP)?",
+      "options": [
+        "Tres meses con carácter general (seis meses para servicios en el extranjero)",
+        "Un mes en todo caso",
+        "Un año",
+        "Quince días hábiles"
       ],
+      "answer": 0,
+      "explain": "Art. 79.4 LGP: Los perceptores de las órdenes de pago a justificar deberán rendir cuenta de la aplicación de las cantidades percibidas en el plazo de tres meses, excepto las destinadas a pagos en el extranjero que podrán ser de seis meses."
     },
+    {
+      "id": "w6-t6-q2",
+      "q": "¿Cuál es el límite cuantitativo global máximo autorizado para los Anticipos de Caja Fija según el artículo 78 de la LGP?",
+      "options": [
+        "No podrá superar el 7 por ciento del total de créditos del capítulo presupuestario destinado al anticipo",
+        "Hasta el 25 por ciento",
+        "Un límite fijo de un millón de euros por ministerio",
+        "Hasta el 50 por ciento de las operaciones de capital"
+      ],
+      "answer": 0,
+      "explain": "Art. 78.1 LGP: La cuantía global de los anticipos de caja fija no podrá superar para cada ministerio el siete por ciento del total de créditos del capítulo destinado a gastos corrientes en bienes y servicios del presupuesto vigente."
+    },
+    {
+      "id": "w6-t6-q3",
+      "q": "¿Qué distingue a una transferencia corriente (Cap. 4) de una transferencia de capital (Cap. 7)?",
+      "options": [
+        "La transferencia corriente financia gastos corrientes u operativos del perceptor; la de capital financia inversiones o adquisición de activos fijos",
+        "La corriente solo la reciben particulares y la de capital empresas públicas",
+        "La corriente nunca se justifica",
+        "No existe diferencia presupuestaria"
+      ],
+      "answer": 0,
+      "explain": "Criterio de clasificación económica: Las transferencias corrientes (Cap. 4) financian operaciones corrientes y de funcionamiento del beneficiario; las transferencias de capital (Cap. 7) condicionan los fondos a la financiación de inversiones reales o formación bruta de capital."
+    }
   ],
-  blockQs: [
-    Q("w6-t6-q1", "¿A qué órgano directivo del Ministerio de Hacienda corresponde el ejercicio del control interno del sector público estatal?", ["A la Intervención General de la Administración del Estado (IGAE)", "Al Tribunal de Cuentas", "A la Dirección General del Tesoro", "Al Consejo de Estado"], 0, "Art. 140 LGP: la IGAE es el órgano directivo encargado del control interno de la gestión económico-financiera del sector público estatal."),
-    Q("w6-t6-q2", "El Tribunal de Cuentas es definido en el art. 136 de la Constitución como el supremo órgano fiscalizador que depende directamente de:", ["Las Cortes Generales", "El Presidente del Gobierno", "El Tribunal Supremo", "El Ministerio de Hacienda"], 0, "Art. 136.1 CE: el Tribunal de Cuentas es el supremo órgano fiscalizador de las cuentas y de la gestión económica del Estado, así como del sector público. Depende directamente de las Cortes Generales."),
-    Q("w6-t6-q3", "¿Qué servicio común de la Seguridad Social tiene atribuida la titularidad de los recursos, la gestión de la caja única, la afiliación y la recaudación de cuotas?", ["La Tesorería General de la Seguridad Social (TGSS)", "El Instituto Nacional de la Seguridad Social (INSS)", "El Servicio Público de Empleo Estatal (SEPE)", "El IMSERSO"], 0, "La TGSS es el servicio común de la Seguridad Social dotado de personalidad jurídica propia que unifica la caja única, la afiliación, altas y bajas, y la recaudación de los recursos del sistema."),
+  "bossQs": [
+    {
+      "id": "w6-t6-b1",
+      "q": "¿Puede librarse una nueva orden de pago a justificar a un perceptor que mantenga fondos pendientes de rendir fuera de plazo?",
+      "options": [
+        "No, está prohibido expedir nuevas órdenes de pago a justificar a perceptores con fondos pendientes transcurrido el plazo",
+        "Sí, siempre que lo solicite por escrito",
+        "Sí, si se aumenta el plazo un año",
+        "Solo si es un alto cargo"
+      ],
+      "answer": 0,
+      "explain": "Art. 79.5 LGP: No podrán expedirse órdenes de pago a justificar por los mismos conceptos a perceptores de fondos que no hayan justificado las órdenes anteriores una vez transcurrido el plazo correspondiente."
+    },
+    {
+      "id": "w6-t6-b2",
+      "q": "¿Qué naturaleza jurídica contable tiene la entrega inicial de fondos para la constitución de un Anticipo de Caja Fija?",
+      "options": [
+        "Es una operación extrapresupuestaria (no presupuestaria) de tesorería",
+        "Una orden de gasto en firme con cargo al Capítulo 6",
+        "Un ingreso tributario definitivo",
+        "Un préstamo bancario a largo plazo"
+      ],
+      "answer": 0,
+      "explain": "RD 640/1987: La provisión de fondos inicial de los anticipos de caja fija tiene carácter extrapresupuestario, pasando a imputarse al presupuesto de gastos solo cuando se reponen los fondos mediante la presentación de las facturas justificativas."
+    },
+    {
+      "id": "w6-t6-b3",
+      "q": "¿A qué cuentas bancarias se abonan los Anticipos de Caja Fija en las cajas pagadoras de los ministerios?",
+      "options": [
+        "A cuentas corrientes restringidas de pagos autorizadas por la Dirección General del Tesoro",
+        "A la cuenta personal particular del cajero pagador",
+        "A cuentas en bancos de inversión extranjeros",
+        "Se custodian exclusivamente en billetes físicos en la caja fuerte"
+      ],
+      "answer": 0,
+      "explain": "Los fondos de los ACF y pagos a justificar se sitúan en cuentas corrientes bancarias restringidas de pagos expresamente autorizadas por el Tesoro Público en entidades de crédito colaboradoras."
+    }
   ],
-  bossQs: [
-    Q("w6-t6-b1", "¿Cuáles son las tres modalidades del control interno ejercido por la IGAE según el art. 143 de la LGP?", ["La función interventora, el control financiero permanente y la auditoría pública", "La inspección de hacienda, la vigilancia aduanera y el embargo", "El control parlamentario, la moción contable y el visto bueno", "El control previo, el recurso contencioso y la tasación"], 0, "Art. 143.1 LGP: el control interno se ejercerá mediante la función interventora, el control financiero permanente y la auditoría pública."),
-    Q("w6-t6-b2", "¿Cuántos Consejeros de Cuentas componen el Tribunal de Cuentas y por qué mandato y mayoría son elegidos (LO 2/1982)?", ["12 Consejeros elegidos por 9 años por mayoría de 3/5 de las Cámaras (6 por el Congreso y 6 por el Senado)", "15 Consejeros elegidos por 5 años por mayoría absoluta", "20 Consejeros por 4 años", "10 Consejeros vitalicios"], 0, "Art. 29 LO 2/1982: el Tribunal de Cuentas se compone de doce Consejeros elegidos por las Cortes Generales (seis por el Congreso y seis por el Senado) por mayoría de tres quintos de cada Cámara para un mandato de nueve años."),
-    Q("w6-t6-b3", "La entidad gestora de la Seguridad Social competente para la gestión y administración de las prestaciones económicas del sistema (jubilación, incapacidad, viudedad) es:", ["El Instituto Nacional de la Seguridad Social (INSS)", "La Tesorería General de la Seguridad Social", "La Agencia Tributaria (AEAT)", "El Instituto Geográfico Nacional"], 0, "El INSS es la entidad gestora con personalidad jurídica propia que tiene encomendada la gestión y administración de las prestaciones económicas del sistema de la Seguridad Social."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de las Instituciones de Control y Seguridad Social",
-    prompt: "Relaciona cada institución u organismo con su función exclusiva.",
-    pairs: [
-      ["IGAE", "Control interno del sector público estatal (función interventora, control permanente y auditoría)"],
-      ["Tribunal de Cuentas (art. 136 CE)", "Control externo (fiscalización de la Cuenta General y enjuiciamiento contable)"],
-      ["TGSS (Tesorería General)", "Caja única, afiliación, altas y recaudación de la Seguridad Social"],
-      ["INSS", "Entidad gestora de prestaciones económicas (jubilación, incapacidad, orfandad)"],
+  "mini": {
+    "type": "match",
+    "title": "Mecanismos Especiales de Pagos (LGP)",
+    "prompt": "Empareja cada figura de pago especial con sus reglas y plazos.",
+    "pairs": [
+      [
+        "Anticipos de Caja Fija (ACF)",
+        "Fondo extrapresupuestario permanente con límite global del 7% del capítulo (art. 78)"
+      ],
+      [
+        "Pagos a justificar (plazo)",
+        "Rendición de cuentas en 3 meses ordinarios o 6 meses en el extranjero (art. 79)"
+      ],
+      [
+        "Transferencia corriente (Cap. 4)",
+        "Fondos sin contraprestación destinados a financiar gastos corrientes"
+      ],
+      [
+        "Transferencia de capital (Cap. 7)",
+        "Fondos destinados a financiar inversiones o infraestructuras del beneficiario"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Cajero Moroso",
+    "kind": "moneda",
+    "intro": [
+      "¡He retenido fondos a justificar durante 2 años sin aportar facturas ni justificación!"
     ],
+    "defeat": [
+      "¡Art. 79.5 LGP y reintegro forzoso! Bloqueo de nuevos libramientos y apertura de expediente de responsabilidad contable."
+    ]
   },
-  boss: {
-    name: "El Defraudador de Cuentas",
-    kind: "dragon",
-    intro: ["¡Ocultaré el menoscabo de fondos públicos y eludiré el control de la IGAE y del Tribunal de Cuentas!"],
-    defeat: ["¡La fiscalización previa y la jurisdicción contable del Tribunal de Cuentas han exigido la responsabilidad patrimonial y el reintegro total!"],
-  },
-  summary: [
-    "Control interno (IGAE, arts. 140-175 LGP): Función interventora (previa y formal), Control financiero permanente y Auditoría pública.",
-    "Control externo (Tribunal de Cuentas, art. 136 CE y LO 2/1982): supremo fiscalizador dependiente de las Cortes. 12 Consejeros por 9 años por 3/5. Función fiscalizadora (Cuenta General) y jurisdiccional (alcances).",
-    "Seguridad Social (TRLGSS, RDL 8/2015): Régimen General y Especiales (autónomos RETA, mar, carbón).",
-    "Gestión SS: Entidades Gestoras (INSS prestaciones económicas, IMSERSO, ISM, INGESA) y Servicio Común (TGSS caja única, afiliación y recaudación).",
-  ],
+  "summary": [
+    "Anticipos de Caja Fija (art. 78 LGP y RD 640/1987): fondo permanente extrapresupuestario para gastos menores/periódicos. Límite máx. 7% del capítulo.",
+    "Pagos a justificar (art. 79 LGP): excepcional cuando no cabe justificación previa. Plazo de justificación: 3 meses (6 en el extranjero).",
+    "Prohibición de nuevos libramientos a justificar a perceptores que mantengan pagos vencidos sin justificar.",
+    "Transferencias corrientes (Capítulo 4) vs Transferencias de capital (Capítulo 7: inversiones).",
+    "Cuentas bancarias restringidas autorizadas por la D.G. del Tesoro."
+  ]
 };
 
-/* ==================== MUNDO 6 (BLOQUE VI COMPLETO) ==================== */
+export const W6_T7: MiniWorldDef = {
+  "id": "hacienda-t7",
+  "num": 7,
+  "temaTitle": "Tema 7: Los ingresos públicos: concepto y clasificación. El sistema tributario español: régimen actual. Especial referencia al régimen de tasas y precios públicos.",
+  "name": "Santuario de los Ingresos Públicos y Tributos",
+  "emoji": "🪙",
+  "theme": "hacienda",
+  "color": "#eab308",
+  "enemy": "moneda",
+  "enemyName": "Evasión fiscal",
+  "npcs": [
+    {
+      "name": "Inspectora de Hacienda del Estado",
+      "role": "Ingresos públicos, sistema tributario (LGT 58/2003) y tasas y precios públicos",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#2e2e2e",
+        "hairStyle": "short",
+        "shirt": "#ca8a04",
+        "pants": "#713f12",
+        "acc": [
+          "glasses",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Los ingresos públicos: recursos que obtiene la Administración para financiar los gastos públicos (art. 31 CE y Ley 58/2003 General Tributaria, LGT).",
+        "Clasificación de los tributos (art. 2.2 LGT):",
+        "1. Impuestos: tributos exigidos sin contraprestación cuyo hecho imponible está constituido por negocios, actos o hechos que ponen de manifiesto la capacidad económica del contribuyente (directos: IRPF, Sociedades, Sucesiones; indirectos: IVA, ITP/AJD, Impuestos Especiales).",
+        "2. Tasas: tributos cuyo hecho imponible consiste en la utilización privativa o aprovechamiento especial del dominio público, o la prestación de servicios públicos o realización de actividades en régimen de derecho público que se refieran, afecten o beneficien de modo particular al obligado tributario, cuando no sean de solicitud voluntaria o no se presten por el sector privado.",
+        "3. Contribuciones especiales: tributos cuyo hecho imponible consiste en la obtención por el obligado de un beneficio o aumento de valor de sus bienes como consecuencia de la realización de obras públicas o establecimiento de servicios.",
+        "Precios públicos (Ley 8/1989): contraprestaciones por servicios o actividades prestadas por la Administración en régimen de derecho público cuando sean de solicitud voluntaria para los administrados y se presten también por el sector privado."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t7-q1",
+      "q": "¿Cómo se clasifican los tributos según el artículo 2.2 de la Ley 58/2003 General Tributaria (LGT)?",
+      "options": [
+        "Tasas, contribuciones especiales e impuestos",
+        "Impuestos directos, indirectos y multas",
+        "Precios públicos, tarifas y tasas",
+        "Aranceles, cotizaciones y subvenciones"
+      ],
+      "answer": 0,
+      "explain": "Art. 2.2 Ley 58/2003 (LGT): Los tributos, cualquiera que sea su denominación, se clasifican en: a) Tasas; b) Contribuciones especiales; c) Impuestos."
+    },
+    {
+      "id": "w6-t7-q2",
+      "q": "¿Cuál es la diferencia definitoria esencial entre una 'tasa' y un 'precio público' según la Ley 8/1989 y la LGT?",
+      "options": [
+        "La tasa es un tributo coactivo por servicios indispensables o sin competencia privada (exige reserva de ley); el precio público es voluntario y concurre con el sector privado",
+        "La tasa solo se cobra en aduanas y el precio público en ayuntamientos",
+        "No hay diferencia sustancial, son términos sinónimos",
+        "El precio público lo aprueba siempre el Congreso por ley orgánica"
+      ],
+      "answer": 0,
+      "explain": "Art. 2.2.a LGT y Ley 8/1989: Las tasas son tributos que gravan servicios no voluntarios o prestados en régimen de monopolio público (principio de reserva de ley, art. 31.3 CE). Los precios públicos son contraprestaciones por servicios voluntarios prestados también por el sector privado (fijados reglamentariamente cubriendo costes)."
+    },
+    {
+      "id": "w6-t7-q3",
+      "q": "¿Cuál es el hecho imponible que define a las 'contribuciones especiales' según el art. 2.2.b de la LGT?",
+      "options": [
+        "La obtención por el obligado tributario de un beneficio o de un aumento de valor de sus bienes por obras públicas o servicios",
+        "La mera titularidad de un patrimonio mobiliario",
+        "La realización de una compraventa mercantil",
+        "La percepción de una herencia o donación"
+      ],
+      "answer": 0,
+      "explain": "Art. 2.2.b LGT: Contribuciones especiales son los tributos cuyo hecho imponible consiste en la obtención por el obligado tributario de un beneficio o de un aumento de valor de sus bienes como consecuencia de la realización de obras públicas o del establecimiento o ampliación de servicios públicos."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w6-t7-b1",
+      "q": "¿En qué plazo prescribe el derecho de la Administración tributaria para determinar la deuda tributaria y exigir el pago (art. 66 LGT)?",
+      "options": [
+        "A los cuatro años",
+        "Al año",
+        "A los cinco años",
+        "A los diez años"
+      ],
+      "answer": 0,
+      "explain": "Art. 66 LGT: Prescribirán a los cuatro años: a) El derecho de la Administración para determinar la deuda tributaria mediante liquidación; b) El derecho de la Administración para exigir el pago de las deudas tributarias liquidadas y autoliquidadas."
+    },
+    {
+      "id": "w6-t7-b2",
+      "q": "¿Cuál de los siguientes impuestos del sistema tributario español es un impuesto INDIRECTO?",
+      "options": [
+        "El Impuesto sobre el Valor Añadido (IVA)",
+        "El Impuesto sobre la Renta de las Personas Físicas (IRPF)",
+        "El Impuesto sobre Sociedades (IS)",
+        "El Impuesto sobre el Patrimonio"
+      ],
+      "answer": 0,
+      "explain": "El IVA y los Impuestos Especiales son impuestos indirectos (gravan el consumo y la circulación de bienes); mientras que IRPF, Sociedades y Patrimonio son impuestos directos (gravan la renta o patrimonio directo del titular)."
+    },
+    {
+      "id": "w6-t7-b3",
+      "q": "¿A qué nivel tarifario deben fijarse con carácter general los precios públicos según el artículo 25 de la Ley 8/1989?",
+      "options": [
+        "A un nivel que cubra, como mínimo, los costes económicos originados por la prestación del servicio o actividad",
+        "Siempre por debajo del 50% del coste con subvención fija",
+        "A precio libre fijado por subasta",
+        "Al doble del coste para obtener beneficio industrial"
+      ],
+      "answer": 0,
+      "explain": "Art. 25 Ley 8/1989: Los precios públicos se establecerán a un nivel que cubra, como mínimo, los costes económicos del servicio o actividad o que sea equivalente a la utilidad derivada de los mismos."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Categorías de Ingresos Públicos y Tributos",
+    "prompt": "Empareja cada categoría tributaria o ingreso con su hecho generador.",
+    "pairs": [
+      [
+        "Impuesto",
+        "Tributo sin contraprestación directa basado en capacidad económica (IRPF, IVA)"
+      ],
+      [
+        "Tasa",
+        "Tributo por servicio público obligatorio o aprovechamiento de dominio público"
+      ],
+      [
+        "Contribución Especial",
+        "Tributo por aumento de valor de bienes derivado de obras públicas"
+      ],
+      [
+        "Precio Público",
+        "Ingreso por servicios voluntarios prestados en régimen de concurrencia privada"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Defraudador Fiscal",
+    "kind": "dragon",
+    "intro": [
+      "¡He ocultado mis beneficios económicos y falsificado facturas de IVA!"
+    ],
+    "defeat": [
+      "¡Inspección de los Tributos y Agencia Tributaria (AEAT)! Acta de disconformidad, liquidación tributaria y sanción por infracción muy grave."
+    ]
+  },
+  "summary": [
+    "Tributos (art. 2.2 LGT): Impuestos (directos como IRPF/IS, indirectos como IVA), Tasas (coactivas/dominio público) y Contribuciones especiales (beneficio por obras).",
+    "Tasas vs Precios públicos (Ley 8/1989): tasas coactivas bajo reserva de ley (art. 31.3 CE); precios públicos voluntarios que cubren costes.",
+    "Prescripción tributaria: 4 años (art. 66 LGT).",
+    "AEAT: entidad de derecho público que gestiona y recauda los tributos estatales y aduaneros.",
+    "Principios constitucionales tributarios (art. 31 CE): igualdad, progresividad, capacidad económica y no confiscatoriedad."
+  ]
+};
+
+export const W6_T8: MiniWorldDef = {
+  "id": "hacienda-t8",
+  "num": 8,
+  "temaTitle": "Tema 8: Retribuciones de los funcionarios públicos. Nóminas: estructura y normas de confección. Altas y bajas, su justificación. Ingresos en formalización. Devengo y liquidación de derechos económicos.",
+  "name": "Cámara de Nóminas y Seguridad Social",
+  "emoji": "🧾",
+  "theme": "hacienda",
+  "color": "#ca8a04",
+  "enemy": "reloj",
+  "enemyName": "Nóminas desajustadas",
+  "npcs": [
+    {
+      "name": "Jefa de Habilitación y Seguridad Social",
+      "role": "Confección de nóminas, altas/bajas, cotizaciones a SS y devengo económico",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#713f12",
+        "pants": "#451a03",
+        "acc": [
+          "glasses",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Confección y liquidación de nóminas de los empleados públicos:",
+        "Estructura del recibo individual de haberes (nómina):",
+        "1. Devengos (total íntegro bruto):",
+        "• Retribuciones básicas: Sueldo (Subgrupo A2), Trienios devengados y Pagas extraordinarias (en junio y diciembre).",
+        "• Retribuciones complementarias: Complemento de Destino (nivel 14 a 30) y Complemento Específico (general y singular). En su caso, Productividad o Servicios Extraordinarios.",
+        "2. Deducciones (minoraciones obligatorias del líquido):",
+        "• Cuota de Derechos Pasivos (para personal de Clases Pasivas anterior a 2011) o Cotización a la Seguridad Social (Régimen General para ingresados tras 01/01/2011: contingencias comunes, desempleo, formación profesional).",
+        "• Cuota de MUFACE (mutualismo administrativo obligatorio para funcionarios civiles).",
+        "• Retención a cuenta del IRPF: calculada conforme a tablas y circunstancias familiares (modelo 145).",
+        "• Cuota sindical voluntaria, embargos judiciales o descuentos por huelga/jornada.",
+        "Líquido a percibir = Total Devengado - Total Deducciones.",
+        "Ingresos en formalización: operaciones contables donde se compensan o formalizan cuotas y retenciones sin movimiento físico de dinero."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w6-t8-q1",
+      "q": "¿Cuáles son las dos grandes masas que componen la estructura de una nómina pública?",
+      "options": [
+        "Los devengos (retribuciones brutas) y las deducciones (retenciones fiscales y cotizaciones sociales)",
+        "El activo circulante y el pasivo exigible",
+        "Las ventas netas y los costes de explotación",
+        "Los ingresos patrimoniales y las dietas"
+      ],
+      "answer": 0,
+      "explain": "La nómina se estructura formalmente en Devengos (suma de retribuciones básicas y complementarias que integran el sueldo bruto) y Deducciones (retención IRPF, cotización a la Seguridad Social, cuota MUFACE/Derechos Pasivos, etc.), resultando el líquido a percibir."
+    },
+    {
+      "id": "w6-t8-q2",
+      "q": "¿En qué meses del año se devengan y liquidan con carácter general las dos pagas extraordinarias de los funcionarios?",
+      "options": [
+        "En los meses de junio y diciembre",
+        "En los meses de julio y enero",
+        "En los meses de mayo y noviembre",
+        "En agosto y febrero"
+      ],
+      "answer": 0,
+      "explain": "LGP y leyes de PGE: Las pagas extraordinarias se devengan en los meses de junio y diciembre, liquidándose conjuntamente con la nómina ordinaria de dichos meses."
+    },
+    {
+      "id": "w6-t8-q3",
+      "q": "¿Qué documento contable se utiliza para pagar nóminas cuando las retenciones de IRPF y cuotas sociales no conllevan salida material de dinero en efectivo?",
+      "options": [
+        "Operaciones o ingresos en formalización",
+        "Pagos a justificar extraordinarios",
+        "Letras de cambio públicas",
+        "Anticipos de caja fija"
+      ],
+      "answer": 0,
+      "explain": "LGP: Los ingresos en formalización son operaciones contables internas mediante las que se formalizan en el presupuesto de ingresos las retenciones de IRPF y cuotas sociales aplicadas a la nómina sin generar movimientos físicos de tesorería."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w6-t8-b1",
+      "q": "¿Cómo se liquida la nómina en caso de que un funcionario cause baja en el puesto a mediados de mes (art. 33 Ley 31/1990)?",
+      "options": [
+        "Se liquidan los días efectivamente trabajados en el mes a razón de 1/30 parte del importe mensual por día",
+        "Pierde el sueldo de todo el mes completo",
+        "Percibe el mes íntegro como indemnización de despido",
+        "Cobra el doble de sueldo base"
+      ],
+      "answer": 0,
+      "explain": "Art. 33 Ley 31/1990 de PGE y normativas de nóminas: Cuando el tiempo de servicios no comprenda la totalidad de un mes, la cuantía de la retribución se determinará liquidando el importe mensual dividido por treinta por los días efectivamente prestados."
+    },
+    {
+      "id": "w6-t8-b2",
+      "q": "¿Qué cuota obligatoria de asistencia sanitaria abonan los funcionarios civiles del Estado integrados en MUFACE en su nómina?",
+      "options": [
+        "La cuota de derechos de cotización a la mutualidad de MUFACE",
+        "Una prima comercial de póliza privada",
+        "Un arancel de copago hospitalario fijo",
+        "El impuesto sobre bienes inmuebles del ministerio"
+      ],
+      "answer": 0,
+      "explain": "RDL 4/2000: La cuota de cotización a MUFACE se deduce mensualmente en la nómina de todos los funcionarios mutualistas para la financiación del régimen del mutualismo administrativo."
+    },
+    {
+      "id": "w6-t8-b3",
+      "q": "¿Cuál es la consecuencia contable si se detecta un error de pago en nómina que generó un cobro indebido a favor del funcionario?",
+      "options": [
+        "Incoación de expediente de reintegro de pagos indebidos para compensar o devolver las cantidades en nóminas siguientes",
+        "Pérdida inmediata de la condición de funcionario",
+        "No se puede reclamar transcurridos diez días",
+        "La Administración asume la pérdida sin trámite"
+      ],
+      "answer": 0,
+      "explain": "Art. 77 LGP: Los perceptores de pagos indebidos están obligados a restituir su importe. La Administración inicia de oficio el expediente de reintegro de pagos indebidos mediante deducciones regladas en las nóminas siguientes."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Estructura de la Nómina y Deducciones Sociales",
+    "prompt": "Empareja cada concepto de nómina con su naturaleza contable.",
+    "pairs": [
+      [
+        "Devengos",
+        "Suma de sueldo, trienios, complemento de destino y específico"
+      ],
+      [
+        "Deducciones",
+        "Retención IRPF, cuota Seguridad Social y cuota MUFACE"
+      ],
+      [
+        "Ingresos en formalización",
+        "Compensación contable de retenciones sin salida física de dinero"
+      ],
+      [
+        "Reintegro de pagos indebidos",
+        "Obligación de restituir cantidades cobradas por error contable (art. 77 LGP)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Habilitado Fantasma",
+    "kind": "moneda",
+    "intro": [
+      "¡He generado nóminas con trienios multiplicados y sin retención de IRPF!"
+    ],
+    "defeat": [
+      "¡Intervención Delegada de Nóminas! Fiscalización informática, revocación contable y expediente de reintegro de pagos indebidos."
+    ]
+  },
+  "summary": [
+    "Nómina de los empleados públicos: Devengos (retribuciones básicas + complementarias) menos Deducciones (IRPF, SS/Derechos Pasivos, MUFACE).",
+    "Pagas extraordinarias: devengo y pago en junio y diciembre.",
+    "Liquidación de periodos incompletos: treintava parte (1/30) por cada día de servicio.",
+    "Ingresos en formalización: retenciones que no suponen salida material de tesorería.",
+    "Reintegro de pagos indebidos (art. 77 LGP): compensación de cobros erróneos con audiencias al interesado."
+  ]
+};
 
 export const W6: WorldDef = {
   id: "hacienda",
   num: 6,
   bloque: "Bloque VI",
-  title: "Gestión financiera y Seguridad Social",
-  name: "Castillo del Tesoro",
-  emoji: "💰",
+  title: "VI. Gestión Financiera y Seguridad Social",
+  name: "Tesorería del Reino",
+  emoji: "🏦",
   theme: "hacienda",
-  color: "#d4a017",
+  color: "#eab308",
   enemy: "moneda",
-  enemyName: "Monedas falsas",
+  enemyName: "Monedas rebeldes",
   temas: [
-    "Tema 1: El Presupuesto del Estado y la Ley General Presupuestaria",
-    "Tema 2: Estabilidad presupuestaria y sostenibilidad financiera (LO 2/2012)",
-    "Tema 3: Estructura de los PGE y el ciclo presupuestario",
-    "Tema 4: Modificaciones presupuestarias y gastos plurianuales",
-    "Tema 5: Ejecución del gasto (A-D-O-P), pagos y subvenciones",
-    "Tema 6: Control del gasto (IGAE y Tribunal de Cuentas) y Seguridad Social",
-  ],
-  miniWorlds: [W6_T1, W6_T2, W6_T3, W6_T4, W6_T5, W6_T6],
+    "Tema 1: El presupuesto. Concepto y clases. La Ley General Presupuestaria: principios generales y estructura. Las leyes de estabilidad presupuestaria.",
+    "Tema 2: Las leyes anuales de presupuestos. Su contenido. El presupuesto del Estado. Principios de programación y de gestión. Contenido, elaboración y estructura. Desglose de aplicaciones presupuestarias.",
+    "Tema 3: Gastos plurianuales. Modificaciones de los créditos iniciales. Transferencias de crédito. Créditos extraordinarios. Suplementos de crédito. Ampliaciones de créditos. Incorporaciones de créditos. Generaciones de créditos.",
+    "Tema 4: Control del gasto público en España. La Intervención General de la Administración del Estado. Función interventora, control financiero permanente y auditoría pública. El Tribunal de Cuentas.",
+    "Tema 5: El procedimiento administrativo de ejecución del presupuesto de gasto. Órganos competentes. Fases del procedimiento y su relación con la actuación administrativa. Especial referencia a la contratación administrativa y la gestión de subvenciones. Documentos contables que intervienen en la ejecución de los gastos y de los pagos. Gestión de la tesorería del Estado.",
+    "Tema 6: Gastos para la compra de bienes y servicios. Gastos de inversión. Gastos de transferencias: corrientes y de capital. Anticipos de caja fija. Pagos «a justificar». Justificación de libramientos.",
+    "Tema 7: Los ingresos públicos: concepto y clasificación. El sistema tributario español: régimen actual. Especial referencia al régimen de tasas y precios públicos.",
+    "Tema 8: Retribuciones de los funcionarios públicos. Nóminas: estructura y normas de confección. Altas y bajas, su justificación. Ingresos en formalización. Devengo y liquidación de derechos económicos."
+],
+  miniWorlds: [W6_T1, W6_T2, W6_T3, W6_T4, W6_T5, W6_T6, W6_T7, W6_T8],
   npcs: [
     W6_T1.npcs[0],
     W6_T2.npcs[0],
     W6_T3.npcs[0],
-    W6_T4.npcs[0],
-    W6_T6.npcs[0],
+    W6_T4.npcs[0]
   ],
   blockQs: [
     W6_T1.blockQs[0],
@@ -396,6 +1284,8 @@ export const W6: WorldDef = {
     W6_T4.blockQs[0],
     W6_T5.blockQs[0],
     W6_T6.blockQs[0],
+    W6_T7.blockQs[0],
+    W6_T8.blockQs[0]
   ],
   bossQs: [
     W6_T1.bossQs[0],
@@ -403,36 +1293,42 @@ export const W6: WorldDef = {
     W6_T3.bossQs[0],
     W6_T4.bossQs[0],
     W6_T5.bossQs[0],
-    W6_T6.bossQs[1],
+    W6_T6.bossQs[0],
+    W6_T7.bossQs[0],
+    W6_T8.bossQs[0]
   ],
   mini: {
-    type: "order",
-    title: "Gran Desafío del Bloque VI: El Ciclo Presupuestario Integral",
-    prompt: "Ordena las fases cardinales del ciclo presupuestario y de control financiero del Estado.",
-    items: [
-      "Elaboración del Proyecto de PGE por el Gobierno y remisión antes del 1 de octubre",
-      "Examen, enmiendas y aprobación por las Cortes Generales",
-      "Ejecución del gasto por los centros gestores mediante las fases A-D-O-P",
-      "Control interno continuo a cargo de la Intervención General de la AGE (IGAE)",
-      "Rendición de la Cuenta General del Estado y control externo por el Tribunal de Cuentas",
-    ],
-  },
+  "type": "order",
+  "title": "Gran Desafío del Bloque VI: Ciclo Presupuestario Integral del Estado",
+  "prompt": "Ordena cronológicamente las fases maestras del ciclo financiero y presupuestario del Estado.",
+  "items": [
+    "Fijación del techo de gasto no financiero y marco presupuestario plurianual (LO 2/2012)",
+    "Elaboración por el Gobierno y presentación del Proyecto de PGE antes del 1 de octubre (art. 134 CE)",
+    "Examen, enmienda y aprobación de la Ley de Presupuestos Generales del Estado por las Cortes",
+    "Ejecución del gasto público en cuatro fases regladas: Aprobación, Disposición, Obligación y Ordenación de pago",
+    "Control interno continuo e intervención previa por la IGAE",
+    "Control externo posterior y Declaración de la Cuenta General del Estado por el Tribunal de Cuentas"
+  ]
+},
   boss: {
-    name: "Déficit, el Dragón del Tesoro",
-    kind: "dragon",
-    intro: [
-      "¡RUAAAR! ¡Devoro cada euro de los Presupuestos Generales del Estado y desbordo la deuda pública!",
-      "Solo dominando los 6 temas de la gestión financiera, el control contable y la Seguridad Social podrás extinguir mi fuego. ¡Acepta el combate!",
-    ],
-    defeat: ["¡Aaaaargh! Estabilidad presupuestaria... ¡sostenibilidad financiera...! ¡La IGAE y el Tribunal de Cuentas me han auditado y extinguido mi llama!"],
-  },
-  summary: [
-    "PGE (art. 134 CE y LGP 47/2003): anuales, presentados antes del 1 de octubre; prórroga automática el 1 de enero si no hay ley aprobada. No crean tributos.",
-    "Estabilidad y sostenibilidad (art. 135 CE y LO 2/2012): techo de deuda 60% PIB (44% Estado, 13% CCAA, 3% EELL). Prioridad absoluta deuda. AIReF.",
-    "Estructura gastos: Orgánica (Secciones/Servicios), Programas y Económica (Cap. I a IX: I Personal, II Bienes/servicios, VI Inversiones). Ingresos Cap. I a IX.",
-    "Modificaciones LGP: Créditos extraordinarios (no hay) vs suplementos (insuficiente). Transferencias (art. 52). Generaciones e incorporaciones. Plurianuales (art. 47 máx 4 años).",
-    "Ejecución gasto (art. 73 LGP): Aprobación (A) -> Disposición (D) -> Reconocimiento de la obligación (O) -> Ordenación del pago (P). Subvenciones (Ley 38/2003).",
-    "Control: Interno (IGAE: intervención, control financiero permanente, auditoría) y Externo (Tribunal de Cuentas, 12 consejeros, 9 años, 3/5).",
-    "Seguridad Social (TRLGSS RDL 8/2015): Régimen General y Especiales (RETA, mar). TGSS (servicio común, caja única) e INSS (gestora prestaciones).",
+  "name": "El Dragón del Déficit Desbocado",
+  "kind": "dragon",
+  "intro": [
+    "¡JA, JA, JA! ¡He arruinado la hacienda pública, desviado créditos y quebrado la estabilidad presupuestaria!",
+    "Para conquistar la plaza definitiva de funcionario deberás superar los 8 temas oficiales del temario de Gestión Financiera. ¡Demuestra tu maestría!"
   ],
+  "defeat": [
+    "¡Enhorabuena, futuro Gestor Civil del Estado! Has demostrado un dominio absoluto de la gestión presupuestaria, el control contable y el Derecho Público. ¡La plaza en el INAP es tuya!"
+  ]
+},
+  summary: [
+  "Presupuesto y LGP (Ley 47/2003): principios de legalidad (art. 134 CE), anualidad, universalidad (bruto art. 27 LGP) y especialidad (cualitativa art. 42, cuantitativa art. 43, temporal art. 49). Prórroga automática.",
+  "Estructura presupuestaria: Orgánica (secciones/servicios), Funcional por programas y Económica (Capítulos 1 a 9: 1 personal, 2 bienes y servicios, 3 financieros, 4 transferencias corrientes, 6 inversiones reales, 7 transferencias capital, 9 pasivos).",
+  "Gastos plurianuales (art. 47 LGP): máx. 4 ejercicios (70%, 60%, 50%, 50%). Modificaciones: transferencias, créditos extraordinarios y suplementos (Fondo de Contingencia Sección 36), ampliaciones, generaciones.",
+  "Control del gasto: IGAE interno (función interventora previa con reparo suspensivo art. 154, control financiero permanente y auditoría). Tribunal de Cuentas externo (art. 136 CE: fiscalizadora y enjuiciamiento contable resarcitorio).",
+  "Ejecución de gasto (A-D-O-P): Aprobación -> Disposición -> Obligación (crédito exigible) -> Ordenación del pago (D.G. del Tesoro). Unidad de caja (art. 90 LGP). Prescripción a los 4 años.",
+  "Anticipos de Caja Fija (máx. 7% del capítulo art. 78) y Pagos a justificar (plazo 3 meses art. 79). Transferencias corrientes vs capital.",
+  "Ingresos y tributos (LGT 58/2003): impuestos (directos e indirectos), tasas (coactivas/dominio público) y contribuciones especiales. Precios públicos (Ley 8/1989). Prescripción a los 4 años.",
+  "Nóminas: Devengos (básicas y complementarias) menos Deducciones (IRPF, SS/Clases Pasivas, MUFACE). Liquidación 1/30. Ingresos en formalización y reintegro de pagos indebidos (art. 77 LGP)."
+],
 };

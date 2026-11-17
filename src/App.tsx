@@ -51,8 +51,8 @@ export default function App() {
 
       if (level.isMiniWorld && miniWorld) {
         const cur = newUnlockedMini[parentWorld.id] || 1;
-        // Al superar el tema k, desbloquea el tema k+1 (hasta 7 = jefe)
-        newUnlockedMini[parentWorld.id] = Math.max(cur, Math.min(7, miniWorld.num + 1));
+        // Al superar el tema k, desbloquea el tema k+1 (hasta el jefe final = length + 1)
+        newUnlockedMini[parentWorld.id] = Math.max(cur, Math.min(parentWorld.miniWorlds.length + 1, miniWorld.num + 1));
       } else {
         // Al superar el jefe del bloque, desbloquea el siguiente bloque
         newUnlocked = Math.max(p.unlocked, Math.min(WORLDS.length, worldIdx + 2));
@@ -71,7 +71,7 @@ export default function App() {
     if (isLastBoss) {
       setScreen({ name: "finale" });
     } else {
-      const nextMini = miniWorld ? Math.min(miniWorld.num, 6) : 0;
+      const nextMini = miniWorld ? Math.min(miniWorld.num, parentWorld.miniWorlds.length) : 0;
       setScreen({
         name: "map",
         sel: worldIdx,

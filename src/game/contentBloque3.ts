@@ -1,390 +1,1579 @@
-import type { MiniWorldDef, WorldDef } from "./types";
-import { Q } from "./contentBloque1";
+import type { MiniWorldDef, Question, WorldDef } from "./types";
 
-/* ==================== BLOQUE III: MINI-MUNDOS ==================== */
+export const Q = (id: string, q: string, options: string[], answer: number, explain: string): Question => ({
+  id,
+  q,
+  options,
+  answer,
+  explain,
+});
+
+/* ==================== BLOQUE III: POLÍTICAS PÚBLICAS (10 TEMAS BOE) ==================== */
 
 export const W3_T1: MiniWorldDef = {
-  id: "politicas-t1",
-  num: 1,
-  temaTitle: "Tema 1: Concepto, ciclo y evaluación de políticas públicas",
-  name: "Laboratorio de Políticas Públicas",
-  emoji: "📊",
-  theme: "politicas",
-  color: "#2fb26a",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t1",
+  "num": 1,
+  "temaTitle": "Tema 1: Políticas de modernización de la Administración General del Estado. La Administración electrónica. Acceso electrónico de los ciudadanos a los servicios públicos. La Agenda Digital para España. La calidad de los servicios públicos y de atención al ciudadano. Mejora Regulatoria y Análisis de Impacto Normativo.",
+  "name": "Valle de la Administración Digital",
+  "emoji": "💻",
+  "theme": "politicas",
+  "color": "#10b981",
+  "enemy": "nube",
+  "enemyName": "Brechas digitales",
+  "npcs": [
     {
-      name: "Dra. Evidencia",
-      role: "Ciclo y evaluación de políticas (Ley 27/2022)",
-      look: { skin: "#e5b48a", hair: "#2c3e50", hairStyle: "bun", shirt: "#27ae60", pants: "#196f3d", acc: ["glasses", "badge"], accColor: "#ffd84d" },
-      pages: [
-        "Una política pública es el conjunto de decisiones, objetivos y acciones que lleva a cabo un gobierno para solucionar problemas que la sociedad considera prioritarios.",
-        "El ciclo clásico comprende: 1) Definición del problema e inclusión en la agenda pública; 2) Diseño y formulación de alternativas; 3) Decisión y adopción formal; 4) Implementación o ejecución; y 5) Evaluación de resultados e impactos.",
-        "Evaluación: la Ley 27/2022, de 20 de diciembre, institucionaliza la evaluación de las políticas públicas en la AGE. Regula la evaluación ex ante (previa), de seguimiento y ex post (posterior).",
-        "Crea la Agencia Estatal de Evaluación de Políticas Públicas, adscrita al Ministerio competente, para garantizar el rigor metodológico, la transparencia y el aprendizaje continuo en la toma de decisiones públicas.",
+      "name": "Ingeniera de Modernización",
+      "role": "Administración electrónica y calidad de servicios",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#2e2e2e",
+        "hairStyle": "curly",
+        "shirt": "#059669",
+        "pants": "#065f46",
+        "acc": [
+          "headset",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "La modernización de la AGE descansa en la Ley 39/2015 (arts. 13 y 14) y la Ley 40/2015 (Esquema Nacional de Interoperabilidad ENI y Esquema Nacional de Seguridad ENS, RD 311/2022).",
+        "Sujetos obligados a relacionarse electrónicamente con la Administración (art. 14.2 Ley 39/2015): personas jurídicas, entidades sin personalidad, profesionales de colegiación obligatoria, empleados públicos y quienes reglamentariamente se determine.",
+        "Punto de Acceso General electrónico (PAGe) y Carpeta Ciudadana: ventanilla única virtual para consultar expedientes, notificaciones y citas.",
+        "Mejora regulatoria: Ley 50/1997 (art. 26) y RD 931/2017: Memoria del Análisis de Impacto Normativo (MAIN), consulta pública previa y evaluación ex post."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t1-q1",
+      "q": "¿Cuál de los siguientes sujetos NO está obligado a relacionarse electrónicamente con la Administración según el art. 14.2 Ley 39/2015?",
+      "options": [
+        "Una persona física particular para solicitar una beca general",
+        "Una sociedad de responsabilidad limitada (persona jurídica)",
+        "Un notario o procurador en el ejercicio de su profesión",
+        "Una comunidad de bienes sin personalidad jurídica"
       ],
+      "answer": 0,
+      "explain": "Art. 14.1 y 14.2 Ley 39/2015: Las personas físicas pueden elegir si se relacionan por medios electrónicos o no, salvo que reglamentariamente se les obligue por su capacidad económica o técnica. Las personas jurídicas y colectivos profesionales sí están obligados ex lege."
     },
+    {
+      "id": "w3-t1-q2",
+      "q": "¿Qué documento preceptivo debe acompañar a todo anteproyecto de ley o proyecto de reglamento estatal según el art. 26 Ley 50/1997?",
+      "options": [
+        "La Memoria del Análisis de Impacto Normativo (MAIN)",
+        "El acta de comparecencia del Defensor del Pueblo",
+        "El certificado de conformidad del Tribunal de Cuentas",
+        "El plan de contingencia económica municipal"
+      ],
+      "answer": 0,
+      "explain": "Art. 26.3 Ley 50/1997: Todo proyecto normativo debe ir acompañado de la Memoria del Análisis de Impacto Normativo (MAIN) que justifica la oportunidad, impacto económico y presupuestario y de género."
+    },
+    {
+      "id": "w3-t1-q3",
+      "q": "¿Qué norma actual regula el Esquema Nacional de Seguridad (ENS) en el ámbito de la Administración electrónica?",
+      "options": [
+        "El Real Decreto 311/2022, de 3 de mayo",
+        "El Real Decreto 3/2010, de 8 de enero",
+        "La Ley 11/2007, de 22 de junio",
+        "La Orden HAP/547/2013"
+      ],
+      "answer": 0,
+      "explain": "El Real Decreto 311/2022, de 3 de mayo, aprobó y actualizó el Esquema Nacional de Seguridad (ENS) adaptándolo a los nuevos retos de ciberseguridad."
+    }
   ],
-  blockQs: [
-    Q("w3-t1-q1", "¿Cuál es la norma reguladora de la institucionalización de la evaluación de políticas públicas en la AGE?", ["Ley 27/2022, de 20 de diciembre", "Ley 19/2013, de 9 de diciembre", "Ley 40/2015, de 1 de octubre", "Ley 39/2006, de 14 de diciembre"], 0, "La Ley 27/2022, de 20 de diciembre, institucionaliza la evaluación de políticas públicas en la AGE y promueve la cultura de la evidencia."),
-    Q("w3-t1-q2", "¿Qué organismo público crea la Ley 27/2022 para supervisar y fomentar la evaluación en la AGE?", ["La Agencia Estatal de Evaluación de Políticas Públicas", "El Instituto Nacional de Administración Pública (INAP)", "El Consejo de Transparencia y Buen Gobierno", "La AIReF"], 0, "La Ley 27/2022 crea la Agencia Estatal de Evaluación de Políticas Públicas como entidad clave del sistema de evaluación."),
-    Q("w3-t1-q3", "La fase del ciclo de las políticas públicas en la que se analiza si los objetivos previstos se han alcanzado y con qué efectos se denomina:", ["Evaluación", "Inclusión en la agenda", "Formulación de alternativas", "Implementación"], 0, "La fase de evaluación analiza la eficacia, eficiencia, impacto y sostenibilidad de la intervención pública para la rendición de cuentas y mejora continua."),
+  "bossQs": [
+    {
+      "id": "w3-t1-b1",
+      "q": "¿En qué plataforma se concentran las notificaciones electrónicas de la Administración General del Estado?",
+      "options": [
+        "Dirección Electrónica Habilitada única (DEHú) / Notifica",
+        "En el Registro Mercantil Central",
+        "En el buzón físico postal",
+        "En la red social institucional oficial"
+      ],
+      "answer": 0,
+      "explain": "La Dirección Electrónica Habilitada única (DEHú) y la plataforma Notifica centralizan el envío y comparecencia de notificaciones electrónicas en la AGE."
+    },
+    {
+      "id": "w3-t1-b2",
+      "q": "¿A través de qué portal oficial se tramita la consulta pública previa y la audiencia de proyectos normativos de la AGE?",
+      "options": [
+        "El Punto de Acceso General (PAGe) / sección de Participación Pública",
+        "El portal privado del Congreso",
+        "El Boletín Oficial del Registro Mercantil",
+        "La página web del Tribunal Supremo"
+      ],
+      "answer": 0,
+      "explain": "Las consultas públicas previas y audiencias se publican en el portal web del departamento competente y en el Punto de Acceso General electrónico."
+    },
+    {
+      "id": "w3-t1-b3",
+      "q": "¿Qué instrumento garantiza la interoperabilidad de datos y sistemas entre distintas Administraciones públicas en España?",
+      "options": [
+        "El Esquema Nacional de Interoperabilidad (ENI, RD 4/2010)",
+        "El Registro Civil Central",
+        "La Ley General Tributaria",
+        "El Código Civil"
+      ],
+      "answer": 0,
+      "explain": "El Esquema Nacional de Interoperabilidad (ENI), regulado por RD 4/2010 en el marco del art. 156 Ley 40/2015, garantiza el intercambio homogéneo de información y documentos entre AAPP."
+    }
   ],
-  bossQs: [
-    Q("w3-t1-b1", "La evaluación de una política pública realizada antes de su aprobación definitiva para estimar sus posibles impactos y costes se denomina:", ["Evaluación ex ante", "Evaluación intermedia o de proceso", "Evaluación ex post", "Evaluación sumativa"], 0, "La evaluación ex ante es previa a la puesta en marcha de la política y busca valorar la pertinencia, viabilidad y alternativas de intervención."),
-    Q("w3-t1-b2", "¿Cuál es el instrumento plurianual previsto en la Ley 27/2022 para programar las evaluaciones estratégicas del Gobierno?", ["El Plan de Evaluaciones Estratégicas del Gobierno", "El Programa Marco Financiero", "La Agenda Digital de la AGE", "El Plan de Estabilidad Presupuestaria"], 0, "La Ley 27/2022 prevé la aprobación del Plan de Evaluaciones Estratégicas de la Administración General del Estado por el Consejo de Ministros."),
-    Q("w3-t1-b3", "En el análisis de políticas públicas, la 'agenda institucional o de gobierno' se refiere a:", ["El conjunto de asuntos explícitamente aceptados para ser considerados de forma activa y seria por los decisores públicos", "Todos los problemas que preocupan a los medios de comunicación", "El listado de leyes aprobadas en una legislatura", "El calendario de huelgas del sector público"], 0, "La agenda institucional (o de gobierno) comprende aquellos problemas que las autoridades públicas han decidido asumir activamente para su tratamiento normativo o presupuestario."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba del Ciclo de las Políticas Públicas",
-    prompt: "Ordena secuencialmente las fases clásicas del ciclo de las políticas públicas.",
-    items: [
-      "Identificación del problema e inclusión en la agenda pública",
-      "Formulación y diseño de alternativas de actuación",
-      "Decisión y adopción formal de la política",
-      "Implementación y ejecución administrativa de los programas",
-      "Evaluación de resultados, impacto y retroalimentación",
+  "mini": {
+    "type": "match",
+    "title": "Sujetos y Medios de la Administración Electrónica",
+    "prompt": "Empareja cada concepto de la Ley 39/2015 con su régimen jurídico aplicable.",
+    "pairs": [
+      [
+        "Personas jurídicas",
+        "Obligación de relación electrónica en todo caso (art. 14.2)"
+      ],
+      [
+        "Personas físicas (regla general)",
+        "Derecho de opción entre medio electrónico o papel (art. 14.1)"
+      ],
+      [
+        "MAIN",
+        "Memoria obligatoria que acompaña a anteproyectos de ley y reglamentos"
+      ],
+      [
+        "ENS (RD 311/2022)",
+        "Esquema que garantiza la seguridad y confianza en servicios digitales"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Bloqueador Analógico",
+    "kind": "cloud",
+    "intro": [
+      "¡Obligaré a presentar 10 copias en papel y fotocopia del DNI físico!"
     ],
+    "defeat": [
+      "¡Art. 28 Ley 39/2015! Los ciudadanos tienen derecho a no aportar documentos ya elaborados por cualquier Administración pública."
+    ]
   },
-  boss: {
-    name: "El Gestor Intuición",
-    kind: "cloud",
-    intro: ["¡Yo gobierno a golpe de corazonadas y sin evaluar datos! ¿Podrás demostrar que la evidencia científica es superior?"],
-    defeat: ["¡Los indicadores de impacto y la Ley 27/2022 me han convencido! Las decisiones deben evaluarse."],
-  },
-  summary: [
-    "Políticas públicas: ciclo secuencial (agenda -> formulación -> decisión -> implementación -> evaluación).",
-    "Ley 27/2022, de 20 de diciembre: institucionaliza la evaluación de políticas públicas en la AGE.",
-    "Tipos de evaluación: ex ante (previa), intermedia/seguimiento (durante) y ex post (posterior a la ejecución).",
-    "Agencia Estatal de Evaluación de Políticas Públicas: garantiza la calidad metodológica y el aprendizaje.",
-  ],
+  "summary": [
+    "Obligados a relacionarse electrónicamente (art. 14.2 Ley 39/2015): personas jurídicas, entidades sin personalidad, colegiados obligatorios, empleados públicos.",
+    "Personas físicas: regla general de derecho de opción (art. 14.1).",
+    "Derecho a no aportar documentos en poder de la Administración (art. 28 Ley 39/2015).",
+    "Seguridad e interoperabilidad: ENS (RD 311/2022) y ENI (RD 4/2010).",
+    "Mejora regulatoria: MAIN preceptiva (art. 26 Ley 50/1997) y consulta pública previa."
+  ]
 };
 
 export const W3_T2: MiniWorldDef = {
-  id: "politicas-t2",
-  num: 2,
-  temaTitle: "Tema 2: Administración electrónica y modernización de la AGE",
-  name: "Ciber-Sede de la AGE",
-  emoji: "💻",
-  theme: "politicas",
-  color: "#27ae60",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t2",
+  "num": 2,
+  "temaTitle": "Tema 2: Política económica actual. Política presupuestaria. Evolución y distribución actual del gasto público. Política fiscal. La unidad de mercado.",
+  "name": "Mercado y Política Fiscal",
+  "emoji": "📈",
+  "theme": "politicas",
+  "color": "#059669",
+  "enemy": "moneda",
+  "enemyName": "Fragmentadores de mercado",
+  "npcs": [
     {
-      name: "Ada Digital",
-      role: "Administración electrónica (Leyes 39 y 40/2015, RD 203/2021)",
-      look: { skin: "#e5b48a", hair: "#7b3fa0", hairStyle: "long", shirt: "#1abc9c", pants: "#2c3e50", acc: ["visor", "headset"], accColor: "#00e5ff" },
-      pages: [
-        "La Administración electrónica no es una opción, ¡es el modo habitual de funcionamiento! Sus bases están en la Ley 39/2015, Ley 40/2015 y en el Real Decreto 203/2021 (Reglamento de actuación y funcionamiento del sector público por medios electrónicos).",
-        "Obligados a relacionarse electrónicamente (art. 14.2 Ley 39/2015): personas jurídicas, entidades sin personalidad jurídica, profesionales de colegiación obligatoria y empleados públicos para trámites profesionales.",
-        "Sede electrónica (art. 38 Ley 40/2015): dirección electrónica disponible para la ciudadanía cuya titularidad corresponde a una Administración. Cuenta con certificado electrónico de sede y garantiza identificación, seguridad y disponibilidad.",
-        "Punto de Acceso General electrónico (PAGe): portal de entrada único que facilita el acceso a la información y servicios electrónicos de la AGE. Carpeta Ciudadana: área personalizada de consulta de expedientes, notificaciones y datos.",
+      "name": "Analista Económico",
+      "role": "Política presupuestaria, fiscal y unidad de mercado",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#047857",
+        "pants": "#1f2937",
+        "acc": [
+          "tie",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "La política económica y fiscal busca el crecimiento sostenible, la creación de empleo y la estabilidad macroeconómica en el marco de la UEM.",
+        "Ley Orgánica 2/2012 de Estabilidad Presupuestaria y Sostenibilidad Financiera (desarrollo del art. 135 CE): principios de estabilidad presupuestaria (equilibrio o superávit estructural), sostenibilidad financiera, regla de gasto y transparencia.",
+        "Política fiscal: progresividad y equidad (art. 31 CE: sistema tributario justo inspirado en los principios de igualdad y progresividad que en ningún caso tendrá alcance confiscatorio).",
+        "Ley 20/2013 de Garantía de la Unidad de Mercado (LGUM): principio de eficacia en todo el territorio nacional, no discriminación y libre circulación y establecimiento."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t2-q1",
+      "q": "¿Qué principios consagra el artículo 31.1 de la Constitución para el sistema tributario?",
+      "options": [
+        "Igualdad y progresividad, sin que en ningún caso tenga alcance confiscatorio",
+        "Tipo único proporcional sin deducciones",
+        "Recaudación regresiva y libertad de exenciones",
+        "Soberanía plena de cada ayuntamiento para fijar IRPF"
       ],
+      "answer": 0,
+      "explain": "Art. 31.1 CE: Todos contribuirán al sostenimiento de los gastos públicos de acuerdo con su capacidad económica mediante un sistema tributario justo inspirado en los principios de igualdad y progresividad que, en ningún caso, tendrá alcance confiscatorio."
     },
+    {
+      "id": "w3-t2-q2",
+      "q": "¿Cuál es el principio rector de la Ley 20/2013 de Garantía de la Unidad de Mercado?",
+      "options": [
+        "Principio de eficacia en todo el territorio nacional de las licencias y cualificaciones",
+        "Obligación de solicitar autorización en cada municipio de destino",
+        "Restricción absoluta de empresas comunitarias",
+        "Aranceles interautonómicos de compensación"
+      ],
+      "answer": 0,
+      "explain": "Art. 6 Ley 20/2013: Cualquier operador legalmente establecido en una parte del territorio español podrá ejercer su actividad en todo el territorio nacional (principio de eficacia nacional)."
+    },
+    {
+      "id": "w3-t2-q3",
+      "q": "¿Qué instrumento fija el límite máximo de gasto no financiero en los Presupuestos Generales del Estado (techo de gasto)?",
+      "options": [
+        "Acuerdo del Consejo de Ministros remitido a las Cortes Generales según la LO 2/2012",
+        "Decreto unilateral del Banco de España",
+        "Orden del Tribunal de Cuentas",
+        "Resolución de la Comisión Europea sin debate parlamentario"
+      ],
+      "answer": 0,
+      "explain": "Art. 30 LO 2/2012: El Gobierno fijará el límite de gasto no financiero del presupuesto del Estado (techo de gasto) con el que debe cuadrar el proyecto de PGE."
+    }
   ],
-  blockQs: [
-    Q("w3-t2-q1", "¿Cuál de los siguientes sujetos está obligado en todo caso a relacionarse electrónicamente con las AAPP (art. 14.2 Ley 39/2015)?", ["Las personas jurídicas", "Todas las personas físicas jubiladas", "Los turistas extranjeros en tránsito", "Los menores de 18 años"], 0, "Art. 14.2 Ley 39/2015: están obligadas las personas jurídicas, entidades sin personalidad, quienes ejerzan actividad profesional con colegiación obligatoria y los empleados públicos."),
-    Q("w3-t2-q2", "¿Qué Real Decreto aprueba el Reglamento de actuación y funcionamiento del sector público por medios electrónicos?", ["Real Decreto 203/2021, de 30 de marzo", "Real Decreto 4/2010 (Esquema Nacional de Interoperabilidad)", "Real Decreto 311/2022 (Esquema Nacional de Seguridad)", "Real Decreto 140/2024"], 0, "El Real Decreto 203/2021, de 30 de marzo, aprueba el Reglamento de actuación y funcionamiento del sector público por medios electrónicos."),
-    Q("w3-t2-q3", "La sede electrónica se define en el art. 38 de la Ley 40/2015 como:", ["Aquella dirección electrónica disponible para los ciudadanos a través de redes de telecomunicaciones cuya titularidad corresponde a una Administración Pública", "Cualquier página web no oficial de un partido político", "El correo electrónico personal de los funcionarios", "Un tablón de anuncios en papel en la entrada del ministerio"], 0, "Art. 38.1 Ley 40/2015: la sede electrónica es aquella dirección electrónica, disponible para los ciudadanos a través de redes de telecomunicaciones, cuya titularidad corresponde a una Administración Pública."),
+  "bossQs": [
+    {
+      "id": "w3-t2-b1",
+      "q": "¿Qué exige el artículo 135 de la Constitución respecto al pago de la deuda pública y sus intereses?",
+      "options": [
+        "Gozará siempre de prioridad absoluta sobre cualquier otro gasto en los presupuestos",
+        "Puede suspenderse por acuerdo del Consejo de Ministros",
+        "Sólo se abona si existe superávit primario",
+        "Se supedita al gasto en sanidad y educación"
+      ],
+      "answer": 0,
+      "explain": "Art. 135.3 CE: Los créditos para satisfacer los intereses y el capital de la deuda pública de las Administraciones se entenderán siempre incluidos en el estado de gastos de sus presupuestos y su pago gozará de prioridad absoluta."
+    },
+    {
+      "id": "w3-t2-b2",
+      "q": "¿Qué institución independiente vela en España por el cumplimiento de la disciplina fiscal y la sostenibilidad de las finanzas?",
+      "options": [
+        "La Autoridad Independiente de Responsabilidad Fiscal (AIReF, LO 6/2013)",
+        "La Comisión Nacional de los Mercados y la Competencia",
+        "El Consejo Económico y Social",
+        "La Fábrica Nacional de Moneda y Timbre"
+      ],
+      "answer": 0,
+      "explain": "La AIReF, creada por LO 6/2013, tiene por objeto garantizar el cumplimiento efectivo por las Administraciones públicas del principio de estabilidad presupuestaria mediante la evaluación continua del ciclo presupuestario."
+    },
+    {
+      "id": "w3-t2-b3",
+      "q": "¿Qué principio de la LO 2/2012 limita el crecimiento del gasto computable a la tasa de referencia de crecimiento del PIB a medio plazo?",
+      "options": [
+        "La regla de gasto (art. 12 LO 2/2012)",
+        "El principio de caja única",
+        "El principio de no afectación de ingresos",
+        "El principio de devengo contable"
+      ],
+      "answer": 0,
+      "explain": "Art. 12 LO 2/2012: La variación del gasto computable de las Administraciones públicas no podrá superar la tasa de referencia de crecimiento del Producto Interior Bruto a medio plazo (regla de gasto)."
+    }
   ],
-  bossQs: [
-    Q("w3-t2-b1", "Las personas físicas que no estén obligadas a relacionarse por medios electrónicos según el art. 14.1 de la Ley 39/2015:", ["Podrán elegir en todo momento si se comunican con las AAPP por medios electrónicos o no", "Están obligadas a presentar escritos siempre por internet", "Tienen prohibido el uso de la sede electrónica", "Deben pagar una tasa por acudir al registro presencial"], 0, "Art. 14.1 Ley 39/2015: las personas físicas podrán elegir en todo momento si se comunican con las Administraciones Públicas a través de medios electrónicos o no, salvo que reglamentariamente se establezca la obligación para ciertos colectivos."),
-    Q("w3-t2-b2", "El portal único de entrada a la información y trámites de la Administración General del Estado es el:", ["Punto de Acceso General electrónico (PAGe) y la Carpeta Ciudadana", "BOE Digital", "Tribunal Constitucional Online", "Portal Europeo Eur-Lex"], 0, "El PAGe (administracion.gob.es) es la puerta de acceso digital a los servicios y procedimientos de la AGE, complementado por la Carpeta Ciudadana."),
-    Q("w3-t2-b3", "En materia de seguridad en la administración electrónica, el marco regulador de principios básicos y requisitos mínimos de seguridad en los sistemas públicos es el:", ["Esquema Nacional de Seguridad (ENS, RD 311/2022)", "Esquema Nacional de Interoperabilidad (ENI)", "Reglamento Notarial", "Código de Comercio"], 0, "El RD 311/2022 regula el Esquema Nacional de Seguridad (ENS), garantizando la protección de los datos y servicios frente a incidentes cibernéticos."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de la Administración Digital",
-    prompt: "Relaciona cada herramienta o concepto con su función en la administración electrónica.",
-    pairs: [
-      ["Sede Electrónica (art. 38)", "Dirección oficial bajo titularidad y responsabilidad de la Administración"],
-      ["PAGe (Punto de Acceso General)", "Portal único de entrada a los servicios y sedes de la AGE"],
-      ["Carpeta Ciudadana", "Espacio privado para consultar expedientes, notificaciones y citas"],
-      ["Cl@ve", "Plataforma de identificación, autenticación y firma para la ciudadanía"],
+  "mini": {
+    "type": "match",
+    "title": "Pilares de la Política Económica y Fiscal",
+    "prompt": "Empareja cada norma o principio con su contenido sustantivo.",
+    "pairs": [
+      [
+        "Art. 135 CE",
+        "Prioridad absoluta del pago de la deuda pública e intereses"
+      ],
+      [
+        "LO 2/2012 (Estabilidad)",
+        "Equilibrio estructural, regla de gasto y sostenibilidad de la deuda"
+      ],
+      [
+        "Ley 20/2013 (Unidad Mercado)",
+        "Eficacia en todo el territorio nacional de autorizaciones y títulos"
+      ],
+      [
+        "AIReF (LO 6/2013)",
+        "Supervisión fiscal independiente del ciclo presupuestario"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Fragmentador de Mercado",
+    "kind": "veto",
+    "intro": [
+      "¡Exigiré una licencia distinta en cada pueblo para impedir el comercio nacional!"
     ],
+    "defeat": [
+      "¡Ley 20/2013 de Unidad de Mercado! Principio de eficacia nacional y libre circulación económica restaurados."
+    ]
   },
-  boss: {
-    name: "El Hacker de Papel",
-    kind: "cloud",
-    intro: ["¡Obligaré a todo el mundo a imprimir en papel por duplicado! ¡Abajo la firma electrónica!"],
-    defeat: ["¡Tu certificado digital y el RD 203/2021 han blindado la sede electrónica!"],
-  },
-  summary: [
-    "Marco normativo: Ley 39/2015 (arts. 14 y 41), Ley 40/2015 (arts. 38-46), RD 203/2021 (Reglamento medios electrónicos), ENS (RD 311/2022) y ENI (RD 4/2010).",
-    "Obligados art. 14.2: personas jurídicas, entidades sin personalidad, colegiados obligatorios y empleados públicos.",
-    "Personas físicas (art. 14.1): derecho de elección libre de canal.",
-    "Conceptos clave: Sede electrónica (garantía de titularidad y disponibilidad), PAGe (punto único), Carpeta Ciudadana y Cl@ve.",
-  ],
+  "summary": [
+    "Constitución económica: art. 31 (capacidad, igualdad, progresividad, no confiscatoriedad), art. 38 (libertad de empresa) y art. 135 (estabilidad y prioridad absoluta de deuda).",
+    "LO 2/2012: estabilidad presupuestaria, sostenibilidad financiera, regla de gasto y transparencia.",
+    "AIReF (LO 6/2013): evaluación fiscal independiente del ciclo presupuestario de todas las AAPP.",
+    "Unidad de Mercado (Ley 20/2013): eficacia en todo el territorio nacional de autorizaciones y cualificaciones."
+  ]
 };
 
 export const W3_T3: MiniWorldDef = {
-  id: "politicas-t3",
-  num: 3,
-  temaTitle: "Tema 3: Gobierno Abierto, Transparencia y Ley 19/2013",
-  name: "Torre de Cristal de la Transparencia",
-  emoji: "🏛️",
-  theme: "politicas",
-  color: "#229954",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t3",
+  "num": 3,
+  "temaTitle": "Tema 3: Política ambiental. Distribución de competencias. Conservación de la biodiversidad. Prevención de la contaminación y el cambio climático.",
+  "name": "Santuario Ecológico",
+  "emoji": "🌿",
+  "theme": "politicas",
+  "color": "#047857",
+  "enemy": "nube",
+  "enemyName": "Emisiones contaminantes",
+  "npcs": [
     {
-      name: "Comisionada Cristal",
-      role: "Ley 19/2013 y Gobierno Abierto",
-      look: { skin: "#f3c9a0", hair: "#34495e", hairStyle: "short", shirt: "#2ecc71", pants: "#145a32", acc: ["badge", "glasses"], accColor: "#ffd84d" },
-      pages: [
-        "El Gobierno Abierto se basa en tres pilares: transparencia, participación ciudadana y colaboración.",
-        "La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno tiene un triple objeto: publicidad activa (obligación de publicar sin esperar solicitud), derecho de acceso a la información pública y código de buen gobierno con sanciones.",
-        "Derecho de acceso (arts. 12-22): cualquier persona puede solicitar información pública sin necesidad de motivar la solicitud. Plazo máximo de resolución: un mes desde la recepción por el órgano competente (ampliable por otro mes si hay volumen o complejidad).",
-        "Silencio administrativo: el transcurso del plazo sin resolver se entiende como desestimación (silencio negativo).",
-        "Garantía: reclamación potestativa y gratuita ante el Consejo de Transparencia y Buen Gobierno (CTBG) en el plazo de 1 mes, previa a la vía contencioso-administrativa.",
+      "name": "Bióloga Ambiental",
+      "role": "Biodiversidad, clima y transición ecológica",
+      "look": {
+        "skin": "#f5c6a5",
+        "hair": "#2e2e2e",
+        "hairStyle": "long",
+        "shirt": "#065f46",
+        "pants": "#064e3b",
+        "acc": [
+          "visor",
+          "badge"
+        ],
+        "accColor": "#a7f3d0"
+      },
+      "pages": [
+        "El art. 45 CE consagra el derecho a disfrutar de un medio ambiente adecuado para el desarrollo de la persona, así como el deber de conservarlo. Los poderes públicos velarán por la utilización racional de los recursos naturales.",
+        "Distribución de competencias (art. 149.1.23ª CE): el Estado tiene competencia exclusiva sobre 'legislación básica sobre protección del medio ambiente, sin perjuicio de las facultades de las CCAA de establecer normas adicionales de protección'. Las CCAA ostentan la gestión y desarrollo normativo.",
+        "Ley 7/2021 de cambio climático y transición energética: objetivo de neutralidad climática a más tardar en 2050, fomento de energías renovables y zonas de bajas emisiones (ZBE) en municipios de más de 50.000 habitantes.",
+        "Ley 42/2007 del Patrimonio Natural y de la Biodiversidad: Catálogo Español de Especies Amenazadas y Red Natura 2000.",
+        "Ley 21/2013 de evaluación ambiental: evaluación ambiental estratégica (planes y programas) y evaluación de impacto ambiental (proyectos)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t3-q1",
+      "q": "¿Cómo se distribuyen las competencias ambientales según el artículo 149.1.23ª de la Constitución?",
+      "options": [
+        "Legislación básica el Estado, pudiendo las CCAA dictar normas adicionales de protección y la gestión",
+        "Competencia exclusiva y excluyente del Estado en todas las facetas",
+        "Competencia íntegra y exclusiva de los municipios",
+        "El Estado solo gestiona los parques zoológicos"
       ],
+      "answer": 0,
+      "explain": "Art. 149.1.23ª CE: El Estado tiene competencia exclusiva sobre legislación básica sobre protección del medio ambiente, sin perjuicio de las facultades de las Comunidades Autónomas de establecer normas adicionales de protección."
     },
+    {
+      "id": "w3-t3-q2",
+      "q": "Según la Ley 7/2021 de cambio climático, ¿qué municipios están obligados a establecer zonas de bajas emisiones (ZBE)?",
+      "options": [
+        "Los municipios de más de 50.000 habitantes (y los de más de 20.000 con superación de límites de contaminantes)",
+        "Todos los municipios de más de 5.000 habitantes",
+        "Únicamente las capitales autonómicas",
+        "Sólo Madrid y Barcelona"
+      ],
+      "answer": 0,
+      "explain": "Art. 14.3 Ley 7/2021: Los municipios de más de 50.000 habitantes y los de más de 20.000 habitantes cuando se superen los valores límite de contaminantes deberán adoptar planes de movilidad sostenible y zonas de bajas emisiones."
+    },
+    {
+      "id": "w3-t3-q3",
+      "q": "¿Cuál es el objetivo temporal fijado en la Ley 7/2021 para alcanzar la neutralidad climática en España?",
+      "options": [
+        "A más tardar en el año 2050",
+        "En el año 2030",
+        "En el año 2040",
+        "En el año 2060"
+      ],
+      "answer": 0,
+      "explain": "Art. 3.1 Ley 7/2021: Antes de 2050 España deberá alcanzar la neutralidad climática y el sistema eléctrico deberá estar basado exclusivamente en fuentes de energía de origen renovable."
+    }
   ],
-  blockQs: [
-    Q("w3-t3-q1", "¿Cuál es el plazo máximo para resolver y notificar una solicitud de acceso a la información pública según la Ley 19/2013?", ["Un mes desde la recepción de la solicitud por el órgano competente", "Tres meses", "Diez días hábiles", "Quince días prorrogables por cinco"], 0, "Art. 20.1 Ley 19/2013: la resolución en la que se conceda o deniegue el acceso deberá notificarse al solicitante en el plazo máximo de un mes desde la recepción de la solicitud por el órgano competente para resolver."),
-    Q("w3-t3-q2", "Si transcurre el plazo legal de un mes sin que la Administración resuelva una solicitud de acceso a la información pública, ésta se entenderá:", ["Desestimada por silencio negativo", "Estimada por silencio positivo", "Caducada automáticamente", "Admitida con derecho a indemnización"], 0, "Art. 20.4 Ley 19/2013: transcurrido el plazo máximo para resolver sin que se haya dictado y notificado resolución expresa se entenderá que la solicitud ha sido desestimada."),
-    Q("w3-t3-q3", "La reclamación ante el Consejo de Transparencia y Buen Gobierno (art. 24 Ley 19/2013) tiene carácter:", ["Potestativo y previo a la impugnación en vía contencioso-administrativa, en el plazo de un mes", "Obligatorio en todo caso ante el Tribunal Supremo", "Exclusivo de los funcionarios públicos", "Preceptivo solo para empresas privadas"], 0, "Art. 24.1 Ley 19/2013: frente a toda resolución expresa o presunta en materia de acceso podrá interponerse reclamación potestativa ante el Consejo de Transparencia y Buen Gobierno con carácter previo a su impugnación judicial."),
+  "bossQs": [
+    {
+      "id": "w3-t3-b1",
+      "q": "¿Qué instrumento regulado en la Ley 21/2013 se aplica a planes y programas públicos con efectos ambientales significativos?",
+      "options": [
+        "La evaluación ambiental estratégica (EAE)",
+        "La evaluación de impacto ambiental ordinaria de proyectos",
+        "La inspección técnica de vehículos",
+        "La licencia de obras municipal"
+      ],
+      "answer": 0,
+      "explain": "Ley 21/2013: La Evaluación Ambiental Estratégica (ordinaria o simplificada) es el proceso aplicable a planes y programas públicos; la Evaluación de Impacto Ambiental se aplica a proyectos de ejecución."
+    },
+    {
+      "id": "w3-t3-b2",
+      "q": "¿Qué red europea de espacios protegidos regula la Ley 42/2007 de Patrimonio Natural y Biodiversidad?",
+      "options": [
+        "La Red Natura 2000 (LIC, ZEC y ZEPA)",
+        "El Convenio CITES",
+        "La red de Geoparques de la UNESCO",
+        "La reserva de la biosfera polar"
+      ],
+      "answer": 0,
+      "explain": "Ley 42/2007: La Red Natura 2000 está formada por Lugares de Importancia Comunitaria (LIC), Zonas Especiales de Conservación (ZEC) y Zonas de Especial Protección para las Aves (ZEPA)."
+    },
+    {
+      "id": "w3-t3-b3",
+      "q": "¿Qué principio rector en materia de costes ambientales impone la legislación europea y nacional?",
+      "options": [
+        "Principio de 'quien contamina paga'",
+        "Principio de gratuidad de los vertidos",
+        "Principio de absorción estatal del daño sin culpa",
+        "Principio de prescripción anual de los delitos ecológicos"
+      ],
+      "answer": 0,
+      "explain": "Directiva de responsabilidad ambiental y Ley 26/2007: El principio de quien contamina paga obliga al operador causante del daño a sufragar los costes de prevención y reparación íntegra."
+    }
   ],
-  bossQs: [
-    Q("w3-t3-b1", "¿Exige la Ley 19/2013 que el solicitante de información pública motive las razones de su petición?", ["No, el solicitante no está obligado a motivar su solicitud", "Sí, es causa de inadmisión obligatoria no motivarla", "Solo si solicita datos de carácter económico", "Solo cuando se trate de extranjeros"], 0, "Art. 17.3 Ley 19/2013: el solicitante no está obligado a motivar su solicitud de acceso a la información, si bien podrá exponer los motivos por los que la solicita."),
-    Q("w3-t3-b2", "¿Cuál de los siguientes es un límite al derecho de acceso a la información pública tasado en el art. 14 de la Ley 19/2013?", ["La seguridad nacional, la defensa y las relaciones exteriores", "El simple interés periodístico", "Cualquier crítica a la gestión de un cargo público", "La petición reiterada de resoluciones del BOE"], 0, "Art. 14.1 Ley 19/2013: el derecho de acceso podrá ser limitado cuando acceder a la información suponga un perjuicio para la seguridad nacional, defensa, relaciones exteriores, seguridad pública, etc."),
-    Q("w3-t3-b3", "¿Qué comprende la obligación de 'publicidad activa' recogida en el Título I de la Ley 19/2013?", ["La difusión periódica y actualizada por los sujetos obligados de información institucional, organizativa, de planificación, presupuestaria y contractual", "La publicación de multas de tráfico con nombres y apellidos en prensa", "La publicidad de campañas electorales en televisión", "La contestación individual a cartas al director"], 0, "Arts. 5 a 8 Ley 19/2013: los sujetos obligados publicarán de forma veraz y accesible en sus sedes y portales de transparencia la información institucional, jurídica, económica y presupuestaria relevante."),
-  ],
-  mini: {
-    type: "order",
-    title: "Prueba del Procedimiento de Acceso a Información Pública",
-    prompt: "Ordena los pasos del procedimiento de acceso a la información pública (Ley 19/2013).",
-    items: [
-      "Presentación de la solicitud por cualquier medio (sin necesidad de motivación)",
-      "Revisión de admisión y trámite de alegaciones a terceros afectados si procede (15 días)",
-      "Resolución y notificación al solicitante en el plazo máximo de 1 mes (ampliable 1 mes)",
-      "Si hay silencio desestimatorio o denegación, reclamación potestativa ante el CTBG (1 mes)",
-      "Recurso contencioso-administrativo ante los Juzgados o Tribunales (2 meses)",
+  "mini": {
+    "type": "match",
+    "title": "Instrumentos de Protección Ambiental",
+    "prompt": "Empareja cada instrumento con su ámbito de aplicación normativo.",
+    "pairs": [
+      [
+        "Evaluación Ambiental Estratégica",
+        "Planes y programas de las Administraciones públicas"
+      ],
+      [
+        "Evaluación de Impacto Ambiental",
+        "Proyectos de obras y actividades concretas"
+      ],
+      [
+        "Red Natura 2000",
+        "ZEC, LIC y ZEPA para la conservación de hábitats y aves"
+      ],
+      [
+        "Zonas de Bajas Emisiones (ZBE)",
+        "Obligatorias en municipios de >50.000 habitantes (Ley 7/2021)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Depredador Ecológico",
+    "kind": "cloud",
+    "intro": [
+      "¡Verteré residuos en un espacio protegido sin evaluación ambiental!"
     ],
+    "defeat": [
+      "¡Art. 45 CE y Ley 21/2013! Principio de prevención y clausura cautelar por delito contra los recursos naturales."
+    ]
   },
-  boss: {
-    name: "El Burócrata Opaco",
-    kind: "cloud",
-    intro: ["¡Toda información oficial es secreta! ¡No entregaré ni una sola cifra de los contratos!"],
-    defeat: ["¡La Ley 19/2013 y el Portal de Transparencia han abierto de par en par los archivos públicos!"],
-  },
-  summary: [
-    "Ley 19/2013, de 9 de diciembre: Transparencia (publicidad activa y acceso) + Buen Gobierno (infracciones y sanciones).",
-    "Publicidad activa (arts. 5-8): Portal de Transparencia, información institucional, normativa y presupuestaria.",
-    "Derecho de acceso (arts. 12-22): universal, sin motivación requerida. Plazo: 1 mes (+1 mes prórroga). Silencio negativo.",
-    "Garantías: Reclamación potestativa ante el CTBG en plazo de 1 mes previa al contencioso.",
-  ],
+  "summary": [
+    "Art. 45 CE: derecho al medio ambiente adecuado y deber de conservarlo. Restauración y sanciones.",
+    "Competencias (art. 149.1.23ª): legislación básica el Estado; normas adicionales y ejecución las CCAA.",
+    "Ley 7/2021 de Cambio Climático: neutralidad climática a más tardar en 2050, sistema eléctrico 100% renovable, ZBE obligatorias en municipios de >50.000 hab.",
+    "Evaluación Ambiental (Ley 21/2013): estratégica (planes/programas) y de impacto (proyectos).",
+    "Ley 42/2007: Biodiversidad y Red Natura 2000 (LIC, ZEC, ZEPA). Principio de quien contamina paga."
+  ]
 };
 
 export const W3_T4: MiniWorldDef = {
-  id: "politicas-t4",
-  num: 4,
-  temaTitle: "Tema 4: Protección de datos personales y garantía de derechos digitales",
-  name: "Búnker de la Privacidad",
-  emoji: "🛡️",
-  theme: "politicas",
-  color: "#1e8449",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t4",
+  "num": 4,
+  "temaTitle": "Tema 4: La Seguridad Social: estructura y financiación. Problemas actuales y líneas de actuación. El régimen general y los regímenes especiales. La acción protectora de la Seguridad Social. Tipos y características de las prestaciones.",
+  "name": "Bastión de la Seguridad Social",
+  "emoji": "🛡️",
+  "theme": "politicas",
+  "color": "#0284c7",
+  "enemy": "reloj",
+  "enemyName": "Fraude contributivo",
+  "npcs": [
     {
-      name: "Dr. Datos",
-      role: "RGPD (UE 2016/679) y LO 3/2018 (LOPDGDD)",
-      look: { skin: "#f1c7a0", hair: "#2b2b2b", hairStyle: "short", shirt: "#ecf0f1", pants: "#34495e", acc: ["glasses", "badge"], accColor: "#e74c3c" },
-      pages: [
-        "La protección de datos se apoya en el Reglamento General de Protección de Datos (RGPD, Reglamento UE 2016/679) y en la Ley Orgánica 3/2018 (LOPDGDD), que añade la garantía de los derechos digitales.",
-        "Principios del art. 5 RGPD: licitud, lealtad y transparencia; limitación de la finalidad; minimización de datos; exactitud; limitación del plazo de conservación; integridad y confidencialidad; y responsabilidad proactiva (accountability).",
-        "Derechos del interesado: Acceso, Rectificación, Supresión ('derecho al olvido'), Oposición, Limitación del tratamiento, Portabilidad de los datos, y no ser objeto de decisiones individuales automatizadas.",
-        "Actores clave: Responsable del tratamiento (determina fines y medios), Encargado del tratamiento (trata por cuenta del responsable) y Delegado de Protección de Datos (DPD, obligatorio en autoridades y organismos públicos).",
-        "En España, el menor puede consentir válidamente el tratamiento de sus datos a partir de los 14 años (art. 7 LOPDGDD). Autoridad estatal de control: la Agencia Española de Protección de Datos (AEPD).",
+      "name": "Gestor de Prestaciones",
+      "role": "Estructura, financiación y acción protectora del sistema de Seguridad Social",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#374151",
+        "hairStyle": "short",
+        "shirt": "#0369a1",
+        "pants": "#0c4a6e",
+        "acc": [
+          "tie",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El art. 41 CE encomienda a los poderes públicos mantener un régimen público de Seguridad Social para todos los ciudadanos que garantice asistencia y prestaciones sociales suficientes ante situaciones de necesidad, especialmente en desempleo.",
+        "Texto Refundido de la Ley General de la Seguridad Social (TRLGSS, RDL 8/2015).",
+        "Estructura: Nivel contributivo (basado en el trabajo y cotización: Régimen General y Regímenes Especiales: RETA para autónomos, Trabajadores del Mar y Minería del Carbón) y Nivel no contributivo (universal para residentes sin recursos suficientes: jubilación e invalidez no contributivas, Ingreso Mínimo Vital).",
+        "Financiación: cuotas de empresas y trabajadores (cotizaciones para contingencias comunes, profesionales y desempleo) y transferencias del Estado para prestaciones no contributivas (separación de fuentes del Pacto de Toledo).",
+        "Gestión: Entidades Gestoras (INSS: prestaciones económicas contributivas; IMSERSO: servicios sociales y pensiones no contributivas; ISM: sector marítimo-pesquero) y Servicios Comunes (TGSS: titular del patrimonio único, encuadramiento, inscripción de empresas, afiliación, altas/bajas y recaudación ejecutiva)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t4-q1",
+      "q": "¿Cuál es la función legal de la Tesorería General de la Seguridad Social (TGSS) en el sistema español?",
+      "options": [
+        "Es un servicio común titular del patrimonio único, competente en inscripción de empresas, afiliación y recaudación",
+        "Gestiona el pago de las pensiones contributivas de jubilación e incapacidad",
+        "Se encarga del reconocimiento del desempleo en exclusiva",
+        "Es un tribunal que juzga despidos improcedentes"
       ],
+      "answer": 0,
+      "explain": "Art. 74 TRLGSS: La TGSS es un servicio común con personalidad jurídica propia que tiene a su cargo la gestión unificada de los recursos financieros y del sistema de recaudación, afiliación, altas y bajas, y titularidad del patrimonio único de la Seguridad Social."
     },
+    {
+      "id": "w3-t4-q2",
+      "q": "¿Qué entidad gestora reconoce y gestiona las pensiones contributivas de jubilación, incapacidad permanente, viudedad y orfandad?",
+      "options": [
+        "El Instituto Nacional de la Seguridad Social (INSS)",
+        "El Instituto de Mayores y Servicios Sociales (IMSERSO)",
+        "La Tesorería General de la Seguridad Social (TGSS)",
+        "El Servicio Público de Empleo Estatal (SEPE)"
+      ],
+      "answer": 0,
+      "explain": "Art. 71 TRLGSS: El Instituto Nacional de la Seguridad Social (INSS) tiene a su cargo la gestión y administración de las prestaciones económicas del sistema de la Seguridad Social en su modalidad contributiva."
+    },
+    {
+      "id": "w3-t4-q3",
+      "q": "¿Cuáles son los regímenes especiales integrados actualmente en el sistema de la Seguridad Social?",
+      "options": [
+        "Trabajadores por Cuenta Propia o Autónomos (RETA), Trabajadores del Mar y Minería del Carbón",
+        "Exclusivamente el de funcionarios de la Unión Europea",
+        "El régimen de deportistas de élite y el de artistas independientes",
+        "El régimen mercantil y el régimen militar voluntario"
+      ],
+      "answer": 0,
+      "explain": "Art. 10 TRLGSS: Son regímenes especiales: el Régimen Especial de Trabajadores Autónomos (RETA), el Régimen de los Trabajadores del Mar y el Régimen de la Minería del Carbón (los regímenes agrario y de empleados de hogar quedaron integrados en el Régimen General como sistemas especiales)."
+    }
   ],
-  blockQs: [
-    Q("w3-t4-q1", "¿A partir de qué edad puede un menor de edad prestar válidamente su consentimiento para el tratamiento de datos en España (art. 7 LOPDGDD)?", ["14 años", "16 años", "18 años", "12 años"], 0, "Art. 7.1 LO 3/2018: el tratamiento de los datos personales de un menor de edad únicamente podrá fundarse en su consentimiento cuando sea mayor de catorce años."),
-    Q("w3-t4-q2", "¿En cuál de los siguientes supuestos es preceptivo y obligatorio designar un Delegado de Protección de Datos (DPD)?", ["En todas las autoridades y organismos públicos del sector público", "Únicamente en empresas con más de 5.000 trabajadores", "Solo en clínicas veterinarias", "En ningún caso, es siempre voluntario"], 0, "Art. 37.1.a RGPD y art. 34 LOPDGDD: el nombramiento de DPD es obligatorio cuando el tratamiento lo lleve a cabo una autoridad u organismo público."),
-    Q("w3-t4-q3", "El principio de 'minimización de datos' recogido en el art. 5.1.c del RGPD exige que los datos personales sean:", ["Adecuados, pertinentes y limitados a lo necesario en relación con los fines para los que son tratados", "Almacenados indefinidamente por si fueran útiles en el futuro", "Compartidos libremente con cualquier entidad", "Exclusivamente números y cifras"], 0, "Art. 5.1.c RGPD: los datos deben ser adecuados, pertinentes y estrictamente limitados a lo necesario en relación con los fines para los que son tratados."),
+  "bossQs": [
+    {
+      "id": "w3-t4-b1",
+      "q": "¿A qué principio responde la financiación separada entre prestaciones contributivas y no contributivas pactada en el Pacto de Toledo?",
+      "options": [
+        "Principio de separación de fuentes de financiación (cotizaciones financian contributivas; impuestos financian universales/no contributivas)",
+        "Principio de capitalización individual privada obligatoria",
+        "Principio de autofinanciación municipal del desempleo",
+        "Principio de endeudamiento ilimitado del fondo de reserva"
+      ],
+      "answer": 0,
+      "explain": "Art. 109 TRLGSS y recomendaciones del Pacto de Toledo: Las prestaciones contributivas se financian prioritariamente con cotizaciones sociales; las prestaciones no contributivas y universales se financian con transferencias de los Presupuestos Generales del Estado."
+    },
+    {
+      "id": "w3-t4-b2",
+      "q": "¿Qué prestación pública no contributiva garantiza un nivel mínimo de renta a los hogares en situación de vulnerabilidad económica?",
+      "options": [
+        "El Ingreso Mínimo Vital (Ley 19/2021)",
+        "La prestación por desempleo contributiva",
+        "El subsidio para mayores de 52 años",
+        "La pensión de incapacidad temporal"
+      ],
+      "answer": 0,
+      "explain": "La Ley 19/2021 establece el Ingreso Mínimo Vital como prestación no contributiva de la Seguridad Social para prevenir el riesgo de pobreza y exclusión social."
+    },
+    {
+      "id": "w3-t4-b3",
+      "q": "¿En qué plazo de incapacidad temporal se extingue la situación ordinaria y se inicia el expediente de incapacidad permanente?",
+      "options": [
+        "Agotado el plazo de 545 días naturales (365 días + 180 días de prórroga)",
+        "A los 90 días naturales",
+        "A los 180 días improrrogables",
+        "A los 3 años de baja continuada"
+      ],
+      "answer": 0,
+      "explain": "Art. 169 TRLGSS: La incapacidad temporal tiene una duración máxima de 365 días, prorrogables por otros 180 días (total 545 días), transcurridos los cuales se examina la incapacidad permanente."
+    }
   ],
-  bossQs: [
-    Q("w3-t4-b1", "El principio de 'responsabilidad proactiva' (accountability) del RGPD impone al responsable del tratamiento la obligación de:", ["Aplicar medidas técnicas y organizativas apropiadas y ser capaz de demostrar que el tratamiento es conforme con el RGPD", "Esperar a recibir una denuncia ciudadana para tomar medidas", "Pagar un seguro a todo riesgo contra multas", "Subcontratar obligatoriamente el tratamiento en el extranjero"], 0, "Art. 5.2 RGPD: el responsable del tratamiento será responsable del cumplimiento de los principios y capaz de demostrarlo (responsabilidad proactiva)."),
-    Q("w3-t4-b2", "¿Cuál es la autoridad administrativa independiente de ámbito estatal encargada de velar por el cumplimiento de la normativa de protección de datos?", ["La Agencia Española de Protección de Datos (AEPD)", "El Defensor del Pueblo", "El Consejo de Seguridad Nuclear", "El Centro Criptológico Nacional"], 0, "Art. 42 LOPDGDD: la AEPD es una autoridad administrativa independiente de ámbito estatal con personalidad jurídica propia y plena independencia."),
-    Q("w3-t4-b3", "Entre los derechos digitales garantizados en el Título X de la Ley Orgánica 3/2018 se incluye expresamente:", ["El derecho a la desconexión digital en el ámbito laboral y el derecho a la intimidad frente a dispositivos de videovigilancia y geolocalización", "El derecho a piratear software educativo", "La prohibición de usar ordenadores en el trabajo", "El derecho a cobrar sin fichar"], 0, "Arts. 87 a 90 LO 3/2018: regula la intimidad de los trabajadores frente al uso de dispositivos digitales, videovigilancia, geolocalización y el derecho a la desconexión digital."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de los Derechos ARCO-POL",
-    prompt: "Relaciona cada derecho de protección de datos con su contenido.",
-    pairs: [
-      ["Derecho de Acceso", "Conocer si se están tratando los datos y obtener copia gratuita"],
-      ["Derecho de Supresión ('olvido')", "Eliminación de los datos cuando ya no sean necesarios para el fin"],
-      ["Derecho a la Portabilidad", "Recibir los datos en formato estructurado y transmitirlos a otro responsable"],
-      ["Derecho de Oposición", "Oponerse al tratamiento por motivos relacionados con su situación particular"],
+  "mini": {
+    "type": "match",
+    "title": "Entidades Gestoras y Servicios Comunes de la Seguridad Social",
+    "prompt": "Empareja cada organismo con su competencia exclusiva en el sistema.",
+    "pairs": [
+      [
+        "INSS",
+        "Gestión y reconocimiento de prestaciones económicas contributivas"
+      ],
+      [
+        "TGSS",
+        "Caja única, patrimonio, afiliación, altas, bajas y recaudación de cuotas"
+      ],
+      [
+        "IMSERSO",
+        "Servicios sociales complementarios y pensiones no contributivas"
+      ],
+      [
+        "ISM",
+        "Gestión de prestaciones y formación del sector marítimo y pesquero"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Defraudador de Cuotas",
+    "kind": "ogre",
+    "intro": [
+      "¡Contrataré trabajadores sin alta previa en la Seguridad Social ni cotizaciones!"
     ],
+    "defeat": [
+      "¡Inspección de Trabajo y Seguridad Social! Acta de liquidación de oficio y sanción por falta muy grave (LISOS)."
+    ]
   },
-  boss: {
-    name: "El Rastreador Ilegal",
-    kind: "cloud",
-    intro: ["¡Trafico con bases de datos públicas y rastreo a los ciudadanos sin consentimiento! ¡Nadie me frenará!"],
-    defeat: ["¡El RGPD y la AEPD han impuesto sanciones demoledoras! La privacidad está a salvo."],
-  },
-  summary: [
-    "Marco: RGPD (Reglamento UE 2016/679) y LO 3/2018 (LOPDGDD). Menores: consentimiento válido a partir de 14 años en España.",
-    "Principios art. 5 RGPD: licitud, lealtad, transparencia, limitación finalidad, minimización, exactitud, plazo limitado, confidencialidad y responsabilidad proactiva.",
-    "Derechos: acceso, rectificación, supresión, limitación, portabilidad, oposición (ARCO-POL). Derechos digitales: desconexión laboral, intimidad videovigilancia.",
-    "Figuras: Responsable, Encargado, DPD (obligatorio en sector público). Autoridad de control: AEPD.",
-  ],
+  "summary": [
+    "Art. 41 CE: régimen público de Seguridad Social para todos los ciudadanos ante situaciones de necesidad.",
+    "TRLGSS (RDL 8/2015): Régimen General y Regímenes Especiales (RETA, Mar, Carbón).",
+    "Nivel contributivo (cotizaciones) vs Nivel no contributivo (impuestos del Estado, Pacto de Toledo art. 109).",
+    "Entidades: INSS (prestaciones contributivas), TGSS (patrimonio único, caja única, afiliación y recaudación), IMSERSO e ISM.",
+    "Ingreso Mínimo Vital (Ley 19/2021) como suelo estatal contra la pobreza."
+  ]
 };
 
 export const W3_T5: MiniWorldDef = {
-  id: "politicas-t5",
-  num: 5,
-  temaTitle: "Tema 5: Políticas de igualdad, contra la violencia de género, discapacidad y dependencia",
-  name: "Foro de la Igualdad y la Inclusión",
-  emoji: "🤝",
-  theme: "politicas",
-  color: "#196f3d",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t5",
+  "num": 5,
+  "temaTitle": "Tema 5: La evolución del empleo en España. Los servicios públicos de empleo: régimen de prestaciones y políticas de empleo.",
+  "name": "Ágora del Empleo",
+  "emoji": "👷",
+  "theme": "politicas",
+  "color": "#0284c7",
+  "enemy": "reloj",
+  "enemyName": "Precariedad laboral",
+  "npcs": [
     {
-      name: "Doctora Igualdad",
-      role: "Igualdad (LO 3/2007), Violencia (LO 1/2004) y Dependencia (Ley 39/2006)",
-      look: { skin: "#d6a074", hair: "#a23bd1", hairStyle: "curly", shirt: "#9b59b6", pants: "#2c2c54", acc: ["badge", "scarf"], accColor: "#f1c40f" },
-      pages: [
-        "Ley Orgánica 3/2007 para la igualdad efectiva de mujeres y hombres: transversalidad del principio de igualdad en todas las políticas públicas.",
-        "Planes de igualdad: obligatorios en empresas de 50 o más personas trabajadoras (tras el RDL 6/2019). Principio de presencia equilibrada: ningún sexo tendrá una presencia inferior al 40% ni superior al 60% en órganos directivos y comités.",
-        "Ley Orgánica 1/2004 de Medidas de Protección Integral contra la Violencia de Género: protege a las mujeres frente a la violencia ejercida por quienes sean o hayan sido sus cónyuges o parejas. Creó los Juzgados de Violencia sobre la Mujer y la Delegación del Gobierno.",
-        "Discapacidad: Texto Refundido RDL 1/2013 (igualdad de oportunidades y accesibilidad universal).",
-        "Dependencia: Ley 39/2006 (SAAD): tres grados: Grado I (dependencia moderada), Grado II (dependencia severa) y Grado III (gran dependencia).",
+      "name": "Orientador Laboral del SEPE",
+      "role": "Políticas activas y pasivas de empleo y servicios públicos",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#4b5563",
+        "hairStyle": "short",
+        "shirt": "#0284c7",
+        "pants": "#075985",
+        "acc": [
+          "headset",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El art. 40.1 CE encomienda a los poderes públicos realizar de manera prioritaria una política orientada al pleno empleo.",
+        "Ley 3/2023 de Empleo: moderniza el Sistema Nacional de Empleo, integrado por el Servicio Público de Empleo Estatal (SEPE) y los servicios públicos de empleo de las CCAA.",
+        "Políticas de empleo:",
+        "1. Políticas activas: intermediación, formación para el empleo, orientación personalizada, fomento de la contratación y emprendimiento.",
+        "2. Políticas pasivas (protección por desempleo, Título III TRLGSS):",
+        "• Nivel contributivo: cotización mínima de 360 días en los 6 años anteriores. Duración de 120 días a 720 días. Cuantía: 70% de la base reguladora los primeros 180 días y 60% a partir del día 181.",
+        "• Nivel asistencial (subsidios por desempleo): carencia de rentas individuales (<75% SMI), subsidio con cargas familiares, subsidio para mayores de 52 años (cotiza para jubilación)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t5-q1",
+      "q": "¿Cuál es el período mínimo de cotización para tener derecho a la prestación contributiva por desempleo en España?",
+      "options": [
+        "Al menos 360 días dentro de los 6 años anteriores a la situación legal de desempleo",
+        "180 días en los últimos 2 años",
+        "720 días continuados",
+        "90 días en el año en curso"
       ],
+      "answer": 0,
+      "explain": "Art. 269.1 TRLGSS: Se requiere haber cotizado por desempleo un mínimo de trescientos sesenta días dentro de los seis años anteriores a la situación legal de desempleo."
     },
+    {
+      "id": "w3-t5-q2",
+      "q": "¿Qué porcentaje de la base reguladora se percibe durante los primeros 180 días de prestación contributiva de desempleo?",
+      "options": [
+        "El 70 por ciento de la base reguladora",
+        "El 60 por ciento",
+        "El 80 por ciento",
+        "El 50 por ciento"
+      ],
+      "answer": 0,
+      "explain": "Art. 270.1 TRLGSS: La cuantía de la prestación será el 70% de la base reguladora durante los primeros 180 días y el 60% a partir del día 181."
+    },
+    {
+      "id": "w3-t5-q3",
+      "q": "¿Qué norma vigente aprueba el marco general de la Ley de Empleo y el Sistema Nacional de Empleo?",
+      "options": [
+        "La Ley 3/2023, de 28 de febrero, de Empleo",
+        "El Real Decreto Legislativo 3/2015",
+        "La Ley 56/2003 de Empleo",
+        "La Ley Orgánica 11/1985"
+      ],
+      "answer": 0,
+      "explain": "La Ley 3/2023, de 28 de febrero, de Empleo, es la norma vigente que reordenó el Sistema Nacional de Empleo y las políticas activas de empleo."
+    }
   ],
-  blockQs: [
-    Q("w3-t5-q1", "A partir de cuántas personas trabajadoras es legalmente obligatorio que una empresa elabore y aplique un plan de igualdad (LO 3/2007)?", ["50 o más personas trabajadoras", "100 o más personas", "250 o más personas", "25 o más personas"], 0, "Tras la reforma introducida por el Real Decreto-ley 6/2019 en el art. 45 de la LO 3/2007, las empresas de 50 o más trabajadores están obligadas a contar con un plan de igualdad."),
-    Q("w3-t5-q2", "El principio de 'composición o presencia equilibrada' recogido en la LO 3/2007 se define como aquella presencia en la que:", ["Las personas de cada sexo no superen el 60% ni sean menos del 40%", "Haya exactamente el 50% de cada sexo sin excepción", "Haya al menos un 25% de mujeres", "La dirección esté ocupada por un 80% de mujeres"], 0, "Disposición adicional 1ª LO 3/2007: presencia equilibrada de mujeres y hombres es la situación en que las personas de cada sexo no superen el sesenta por ciento ni sean menos del cuarenta por ciento."),
-    Q("w3-t5-q3", "¿Cuántos grados de dependencia establece la Ley 39/2006 (SAAD)?", ["Tres grados (I: moderada, II: severa, III: gran dependencia)", "Dos grados (leve y grave)", "Cuatro grados con niveles subalternos", "Cinco grados fijados médicamente"], 0, "Art. 26 Ley 39/2006: la situación de dependencia se clasifica en tres grados: Grado I (dependencia moderada), Grado II (dependencia severa) y Grado III (gran dependencia)."),
+  "bossQs": [
+    {
+      "id": "w3-t5-b1",
+      "q": "¿Qué característica esencial tiene el subsidio por desempleo para mayores de 52 años?",
+      "options": [
+        "Cotiza para la pensión de jubilación y se percibe hasta alcanzar la edad ordinaria de jubilación",
+        "Es una ayuda temporal de solo 6 meses improrrogables",
+        "No exige carencia de rentas",
+        "Se abona exclusivamente a tiempo parcial"
+      ],
+      "answer": 0,
+      "explain": "Art. 274 y 280 TRLGSS: El subsidio para trabajadores mayores de 52 años cotiza por la contingencia de jubilación y se mantiene hasta el cumplimiento de la edad ordinaria de jubilación."
+    },
+    {
+      "id": "w3-t5-b2",
+      "q": "¿Qué requisito de rentas se exige con carácter general para acceder a los subsidios por desempleo asistenciales?",
+      "options": [
+        "Carecer de rentas de cualquier naturaleza superiores, en cómputo mensual, al 75% del Salario Mínimo Interprofesional",
+        "Tener rentas inferiores al doble del IPREM",
+        "Carecer de bienes inmuebles en propiedad",
+        "Estar en situación de concurso de acreedores"
+      ],
+      "answer": 0,
+      "explain": "Art. 274 TRLGSS: Carencia de rentas propias superiores al 75 por ciento del salario mínimo interprofesional, excluida la parte proporcional de dos pagas extraordinarias."
+    },
+    {
+      "id": "w3-t5-b3",
+      "q": "¿Qué organismo estatal gestiona las prestaciones por desempleo y coordina el Sistema Nacional de Empleo?",
+      "options": [
+        "El Servicio Público de Empleo Estatal (SEPE)",
+        "El Instituto de la Juventud",
+        "La Dirección General de Tributos",
+        "El Fondo de Garantía Salarial (FOGASA) exclusivamente"
+      ],
+      "answer": 0,
+      "explain": "El SEPE (antiguo INEM), organismo autónomo adscrito al Ministerio de Trabajo, gestiona las prestaciones por desempleo y la intermediación laboral en el ámbito estatal."
+    }
   ],
-  bossQs: [
-    Q("w3-t5-b1", "La Ley Orgánica 1/2004 de violencia de género circunscribe su ámbito de protección penal e integral a la violencia ejercida sobre:", ["La mujer por parte de quien sea o haya sido su cónyuge o de quien esté o haya estado ligado a ella por relaciones similares de afectividad", "Cualquier miembro de la familia sin distinción de sexo", "Exclusivamente a los menores de edad", "Los empleados de hogar"], 0, "Art. 1.1 LO 1/2004: la presente Ley tiene por objeto actuar contra la violencia que se ejerce sobre las mujeres por parte de quienes sean o hayan sido sus cónyuges o de quienes estén o hayan estado ligados a ellas por relaciones similares de afectividad, aun sin convivencia."),
-    Q("w3-t5-b2", "¿Qué juzgados especializados del orden penal y civil fueron creados por la Ley Orgánica 1/2004?", ["Los Juzgados de Violencia sobre la Mujer", "Los Juzgados de lo Social de Emergencia", "Las Salas de Amparo del Tribunal Supremo", "Los Tribunales Tutelares de Menores"], 0, "La LO 1/2004 modificó la LOPJ creando los Juzgados de Violencia sobre la Mujer con competencias penales y civiles conexas."),
-    Q("w3-t5-b3", "En las ofertas de empleo público de la AGE, ¿qué porcentaje de plazas se reserva legalmente para ser cubiertas por personas con discapacidad?", ["Un cupo no inferior al 7% (con al menos el 2% para discapacidad intelectual)", "Un cupo del 3%", "Un 10% sin distinción", "Un 5% voluntario"], 0, "Art. 59 EBEP: en las ofertas de empleo público se reservará un cupo no inferior al siete por ciento de las vacantes para ser cubiertas entre personas con discapacidad, reservando al menos el dos por ciento para personas con discapacidad intelectual."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de la Legislación Social y de Igualdad",
-    prompt: "Asocia cada ley fundamental con su objeto prioritario de protección.",
-    pairs: [
-      ["Ley Orgánica 3/2007", "Igualdad efectiva de mujeres y hombres y planes de igualdad"],
-      ["Ley Orgánica 1/2004", "Protección integral contra la violencia de género"],
-      ["Ley 39/2006 (SAAD)", "Autonomía personal y tres grados de dependencia"],
-      ["RDL 1/2013", "Derechos de las personas con discapacidad e inclusión social"],
+  "mini": {
+    "type": "match",
+    "title": "Niveles de Protección por Desempleo",
+    "prompt": "Empareja cada modalidad de protección con sus requisitos de acceso.",
+    "pairs": [
+      [
+        "Contributiva (desempleo)",
+        "Mínimo 360 días cotizados en los 6 años previos (70% luego 60%)"
+      ],
+      [
+        "Subsidio asistencial general",
+        "Carencia de rentas (<75% SMI) tras agotar contributiva"
+      ],
+      [
+        "Subsidio mayores de 52 años",
+        "Cotiza para jubilación y dura hasta la edad ordinaria de retiro"
+      ],
+      [
+        "Políticas Activas de Empleo",
+        "Formación, intermediación y orientación laboral (SEPE y CCAA)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Explotador Clandestino",
+    "kind": "ogre",
+    "intro": [
+      "¡Contrataré en la economía sumergida sin derecho a desempleo!"
     ],
+    "defeat": [
+      "¡Inspección de Trabajo y Ley 3/2023 de Empleo! Alta forzosa y reconocimiento íntegro de derechos prestacionales."
+    ]
   },
-  boss: {
-    name: "El Tirano de la Brecha",
-    kind: "cloud",
-    intro: ["¡Promuevo la discriminación salarial y el desamparo de la dependencia! ¡Jamás lograrás la igualdad real!"],
-    defeat: ["¡La LO 3/2007 y el Sistema de Dependencia han quebrado la brecha! La justicia social se impone."],
-  },
-  summary: [
-    "LO 3/2007 (Igualdad): transversalidad, presencia equilibrada (40%-60%), planes de igualdad obligatorios en empresas de 50 o más trabajadores.",
-    "LO 1/2004 (Violencia de género): protección integral a mujeres frente a parejas o exparejas; creación de Juzgados de Violencia sobre la Mujer y Delegación del Gobierno.",
-    "Ley 39/2006 (SAAD): Grado I (moderada), Grado II (severa), Grado III (gran dependencia).",
-    "Discapacidad (RDL 1/2013 y art. 59 EBEP): reserva mínima del 7% en Ofertas de Empleo Público (mínimo 2% discapacidad intelectual).",
-  ],
+  "summary": [
+    "Art. 40.1 CE: mandato de orientación hacia el pleno empleo.",
+    "Ley 3/2023 de Empleo: Sistema Nacional de Empleo (SEPE y servicios autonómicos).",
+    "Desempleo contributivo (art. 269 TRLGSS): 360 días en 6 años. 70% base (180 días) y 60% resto. Máx. 720 días.",
+    "Subsidios asistenciales: carencia de rentas (<75% SMI).",
+    "Subsidio mayores de 52 años: cotiza para jubilación hasta alcanzar la edad ordinaria."
+  ]
 };
 
 export const W3_T6: MiniWorldDef = {
-  id: "politicas-t6",
-  num: 6,
-  temaTitle: "Tema 6: Agenda 2030, Cambio Climático y Políticas Migratorias",
-  name: "Pabellón de la Sostenibilidad Global",
-  emoji: "🌱",
-  theme: "politicas",
-  color: "#145a32",
-  enemy: "nube",
-  enemyName: "Nubes de smog",
-  npcs: [
+  "id": "politicas-t6",
+  "num": 6,
+  "temaTitle": "Tema 6: Política de inmigración. Régimen de los extranjeros en España. Derecho de asilo y condición de refugiado.",
+  "name": "Frontera y Refugio",
+  "emoji": "🛂",
+  "theme": "politicas",
+  "color": "#0ea5e9",
+  "enemy": "urna",
+  "enemyName": "Tráfico de personas",
+  "npcs": [
     {
-      name: "Capitán Agenda",
-      role: "Agenda 2030, Cambio Climático y Asilo",
-      look: { skin: "#f0bf94", hair: "#27ae60", hairStyle: "short", shirt: "#27ae60", pants: "#145a32", acc: ["hardhat", "badge"], accColor: "#f1c40f" },
-      pages: [
-        "La Agenda 2030 para el Desarrollo Sostenible fue aprobada por la Asamblea General de la ONU en septiembre de 2015: contiene 17 Objetivos de Desarrollo Sostenible (ODS) y 169 metas, bajo el lema universal de 'no dejar a nadie atrás'.",
-        "Medio ambiente y clima: la Ley 7/2021, de 20 de mayo, de cambio climático y transición energética marca el compromiso vinculante de alcanzar la neutralidad climática a más tardar en el año 2050, en línea con el Acuerdo de París y el Pacto Verde Europeo.",
-        "Política migratoria y extranjería: Ley Orgánica 4/2000, sobre derechos y libertades de los extranjeros en España y su integración social (vías de estancia, residencia temporal, residencia de larga duración y reagrupación familiar).",
-        "Asilo y protección internacional: Ley 12/2009, de 30 de octubre, reguladora del derecho de asilo y de la protección subsidiaria, dictada al amparo de la Convención de Ginebra de 1951.",
+      "name": "Oficial de Extranjería y Asilo",
+      "role": "Régimen de extranjeros, derecho de asilo y protección internacional",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#1e293b",
+        "hairStyle": "short",
+        "shirt": "#0284c7",
+        "pants": "#0f172a",
+        "acc": [
+          "badge",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Art. 13 CE: los extranjeros gozan en España de las libertades públicas garantizadas por el Título I en los términos establecidos por los tratados y la ley.",
+        "Ley Orgánica 4/2000 sobre derechos y libertades de los extranjeros en España y su integración social (Ley de Extranjería):",
+        "• Situaciones: estancia (corta duración, máx. 90 días) y residencia (temporal de más de 90 días hasta 5 años; de larga duración: continuada de 5 años).",
+        "• Vías de regularización: autorizaciones por arraigo (laboral, social, familiar, para la formación).",
+        "• Régimen sancionador: infracciones leves, graves (ej. estancia irregular) y muy graves; sanción de multa o expulsión del territorio nacional (con prohibición de entrada de hasta 5 años).",
+        "Ley 12/2009 reguladora del derecho de asilo y de la protección internacional: derecho al reconocimiento del estatuto de refugiado (Convención de Ginebra de 1951) y protección subsidiaria. Principio de 'no devolución' (non-refoulement)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t6-q1",
+      "q": "¿Cuántos años de residencia continuada en España se exigen con carácter general para obtener la residencia de larga duración?",
+      "options": [
+        "Cinco años de residencia legal y continuada",
+        "Dos años",
+        "Diez años",
+        "Tres años ininterrumpidos"
       ],
+      "answer": 0,
+      "explain": "Art. 32 LO 4/2000: Tendrán derecho a la residencia de larga duración las personas que hayan residido legalmente y de forma continuada en el territorio español durante cinco años."
     },
+    {
+      "id": "w3-t6-q2",
+      "q": "¿Qué principio fundamental del Derecho Internacional de refugiados prohíbe devolver a una persona a un país donde su vida o libertad peligren?",
+      "options": [
+        "Principio de no devolución (non-refoulement)",
+        "Principio de reciprocidad consular",
+        "Principio de soberanía de frontera estricta",
+        "Principio de expulsión expedita"
+      ],
+      "answer": 0,
+      "explain": "Art. 19 Ley 12/2009 y Convención de Ginebra de 1951: El principio de no devolución impide retornar a una persona solicitante de asilo a un país donde sufra persecución o riesgo de tortura."
+    },
+    {
+      "id": "w3-t6-q3",
+      "q": "¿Cuál es el período máximo ordinario de la situación de estancia en España para extranjeros no comunitarios?",
+      "options": [
+        "Hasta un máximo de 90 días por período de 180 días",
+        "Un año renovable",
+        "30 días improrrogables",
+        "6 meses consecutivos"
+      ],
+      "answer": 0,
+      "explain": "Art. 30 LO 4/2000 y Código de Fronteras Schengen: La estancia es la permanencia en territorio español por un período no superior a 90 días por semestre."
+    }
   ],
-  blockQs: [
-    Q("w3-t6-q1", "¿Cuántos Objetivos de Desarrollo Sostenible (ODS) y metas integran la Agenda 2030 de la ONU?", ["17 ODS y 169 metas", "10 ODS y 100 metas", "20 ODS y 200 metas", "8 ODS y 50 metas"], 0, "Aprobada por la ONU en septiembre de 2015, la Agenda 2030 comprende 17 Objetivos de Desarrollo Sostenible y 169 metas conexas."),
-    Q("w3-t6-q2", "La Ley 7/2021 de cambio climático y transición energética fija como objetivo que España alcance la neutralidad climática a más tardar en el año:", ["2050", "2030", "2040", "2060"], 0, "Art. 3 Ley 7/2021: antes de 2050 el sistema eléctrico español deberá estar basado exclusivamente en fuentes de energía de origen renovable y se alcanzará la neutralidad climática."),
-    Q("w3-t6-q3", "¿Qué norma legal regula en España el estatuto de refugiado y la protección subsidiaria?", ["La Ley 12/2009, de 30 de octubre", "La Ley Orgánica 4/2000", "La Ley 19/2013", "El Real Decreto 203/2021"], 0, "La Ley 12/2009, de 30 de octubre, regula el derecho de asilo y de la protección subsidiaria en cumplimiento de las directivas europeas y el Convenio de Ginebra."),
+  "bossQs": [
+    {
+      "id": "w3-t6-b1",
+      "q": "¿Cuál es la duración máxima general de la prohibición de entrada aparejada a una orden de expulsión (art. 58 LO 4/2000)?",
+      "options": [
+        "Hasta cinco años, prorrogable a diez en supuestos graves de seguridad",
+        "Diez años en todo caso",
+        "Un año máximo",
+        "Prohibición perpetua irrevocable"
+      ],
+      "answer": 0,
+      "explain": "Art. 58.2 LO 4/2000: La expulsión conllevará en todo caso la prohibición de entrada en territorio español, cuya duración no podrá exceder de cinco años salvo amenaza grave a la seguridad pública (hasta 10 años)."
+    },
+    {
+      "id": "w3-t6-b2",
+      "q": "¿A qué órgano colegiado le corresponde elevar propuestas sobre concesión o denegación de asilo en España?",
+      "options": [
+        "A la Comisión Interministerial de Asilo y Refugio (CIAR)",
+        "Al Tribunal Constitucional",
+        "Al Consejo de Seguridad Nacional",
+        "A la Dirección General de Aduanas"
+      ],
+      "answer": 0,
+      "explain": "Art. 23 Ley 12/2009: La Comisión Interministerial de Asilo y Refugio (CIAR) examina las solicitudes y formula la propuesta de resolución al Ministro del Interior."
+    },
+    {
+      "id": "w3-t6-b3",
+      "q": "¿Qué derecho de sufragio pueden ejercer los extranjeros residentes en España según el art. 13.2 CE?",
+      "options": [
+        "Solamente el sufragio activo y pasivo en las elecciones municipales, atendiendo a criterios de reciprocidad",
+        "Sufragio universal en elecciones generales y autonómicas",
+        "Ningún derecho de voto en ningún comicio",
+        "Voto en elecciones al Senado exclusivamente"
+      ],
+      "answer": 0,
+      "explain": "Art. 13.2 CE: Solamente los españoles serán titulares de los derechos reconocidos en el art. 23, salvo lo que por tratados o ley pueda establecerse para el derecho de sufragio activo y pasivo en las elecciones municipales atendiendo a criterios de reciprocidad."
+    }
   ],
-  bossQs: [
-    Q("w3-t6-b1", "¿Cuál de los siguientes ODS corresponde al Objetivo 5 de la Agenda 2030?", ["Igualdad de género", "Fin de la pobreza", "Agua limpia y saneamiento", "Acción por el clima"], 0, "ODS 1: Fin de la pobreza; ODS 3: Salud y bienestar; ODS 5: Lograr la igualdad de género y empoderar a todas las mujeres y las niñas; ODS 13: Acción por el clima."),
-    Q("w3-t6-b2", "Según la Ley Orgánica 4/2000 de extranjería, la situación que autoriza a residir y trabajar en España indefinidamente en las mismas condiciones que los españoles se denomina:", ["Residencia de larga duración", "Estancia por estudios", "Residencia temporal", "Asilo provisional"], 0, "Art. 32 LO 4/2000: la residencia de larga duración autoriza a residir y trabajar en España indefinidamente en las mismas condiciones que los españoles (obtenida tras 5 años continuados)."),
-    Q("w3-t6-b3", "La protección subsidiaria regulada en la Ley 12/2009 se concede a quien, no reuniendo los requisitos para ser refugiado:", ["Se dan motivos fundados para creer que si regresara a su país enfrentaría un riesgo real de sufrir daños graves (pena de muerte, tortura o violencia indiscriminada)", "Pide trabajo temporal en la vendimia", "Cometió delitos contra la paz", "Desea realizar estudios universitarios"], 0, "Art. 4 Ley 12/2009: protege a quien afrontaría daños graves como condena a muerte, torturas o amenazas graves en situaciones de conflicto armado."),
-  ],
-  mini: {
-    type: "match",
-    title: "Prueba de la Agenda 2030 y el Medio Ambiente",
-    prompt: "Empareja cada número de ODS con su denominación oficial.",
-    pairs: [
-      ["ODS 1", "Fin de la pobreza"],
-      ["ODS 5", "Igualdad de género"],
-      ["ODS 8", "Trabajo decente y crecimiento económico"],
-      ["ODS 13", "Acción por el clima"],
-      ["ODS 16", "Paz, justicia e instituciones sólidas"],
+  "mini": {
+    "type": "match",
+    "title": "Situaciones de los Extranjeros y Protección Internacional",
+    "prompt": "Empareja cada categoría legal con su régimen específico en España.",
+    "pairs": [
+      [
+        "Estancia",
+        "Permanencia no superior a 90 días por semestre sin finalidad laboral"
+      ],
+      [
+        "Residencia temporal",
+        "Autorización superior a 90 días e inferior a 5 años"
+      ],
+      [
+        "Residencia de larga duración",
+        "Residencia legal y continuada durante al menos 5 años"
+      ],
+      [
+        "Protección subsidiaria",
+        "Para quien no es refugiado pero sufriría daños graves si regresa"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Traficante de Fronteras",
+    "kind": "ghost",
+    "intro": [
+      "¡Vulneraré las garantías de asilo y expulsaré sin asistencia letrada!"
     ],
+    "defeat": [
+      "¡Art. 13 CE y Ley 12/2009! Asistencia jurídica gratuita a solicitantes de asilo y tutela judicial efectiva garantizadas."
+    ]
   },
-  boss: {
-    name: "El Emisor Contaminante",
-    kind: "cloud",
-    intro: ["¡Inundaré la atmósfera con gases de efecto invernadero y destruiré los ODS! ¡El planeta no importa!"],
-    defeat: ["¡La Ley 7/2021 y la Agenda 2030 han impuesto la transición ecológica! El futuro es verde y sostenible."],
-  },
-  summary: [
-    "Agenda 2030: 17 ODS y 169 metas aprobados por la ONU en 2015 ('no dejar a nadie atrás').",
-    "Cambio climático (Ley 7/2021): neutralidad climática vinculante antes de 2050.",
-    "Extranjería (LO 4/2000): estancia, residencia temporal y residencia de larga duración (5 años).",
-    "Asilo y refugio (Ley 12/2009): estatuto de refugiado y protección subsidiaria conforme al Convenio de Ginebra de 1951.",
-  ],
+  "summary": [
+    "Art. 13 CE: derechos de los extranjeros según tratados y leyes. Sufragio municipal por reciprocidad (art. 13.2).",
+    "LO 4/2000 (Ley Extranjería): Estancia (máx. 90 días) y Residencia (temporal < 5 años; larga duración continuada 5 años).",
+    "Arraigo: laboral, social, familiar y formativo.",
+    "Expulsión (art. 58): prohibición de entrada general de hasta 5 años (10 si hay amenaza a seguridad).",
+    "Asilo (Ley 12/2009): estatuto de refugiado y protección subsidiaria. Principio de no devolución (non-refoulement) y propuesta por la CIAR."
+  ]
 };
 
-/* ==================== MUNDO 3 (BLOQUE III COMPLETO) ==================== */
+export const W3_T7: MiniWorldDef = {
+  "id": "politicas-t7",
+  "num": 7,
+  "temaTitle": "Tema 7: El Gobierno Abierto: concepto, principios informadores y planes de acción de España. La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno.",
+  "name": "Plaza del Gobierno Abierto",
+  "emoji": "🔍",
+  "theme": "politicas",
+  "color": "#06b6d4",
+  "enemy": "sello",
+  "enemyName": "Opacidad burocrática",
+  "npcs": [
+    {
+      "name": "Comisionada de Transparencia",
+      "role": "Gobierno abierto, transparencia y buen gobierno (Ley 19/2013)",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#374151",
+        "hairStyle": "bun",
+        "shirt": "#0891b2",
+        "pants": "#164e63",
+        "acc": [
+          "glasses",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El Gobierno Abierto es un modelo de gobernanza basado en tres pilares: transparencia, participación ciudadana y rendición de cuentas (colaboración).",
+        "España forma parte de la Alianza para el Gobierno Abierto (OGP) desde 2011, ejecutando Planes de Acción periódicos.",
+        "Ley 19/2013 de transparencia, acceso a la información pública y buen gobierno:",
+        "1. Publicidad activa (Título I, Cap. II): publicar sin necesidad de solicitud previa información institucional, organizativa, jurídica (planes, anteproyectos), de relevancia económica, presupuestaria y patrimonial (contratos, convenios, subvenciones, retribuciones de altos cargos). Portal de la Transparencia.",
+        "2. Derecho de acceso a la información pública (arts. 12 a 24): universal (todas las personas). Sin necesidad de motivar. Límites tasados (art. 14: seguridad nacional, defensa, privacidad). Silencio administrativo desestimatorio tras 1 mes (art. 20.4).",
+        "3. Consejo de Transparencia y Buen Gobierno (CTBG): autoridad administrativa independiente que resuelve las reclamaciones previas a la vía contencioso-administrativa."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t7-q1",
+      "q": "¿Quién es el titular del derecho de acceso a la información pública según el art. 12 de la Ley 19/2013?",
+      "options": [
+        "Todas las personas, sin necesidad de motivar su solicitud",
+        "Solo los ciudadanos españoles mayores de edad",
+        "Exclusivamente los interesados en un procedimiento administrativo abierto",
+        "Solo los periodistas y medios de comunicación acreditados"
+      ],
+      "answer": 0,
+      "explain": "Art. 12 Ley 19/2013: Todas las personas tienen derecho a acceder a la información pública en los términos previstos en el art. 105.b) de la Constitución y en esta Ley, sin que se exija motivar la petición."
+    },
+    {
+      "id": "w3-t7-q2",
+      "q": "¿En qué plazo debe resolver y notificar la Administración una solicitud de acceso a la información pública (art. 20 Ley 19/2013)?",
+      "options": [
+        "En el plazo máximo de un mes desde la recepción de la solicitud en el órgano competente",
+        "En el plazo de tres meses",
+        "En el plazo de quince días improrrogables",
+        "En el plazo de diez días hábiles"
+      ],
+      "answer": 0,
+      "explain": "Art. 20.1 Ley 19/2013: La resolución en la que se conceda o deniegue el acceso deberá notificarse al solicitante en el plazo máximo de un mes desde la recepción de la solicitud."
+    },
+    {
+      "id": "w3-t7-q3",
+      "q": "¿Qué sentido tiene el silencio administrativo transcurrido el plazo máximo para resolver sobre acceso a la información pública?",
+      "options": [
+        "Efecto desestimatorio (se entiende denegada la solicitud)",
+        "Efecto estimatorio positivo",
+        "Caducidad automática del procedimiento",
+        "Imposición de una multa al solicitante"
+      ],
+      "answer": 0,
+      "explain": "Art. 20.4 Ley 19/2013: Transcurrido el plazo máximo para resolver sin que se haya dictado y notificado resolución expresa, se entenderá que la solicitud ha sido desestimada."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w3-t7-b1",
+      "q": "¿Qué órgano independiente tutela el cumplimiento de la publicidad activa y resuelve las reclamaciones en materia de acceso estatal?",
+      "options": [
+        "El Consejo de Transparencia y Buen Gobierno (CTBG)",
+        "El Defensor del Pueblo",
+        "El Consejo de Estado",
+        "La Comisión Nacional de los Mercados y la Competencia"
+      ],
+      "answer": 0,
+      "explain": "Art. 33 Ley 19/2013: El Consejo de Transparencia y Buen Gobierno (CTBG) tiene como fines promover la transparencia y garantizar el cumplimiento de las obligaciones de publicidad activa y el derecho de acceso."
+    },
+    {
+      "id": "w3-t7-b2",
+      "q": "¿Qué naturaleza tiene la reclamación ante el Consejo de Transparencia y Buen Gobierno según el art. 24 de la Ley 19/2013?",
+      "options": [
+        "Es potestativa y previa a la impugnación ante la Jurisdicción Contencioso-Administrativa",
+        "Es un recurso obligatorio de alzada ante el Ministro",
+        "Es una demanda penal directa",
+        "Es una queja no vinculante"
+      ],
+      "answer": 0,
+      "explain": "Art. 24.1 Ley 19/2013: Frente a toda resolución expresa o presunta en materia de acceso podrá interponerse una reclamación ante el CTBG, con carácter potestativo y previo a su impugnación judicial contencioso-administrativa."
+    },
+    {
+      "id": "w3-t7-b3",
+      "q": "¿Cuál de los siguientes contratos de la Administración debe publicarse obligatoriamente por publicidad activa en el Portal de Transparencia?",
+      "options": [
+        "Todos los contratos, con indicación de objeto, duración, importe de licitación y adjudicación",
+        "Solo los contratos de cuantía superior a 10 millones de euros",
+        "Únicamente los contratos de personal laboral temporal",
+        "Ninguno, pues están protegidos por secreto comercial"
+      ],
+      "answer": 0,
+      "explain": "Art. 8.1.a Ley 19/2013: Los sujetos obligados deberán publicar todos los contratos, con indicación del objeto, duración, importe de licitación y adjudicación, procedimiento utilizado e instrumentos de modificación."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Pilares de la Ley 19/2013 de Transparencia",
+    "prompt": "Empareja cada institución de la ley con su rasgo característico.",
+    "pairs": [
+      [
+        "Publicidad Activa",
+        "Obligación de difundir de oficio contratos, convenios y presupuestos"
+      ],
+      [
+        "Derecho de Acceso",
+        "Universal, sin motivación obligatoria; plazo de 1 mes (silencio negativo)"
+      ],
+      [
+        "Límites de acceso (art. 14)",
+        "Seguridad nacional, defensa, relaciones exteriores y privacidad"
+      ],
+      [
+        "Reclamación ante el CTBG",
+        "Vía potestativa y gratuita previa al recurso contencioso-administrativo"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Archivero Opaco",
+    "kind": "ghost",
+    "intro": [
+      "¡Exijo que justifiques para qué quieres los presupuestos y no te contestaré jamás!"
+    ],
+    "defeat": [
+      "¡Ley 19/2013! El derecho de acceso no exige motivación. Resolución estimatoria del Consejo de Transparencia."
+    ]
+  },
+  "summary": [
+    "Gobierno Abierto: transparencia, participación ciudadana y colaboración/rendición de cuentas.",
+    "Ley 19/2013: Publicidad Activa (Portal de la Transparencia, contratos, retribuciones, subvenciones).",
+    "Derecho de acceso: todas las personas, sin motivación, plazo de 1 mes (silencio desestimatorio art. 20.4).",
+    "Límites (art. 14): aplicación proporcionada y justificada.",
+    "Consejo de Transparencia y Buen Gobierno (CTBG): autoridad independiente; reclamación potestativa previa a lo contencioso (art. 24)."
+  ]
+};
+
+export const W3_T8: MiniWorldDef = {
+  "id": "politicas-t8",
+  "num": 8,
+  "temaTitle": "Tema 8: La protección de datos personales y su régimen jurídico: principios, derechos, responsable y encargado del tratamiento, delegado y autoridades de protección de datos. Derechos digitales.",
+  "name": "Cripta de los Datos",
+  "emoji": "🔒",
+  "theme": "politicas",
+  "color": "#0284c7",
+  "enemy": "reloj",
+  "enemyName": "Vulneradores de privacidad",
+  "npcs": [
+    {
+      "name": "Delegada de Protección de Datos",
+      "role": "RGPD, LOPDGDD y Garantía de Derechos Digitales",
+      "look": {
+        "skin": "#f3c9a0",
+        "hair": "#2e2e2e",
+        "hairStyle": "short",
+        "shirt": "#0369a1",
+        "pants": "#0c4a6e",
+        "acc": [
+          "glasses",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "El art. 18.4 CE limita el uso de la informática para garantizar el honor y la intimidad familiar de los ciudadanos y el pleno ejercicio de sus derechos.",
+        "Marco vigente: Reglamento General de Protección de Datos (RGPD UE 2016/679) y Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).",
+        "Principios relativos al tratamiento (art. 5 RGPD): licitud, lealtad, transparencia, limitación de la finalidad, minimización de datos, exactitud, limitación del plazo de conservación, integridad y confidencialidad, y responsabilidad proactiva (accountability).",
+        "Derechos de los ciudadanos: Acceso, Rectificación, Supresión ('olvido'), Limitación, Portabilidad y Oposición (derechos ARSULPO).",
+        "Delegado de Protección de Datos (DPD): obligatorio en todas las Administraciones públicas (art. 34 LOPDGDD). Actúa con independencia.",
+        "Autoridades de control: Agencia Española de Protección de Datos (AEPD, autoridad estatal independiente). Derechos digitales (Título X LOPDGDD: desconexión digital, testamento digital, neutralidad de la red)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t8-q1",
+      "q": "¿En qué consiste el principio de 'responsabilidad proactiva' (accountability) consagrado en el artículo 5.2 del RGPD?",
+      "options": [
+        "El responsable del tratamiento debe aplicar medidas técnicas y organizativas apropiadas y ser capaz de demostrar que el tratamiento cumple el RGPD",
+        "La obligación de responder únicamente cuando exista denuncia formal",
+        "La presunción de culpabilidad automática de la empresa",
+        "La designación obligatoria de un juez instructor en cada tratamiento"
+      ],
+      "answer": 0,
+      "explain": "Art. 5.2 RGPD: El responsable del tratamiento será responsable del cumplimiento de lo dispuesto en el apartado 1 y capaz de demostrarlo (responsabilidad proactiva)."
+    },
+    {
+      "id": "w3-t8-q2",
+      "q": "¿Es obligatoria la designación de un Delegado de Protección de Datos (DPD) en las Administraciones públicas según la LOPDGDD?",
+      "options": [
+        "Sí, es obligatorio en todas las Administraciones públicas y sus organismos vinculados o dependientes",
+        "No, en la Administración pública es totalmente voluntario",
+        "Solo en el Ministerio del Interior",
+        "Solo en ayuntamientos de más de un millón de habitantes"
+      ],
+      "answer": 0,
+      "explain": "Art. 37.1.a RGPD y art. 34.1.a LOPDGDD: Los responsables y encargados deberán designar un Delegado de Protección de Datos cuando el tratamiento sea realizado por una autoridad u organismo público."
+    },
+    {
+      "id": "w3-t8-q3",
+      "q": "¿En qué plazo máximo debe notificar el responsable una brecha de seguridad a la AEPD si reviste riesgo para los derechos y libertades (art. 33 RGPD)?",
+      "options": [
+        "A más tardar en el plazo de 72 horas tras haber tenido constancia de ella",
+        "En un plazo máximo de 24 horas",
+        "En el plazo de 15 días hábiles",
+        "En un plazo de un mes"
+      ],
+      "answer": 0,
+      "explain": "Art. 33.1 RGPD: En caso de violación de la seguridad de los datos personales, el responsable notificará a la autoridad de control competente sin dilación indebida y, de ser posible, a más tardar 72 horas después de que haya tenido constancia de ella."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w3-t8-b1",
+      "q": "¿Qué derecho digital consagra expresamente el artículo 88 de la LOPDGDD para las personas trabajadoras?",
+      "options": [
+        "El derecho a la desconexión digital en el ámbito laboral fuera del tiempo de trabajo",
+        "El derecho a instalar cualquier software en equipos de trabajo",
+        "El derecho a negarse a cobrar por transferencia",
+        "El derecho a destruir historiales médicos"
+      ],
+      "answer": 0,
+      "explain": "Art. 88 LOPDGDD: Los trabajadores y los empleados públicos tendrán derecho a la desconexión digital a fin de garantizar, fuera del tiempo de trabajo legal o convencionalmente establecido, el respeto de su tiempo de descanso y vacaciones."
+    },
+    {
+      "id": "w3-t8-b2",
+      "q": "¿A partir de qué edad se considera lícito el consentimiento del menor para el tratamiento de sus datos personales en España (art. 7 LOPDGDD)?",
+      "options": [
+        "Catorce años",
+        "Dieciséis años",
+        "Dieciocho años",
+        "Doce años"
+      ],
+      "answer": 0,
+      "explain": "Art. 7 LOPDGDD: El tratamiento de los datos personales de un menor de edad únicamente podrá fundarse en su consentimiento cuando sea mayor de catorce años. Los menores de 14 requieren consentimiento de padres o tutores."
+    },
+    {
+      "id": "w3-t8-b3",
+      "q": "¿En qué plazo debe responder con carácter general el responsable del tratamiento ante una solicitud de ejercicio de derechos ARSULPO (art. 12.3 RGPD)?",
+      "options": [
+        "En el plazo máximo de un mes a partir de la recepción de la solicitud",
+        "En el plazo improrrogable de 10 días",
+        "En tres meses de oficio",
+        "En un año natural"
+      ],
+      "answer": 0,
+      "explain": "Art. 12.3 RGPD: El responsable facilitará la información solicitada en el plazo de un mes a partir de la recepción de la solicitud (prorrogable dos meses más si reviste especial complejidad)."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Derechos y Principios de Protección de Datos",
+    "prompt": "Empareja cada concepto con su precepto legal o definición en el RGPD / LOPDGDD.",
+    "pairs": [
+      [
+        "Minimización de datos",
+        "Datos adecuados, pertinentes y limitados a lo necesario"
+      ],
+      [
+        "Derecho de supresión",
+        "Derecho al 'olvido' cuando los datos ya no sean necesarios"
+      ],
+      [
+        "Notificación de brecha",
+        "A la AEPD en máx. 72 horas si entraña riesgo (art. 33 RGPD)"
+      ],
+      [
+        "Desconexión digital",
+        "Garantía de descanso laboral fuera de la jornada (art. 88 LOPDGDD)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Espía de la Red",
+    "kind": "cloud",
+    "intro": [
+      "¡He filtrado una base de datos pública y comercializaré con datos sensibles!"
+    ],
+    "defeat": [
+      "¡Sanción ejemplar de la AEPD y obligación de medidas técnicas de cifrado y anonimización de datos!"
+    ]
+  },
+  "summary": [
+    "Art. 18.4 CE: limitación de la informática para proteger intimidad y derechos.",
+    "RGPD y LOPDGDD (LO 3/2018): Principios de minimización, limitación, exactitud y responsabilidad proactiva.",
+    "Derechos ARSULPO: acceso, rectificación, supresión, limitación, portabilidad y oposición (plazo 1 mes).",
+    "Notificación de brechas de seguridad: en un máximo de 72 horas a la AEPD.",
+    "DPD obligatorio en el sector público (art. 34 LOPDGDD). Consentimiento válido a partir de los 14 años (art. 7 LOPDGDD).",
+    "Derechos digitales (Título X LOPDGDD): desconexión digital, intimidad ante dispositivos y cámaras, testamento digital."
+  ]
+};
+
+export const W3_T9: MiniWorldDef = {
+  "id": "politicas-t9",
+  "num": 9,
+  "temaTitle": "Tema 9: Políticas de igualdad y contra la violencia de género: régimen jurídico. Políticas de igualdad de trato y no discriminación de las personas LGTBI. Discapacidad y dependencia: régimen jurídico.",
+  "name": "Templo de la Igualdad",
+  "emoji": "⚖️",
+  "theme": "politicas",
+  "color": "#7c3aed",
+  "enemy": "urna",
+  "enemyName": "Prejuicios y discriminación",
+  "npcs": [
+    {
+      "name": "Directora del Instituto de las Mujeres",
+      "role": "Igualdad efectiva, violencia de género, LGTBI y dependencia",
+      "look": {
+        "skin": "#fcd5b5",
+        "hair": "#6b21a8",
+        "hairStyle": "long",
+        "shirt": "#6d28d9",
+        "pants": "#4c1d95",
+        "acc": [
+          "scarf",
+          "badge"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Art. 9.2 CE: corresponde a los poderes públicos promover las condiciones para que la libertad y la igualdad sean reales y efectivas.",
+        "Ley Orgánica 3/2007 para la igualdad efectiva de mujeres y hombres: transversalidad (mainstreaming de género), planes de igualdad obligatorios en empresas de 50 o más trabajadores, principio de presencia equilibrada (40%-60%).",
+        "Ley Orgánica 1/2004 de Medidas de Protección Integral contra la Violencia de Género: violencia ejercida sobre las mujeres por quienes sean o hayan sido sus cónyuges o parejas; Juzgados de Violencia sobre la Mujer, orden de protección y derechos laborales específicos.",
+        "Ley 4/2023 para la igualdad real y efectiva de las personas trans y para la garantía de los derechos de las personas LGTBI: prohibición de terapias de conversión, autodeterminación de género y medidas contra la discriminación.",
+        "Ley 39/2006 de Promoción de la Autonomía Personal y Atención a las personas en situación de dependencia (LAPAD): Sistema para la Autonomía y Atención a la Dependencia (SAAD). Tres grados: I (moderada), II (severa) y III (gran dependencia)."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t9-q1",
+      "q": "¿A partir de qué número de personas trabajadoras es obligatorio contar con un Plan de Igualdad en las empresas (LO 3/2007)?",
+      "options": [
+        "Empresas de 50 o más personas trabajadoras",
+        "Empresas de más de 100 trabajadores",
+        "Empresas de más de 250 trabajadores exclusivamente",
+        "En todas las empresas sin importar plantilla"
+      ],
+      "answer": 0,
+      "explain": "Art. 45.2 LO 3/2007 (tras reforma por RDL 6/2019): Las empresas de cincuenta o más personas trabajadoras deberán elaborar y aplicar un plan de igualdad."
+    },
+    {
+      "id": "w3-t9-q2",
+      "q": "¿Qué ámbito de agresión define la violencia de género según el artículo 1.1 de la Ley Orgánica 1/2004?",
+      "options": [
+        "La violencia que ejercen sobre las mujeres quienes sean o hayan sido sus cónyuges o quienes estén o hayan estado ligados a ellas por relaciones similares de afectividad",
+        "Toda violencia ejercida en el entorno laboral",
+        "Cualquier delito patrimonial contra una mujer",
+        "Los conflictos entre vecinos"
+      ],
+      "answer": 0,
+      "explain": "Art. 1.1 LO 1/2004: La violencia que, como manifestación de la discriminación y las relaciones de poder, se ejerce sobre las mujeres por parte de quienes sean o hayan sido sus cónyuges o estén o hayan estado ligados por análoga relación de afectividad, aun sin convivencia."
+    },
+    {
+      "id": "w3-t9-q3",
+      "q": "¿Cuáles son los tres grados de dependencia tipificados en el artículo 26 de la Ley 39/2006 (LAPAD)?",
+      "options": [
+        "Grado I (dependencia moderada), Grado II (dependencia severa) y Grado III (gran dependencia)",
+        "Grado leve, grado medio y grado total",
+        "Discapacidad del 33%, 65% y 75%",
+        "Fase inicial, fase intermedia y fase asistida"
+      ],
+      "answer": 0,
+      "explain": "Art. 26 Ley 39/2006: La situación de dependencia se clasifica en Grado I (dependencia moderada), Grado II (dependencia severa) y Grado III (gran dependencia)."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w3-t9-b1",
+      "q": "¿Qué porcentaje define la composición o presencia equilibrada entre mujeres y hombres en listas electorales y órganos públicos?",
+      "options": [
+        "Ningún sexo debe tener una presencia inferior al 40% ni superior al 60%",
+        "Paridad matemática exacta del 50% en todo caso",
+        "Un mínimo del 25% para el sexo menos representado",
+        "Un mínimo del 30% fijado por la LOREG"
+      ],
+      "answer": 0,
+      "explain": "Disposición Adicional Primera LO 3/2007 y art. 44 bis LOREG: Presencia equilibrada de mujeres y hombres de forma que ningún sexo supere el 60 por 100 ni sea inferior al 40 por 100."
+    },
+    {
+      "id": "w3-t9-b2",
+      "q": "¿Qué prohíbe expresamente el artículo 17 de la Ley 4/2023 (Ley LGTBI y Trans)?",
+      "options": [
+        "La práctica de métodos, programas y terapias de aversión o conversión de la orientación sexual o identidad de género",
+        "El matrimonio entre personas del mismo sexo",
+        "La adopción por parejas de mujeres",
+        "La colegiación profesional obligatoria"
+      ],
+      "answer": 0,
+      "explain": "Art. 17 Ley 4/2023: Se prohíbe expresamente la práctica de métodos, programas y terapias de aversión o conversión destinadas a modificar la orientación o identidad sexual de las personas, incluso con consentimiento."
+    },
+    {
+      "id": "w3-t9-b3",
+      "q": "¿Qué instrumento individualizado establece los servicios y prestaciones idóneas para una persona dependiente según la Ley 39/2006?",
+      "options": [
+        "El Programa Individual de Atención (PIA)",
+        "El catálogo de enfermedades raras",
+        "El padrón de beneficiarios del SEPE",
+        "La tarjeta sanitaria europea"
+      ],
+      "answer": 0,
+      "explain": "Art. 29 Ley 39/2006: El Programa Individual de Atención (PIA) determinará las modalidades de intervención y los servicios o prestaciones más adecuados para la persona en situación de dependencia."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Leyes de Igualdad y Derechos Sociales",
+    "prompt": "Empareja cada norma básica con su objeto principal de regulación.",
+    "pairs": [
+      [
+        "LO 3/2007",
+        "Igualdad efectiva, planes en empresas >50 y presencia equilibrada (40-60%)"
+      ],
+      [
+        "LO 1/2004",
+        "Protección integral contra la violencia ejercida por parejas o exparejas"
+      ],
+      [
+        "Ley 4/2023",
+        "Igualdad efectiva LGTBI y prohibición de terapias de aversión/conversión"
+      ],
+      [
+        "Ley 39/2006",
+        "Autonomía personal y atención a la dependencia en 3 grados mediante el PIA"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Patriarcal Discriminador",
+    "kind": "king",
+    "intro": [
+      "¡Pagaré un 30% menos a las mujeres e ignoraré la brecha de género!"
+    ],
+    "defeat": [
+      "¡Art. 14 CE y LO 3/2007! Registro retributivo obligatorio y principio de igual retribución por trabajo de igual valor."
+    ]
+  },
+  "summary": [
+    "Art. 9.2 y art. 14 CE: igualdad real y efectiva y no discriminación.",
+    "LO 3/2007: transversalidad de género, presencia equilibrada (40-60%) y planes de igualdad obligatorios en empresas de 50 o más trabajadores.",
+    "LO 1/2004 (Violencia de Género): cónyuge o análoga afectividad; Juzgados de Violencia sobre la Mujer.",
+    "Ley 4/2023 (LGTBI y Trans): prohibición taxativa de terapias de aversión o conversión y autodeterminación.",
+    "Ley 39/2006 (Dependencia): SAAD, 3 grados (I moderada, II severa, III gran dependencia) y Programa Individual de Atención (PIA)."
+  ]
+};
+
+export const W3_T10: MiniWorldDef = {
+  "id": "politicas-t10",
+  "num": 10,
+  "temaTitle": "Tema 10: Otras políticas públicas. El sistema sanitario: distribución de competencias, gestión y financiación. Política exterior y de cooperación al desarrollo. Régimen de telecomunicaciones y desarrollo de la sociedad de la información. La Agenda 2030 y los Objetivos de Desarrollo Sostenible.",
+  "name": "Cúpula de la Salud y los ODS",
+  "emoji": "🏥",
+  "theme": "politicas",
+  "color": "#0d9488",
+  "enemy": "nube",
+  "enemyName": "Desigualdades sanitarias",
+  "npcs": [
+    {
+      "name": "Epidemióloga y Coordinadora ODS",
+      "role": "Sistema Sanitario, Cooperación al Desarrollo y Agenda 2030",
+      "look": {
+        "skin": "#f5d0a9",
+        "hair": "#2e2e2e",
+        "hairStyle": "curly",
+        "shirt": "#0f766e",
+        "pants": "#134e4a",
+        "acc": [
+          "badge",
+          "glasses"
+        ],
+        "accColor": "#ffd700"
+      },
+      "pages": [
+        "Art. 43 CE: se reconoce el derecho a la protección de la salud. Compete a los poderes públicos organizar y tutelar la salud pública.",
+        "Ley 14/1986 General de Sanidad y Ley 16/2003 de cohesión y calidad del Sistema Nacional de Salud (SNS):",
+        "• Competencias: sanidad exterior y bases y coordinación general de la sanidad (art. 149.1.16ª CE) corresponden al Estado; la gestión y ejecución de la asistencia sanitaria está transferida a las Comunidades Autónomas.",
+        "• Consejo Interterritorial del SNS: órgano permanente de coordinación, cooperación y enlace entre el Ministerio de Sanidad y las CCAA.",
+        "Cooperación Internacional para el Desarrollo: Ley 1/2023 de Cooperación para el Desarrollo Sostenible y la Solidaridad Global (compromiso de destinar el 0,7% de la RNB a AOD para 2030, AECID).",
+        "Telecomunicaciones (Ley 11/2022 General de Telecomunicaciones): conectividad ultrarrápida, espectro radioeléctrico y despliegue 5G.",
+        "Agenda 2030 y los 17 Objetivos de Desarrollo Sostenible (ODS): adoptados por la ONU en 2015 para poner fin a la pobreza, proteger el planeta y garantizar paz y prosperidad."
+      ]
+    }
+  ],
+  "blockQs": [
+    {
+      "id": "w3-t10-q1",
+      "q": "¿Cómo se distribuyen las competencias en materia sanitaria según el art. 149.1.16ª de la Constitución?",
+      "options": [
+        "Sanidad exterior y bases y coordinación general de la sanidad corresponden al Estado; la gestión y asistencia sanitaria corresponde a las CCAA",
+        "Toda la sanidad y gestión de hospitales corresponde en exclusiva al Estado",
+        "Es una competencia exclusivamente local de los municipios",
+        "No está prevista en la Constitución Española"
+      ],
+      "answer": 0,
+      "explain": "Art. 149.1.16ª CE: El Estado tiene competencia exclusiva sobre sanidad exterior y sobre las bases y coordinación general de la sanidad. La asistencia y gestión de los servicios de salud está transferida a las CCAA."
+    },
+    {
+      "id": "w3-t10-q2",
+      "q": "¿Cuál es el órgano permanente de coordinación y enlace entre el Estado y las CCAA en el Sistema Nacional de Salud?",
+      "options": [
+        "El Consejo Interterritorial del Sistema Nacional de Salud",
+        "La Conferencia Episcopal",
+        "El Consejo de Seguridad Nacional",
+        "La Comisión Mixta de Transferencias"
+      ],
+      "answer": 0,
+      "explain": "Ley 16/2003: El Consejo Interterritorial del SNS, compuesto por la persona titular del Ministerio de Sanidad y los consejeros autonómicos de salud, es el órgano de cooperación y gobernanza del sistema sanitario."
+    },
+    {
+      "id": "w3-t10-q3",
+      "q": "¿Cuántos Objetivos de Desarrollo Sostenible (ODS) integran la Agenda 2030 aprobada por Naciones Unidas?",
+      "options": [
+        "17 Objetivos de Desarrollo Sostenible (ODS)",
+        "10 Objetivos",
+        "25 Objetivos",
+        "12 Objetivos"
+      ],
+      "answer": 0,
+      "explain": "La Agenda 2030 para el Desarrollo Sostenible, aprobada por la Asamblea General de la ONU en septiembre de 2015, consta de 17 ODS y 169 metas."
+    }
+  ],
+  "bossQs": [
+    {
+      "id": "w3-t10-b1",
+      "q": "¿Qué meta presupuestaria fija la Ley 1/2023 de Cooperación para el Desarrollo Sostenible respecto a la Ayuda Oficial al Desarrollo (AOD)?",
+      "options": [
+        "Destinar el 0,7% de la Renta Nacional Bruta a la AOD en el horizonte del año 2030",
+        "El 1% del PIB inmediatamente",
+        "El 0,2% sin fecha fija",
+        "Un importe fijo de 10.000 millones de euros"
+      ],
+      "answer": 0,
+      "explain": "Art. 4.1 Ley 1/2023: España asume el compromiso de destinar el 0,7% de la RNB a la Ayuda Oficial al Desarrollo (AOD) en el año 2030."
+    },
+    {
+      "id": "w3-t10-b2",
+      "q": "¿A qué agencia estatal le corresponde la gestión y fomento de las políticas de cooperación internacional para el desarrollo en España?",
+      "options": [
+        "A la Agencia Española de Cooperación Internacional para el Desarrollo (AECID)",
+        "Al Instituto Cervantes exclusivamente",
+        "A la Sociedad Estatal de Participaciones Industriales",
+        "A la Dirección General de Protección Civil"
+      ],
+      "answer": 0,
+      "explain": "La AECID es el principal órgano de gestión de la cooperación española, adscrita al Ministerio de Asuntos Exteriores, Unión Europea y Cooperación."
+    },
+    {
+      "id": "w3-t10-b3",
+      "q": "¿Cuál de las siguientes prestaciones sanitarias forma parte de la cartera común básica de servicios asistenciales del SNS (Ley 16/2003)?",
+      "options": [
+        "Atención primaria y especializada, urgencias, farmacia hospitalaria y transporte sanitario urgente",
+        "Cirugía estética meramente embellecedora",
+        "Tratamientos en balnearios privados sin prescripción médica",
+        "Suministro gratuito de cosméticos"
+      ],
+      "answer": 0,
+      "explain": "Art. 8 bis Ley 16/2003: La cartera común básica de servicios asistenciales comprende las actividades asistenciales de prevención, diagnóstico, tratamiento y rehabilitación cubiertas de forma completa."
+    }
+  ],
+  "mini": {
+    "type": "match",
+    "title": "Políticas Sanitarias, Cooperación y Agenda 2030",
+    "prompt": "Empareja cada ámbito público con su mecanismo de gobernanza o meta legal.",
+    "pairs": [
+      [
+        "Consejo Interterritorial SNS",
+        "Coordinación y consenso entre Ministerio de Sanidad y CCAA"
+      ],
+      [
+        "Agenda 2030",
+        "17 Objetivos de Desarrollo Sostenible (ODS) adoptados por la ONU"
+      ],
+      [
+        "Ley 1/2023 de Cooperación",
+        "Meta de alcanzar el 0,7% de la RNB en AOD para el año 2030"
+      ],
+      [
+        "Competencia sanitaria (149.1.16ª)",
+        "Bases y sanidad exterior (Estado); gestión asistencial (CCAA)"
+      ]
+    ]
+  },
+  "boss": {
+    "name": "El Contaminador Global",
+    "kind": "cloud",
+    "intro": [
+      "¡Destruiré la cohesión sanitaria y bloquearé las metas de desarrollo sostenible!"
+    ],
+    "defeat": [
+      "¡Art. 43 CE y Agenda 2030! Cohesión y universalidad del Sistema Nacional de Salud consolidadas."
+    ]
+  },
+  "summary": [
+    "Art. 43 CE: derecho a la protección de la salud.",
+    "Sanidad (art. 149.1.16ª): bases y coordinación el Estado; gestión de la asistencia las CCAA. Consejo Interterritorial del SNS.",
+    "Ley 1/2023 de Cooperación Internacional: compromiso vinculante del 0,7% de la RNB en AOD para 2030. AECID.",
+    "Telecomunicaciones (Ley 11/2022): redes ultrarrápidas y conectividad inclusiva.",
+    "Agenda 2030: 17 ODS y 169 metas para la sostenibilidad económica, social y ambiental."
+  ]
+};
 
 export const W3: WorldDef = {
   id: "politicas",
   num: 3,
   bloque: "Bloque III",
-  title: "Políticas públicas",
-  name: "Ciudad Futuro 2030",
-  emoji: "🌱",
+  title: "III. Políticas Públicas",
+  name: "Metrópolis Pública",
+  emoji: "🌳",
   theme: "politicas",
-  color: "#2fb26a",
+  color: "#10b981",
   enemy: "nube",
-  enemyName: "Nubes de smog",
+  enemyName: "Nubes contaminantes",
   temas: [
-    "Tema 1: Concepto, ciclo y evaluación de políticas públicas",
-    "Tema 2: Administración electrónica y modernización de la AGE",
-    "Tema 3: Gobierno Abierto, Transparencia y Ley 19/2013",
-    "Tema 4: Protección de datos personales y garantía de derechos digitales",
-    "Tema 5: Políticas de igualdad, violencia de género, discapacidad y dependencia",
-    "Tema 6: Agenda 2030, Cambio Climático y Políticas Migratorias",
-  ],
-  miniWorlds: [W3_T1, W3_T2, W3_T3, W3_T4, W3_T5, W3_T6],
+    "Tema 1: Políticas de modernización de la Administración General del Estado. La Administración electrónica. Acceso electrónico de los ciudadanos a los servicios públicos. La Agenda Digital para España. La calidad de los servicios públicos y de atención al ciudadano. Mejora Regulatoria y Análisis de Impacto Normativo.",
+    "Tema 2: Política económica actual. Política presupuestaria. Evolución y distribución actual del gasto público. Política fiscal. La unidad de mercado.",
+    "Tema 3: Política ambiental. Distribución de competencias. Conservación de la biodiversidad. Prevención de la contaminación y el cambio climático.",
+    "Tema 4: La Seguridad Social: estructura y financiación. Problemas actuales y líneas de actuación. El régimen general y los regímenes especiales. La acción protectora de la Seguridad Social. Tipos y características de las prestaciones.",
+    "Tema 5: La evolución del empleo en España. Los servicios públicos de empleo: régimen de prestaciones y políticas de empleo.",
+    "Tema 6: Política de inmigración. Régimen de los extranjeros en España. Derecho de asilo y condición de refugiado.",
+    "Tema 7: El Gobierno Abierto: concepto, principios informadores y planes de acción de España. La Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno.",
+    "Tema 8: La protección de datos personales y su régimen jurídico: principios, derechos, responsable y encargado del tratamiento, delegado y autoridades de protección de datos. Derechos digitales.",
+    "Tema 9: Políticas de igualdad y contra la violencia de género: régimen jurídico. Políticas de igualdad de trato y no discriminación de las personas LGTBI. Discapacidad y dependencia: régimen jurídico.",
+    "Tema 10: Otras políticas públicas. El sistema sanitario: distribución de competencias, gestión y financiación. Política exterior y de cooperación al desarrollo. Régimen de telecomunicaciones y desarrollo de la sociedad de la información. La Agenda 2030 y los Objetivos de Desarrollo Sostenible."
+],
+  miniWorlds: [W3_T1, W3_T2, W3_T3, W3_T4, W3_T5, W3_T6, W3_T7, W3_T8, W3_T9, W3_T10],
   npcs: [
     W3_T1.npcs[0],
     W3_T2.npcs[0],
     W3_T3.npcs[0],
-    W3_T4.npcs[0],
-    W3_T5.npcs[0],
+    W3_T4.npcs[0]
   ],
   blockQs: [
     W3_T1.blockQs[0],
@@ -393,42 +1582,55 @@ export const W3: WorldDef = {
     W3_T4.blockQs[0],
     W3_T5.blockQs[0],
     W3_T6.blockQs[0],
+    W3_T7.blockQs[0],
+    W3_T8.blockQs[0],
+    W3_T9.blockQs[0],
+    W3_T10.blockQs[0]
   ],
   bossQs: [
     W3_T1.bossQs[0],
     W3_T2.bossQs[0],
     W3_T3.bossQs[0],
-    W3_T4.bossQs[1],
+    W3_T4.bossQs[0],
     W3_T5.bossQs[0],
-    W3_T6.bossQs[1],
+    W3_T6.bossQs[0],
+    W3_T7.bossQs[0],
+    W3_T8.bossQs[0]
   ],
   mini: {
-    type: "match",
-    title: "Gran Desafío del Bloque III: Los ODS y la Gobernanza",
-    prompt: "Une cada política pública esencial con su norma legal de cabecera.",
-    pairs: [
-      ["Evaluación de políticas públicas", "Ley 27/2022"],
-      ["Transparencia y acceso a la información", "Ley 19/2013"],
-      ["Protección de datos personales", "RGPD y LO 3/2018"],
-      ["Igualdad efectiva de mujeres y hombres", "Ley Orgánica 3/2007"],
-      ["Cambio climático y transición energética", "Ley 7/2021"],
-    ],
-  },
+  "type": "order",
+  "title": "Gran Desafío del Bloque III: Fases del Ciclo de las Políticas Públicas",
+  "prompt": "Ordena las fases teóricas y metodológicas del ciclo de una política pública.",
+  "items": [
+    "Identificación del problema público y definición del reto social",
+    "Entrada en la agenda política e institucional",
+    "Formulación de alternativas y análisis de impacto previo (MAIN)",
+    "Toma de decisión y aprobación normativa o presupuestaria",
+    "Implementación y despliegue organizativo por las Administraciones públicas",
+    "Evaluación ex post de resultados, eficacia y rendición de cuentas"
+  ]
+},
   boss: {
-    name: "La Nube Gris de la Desigualdad",
-    kind: "cloud",
-    intro: [
-      "Brrrr... ¡Soy la Desigualdad y el Oscurantismo! Cubro la sociedad con la niebla de la opacidad y los prejuicios.",
-      "Solo dominando las políticas públicas, la transparencia y los derechos sociales lograrás disiparme. ¡Lucha!",
-    ],
-    defeat: ["Nooo... las políticas basadas en evidencia, la transparencia y la Agenda 2030... ¡me disipan por completo!"],
-  },
-  summary: [
-    "Evaluación de políticas: Ley 27/2022, ciclo (agenda, diseño, adopción, ejecución, evaluación ex ante y ex post).",
-    "Admin electrónica: Leyes 39 y 40/2015, RD 203/2021. Obligados art. 14.2 (jurídicas, colegiados, empleados). Sede y PAGe.",
-    "Transparencia Ley 19/2013: publicidad activa, acceso sin motivación en plazo 1 mes (+1 mes), silencio negativo, CTBG en 1 mes.",
-    "Datos: RGPD 2016/679 + LO 3/2018 (menores 14 años, DPD obligatorio en sector público, principios art. 5, AEPD).",
-    "Igualdad: LO 3/2007 (planes empresas 50+, presencia 40/60). Violencia LO 1/2004. SAAD Ley 39/2006 (3 grados). OEP 7% discapacidad.",
-    "Agenda 2030: 17 ODS, Ley 7/2021 cambio climático (neutralidad 2050), LO 4/2000 extranjería y Ley 12/2009 asilo.",
+  "name": "El Gran Burócrata Gris",
+  "kind": "cloud",
+  "intro": [
+    "¡JA, JA, JA! ¡La Administración electrónica fallará, la brecha de género continuará y los datos serán expuestos!",
+    "Para derrotarme deberás responder preguntas sobre todos los 10 temas oficiales del Bloque III. ¡Acepta el reto!"
   ],
+  "defeat": [
+    "¡Increíble! La modernización digital, la transparencia, la igualdad y el Estado del Bienestar han prevalecido."
+  ]
+},
+  summary: [
+  "Modernización: Ley 39/2015 (relación electrónica obligatoria para personas jurídicas y colectivos art. 14.2), ENS (RD 311/2022) y ENI.",
+  "Economía y fiscalidad: art. 31 (progresividad), art. 135 (estabilidad y deuda), LO 2/2012, AIReF y Ley 20/2013 de Unidad de Mercado.",
+  "Medio ambiente: art. 49.1.23ª (bases Estado, gestión CCAA). Ley 7/2021 (neutralidad 2050, ZBE en >50.000 hab). EAE y EIA.",
+  "Seguridad Social: TRLGSS, separación de fuentes, INSS (económicas) y TGSS (patrimonio, caja única, recaudación). IMV (Ley 19/2021).",
+  "Empleo: Ley 3/2023. Desempleo contributivo (360 días en 6 años; 70% y 60%) y asistencial (<75% SMI; mayores 52 cotiza).",
+  "Extranjería: LO 4/2000 (estancia, residencia temporal y larga duración 5 años). Asilo (Ley 12/2009, CIAR, non-refoulement).",
+  "Transparencia: Ley 19/2013 (publicidad activa, acceso universal en 1 mes silencio negativo, CTBG).",
+  "Protección de datos: RGPD y LOPDGDD. DPD obligatorio en AAPP. Brechas en 72h. Derechos ARSULPO y derechos digitales.",
+  "Igualdad: LO 3/2007 (planes >50 trabajadores, presencia equilibrada 40-60%), LO 1/2004 (violencia de género), Ley 4/2023 (LGTBI) y Ley 39/2006 (dependencia).",
+  "Sanidad y ODS: art. 149.1.16ª (bases Estado, gestión CCAA), Consejo Interterritorial del SNS. Ley 1/2023 Cooperación (0,7% RNB en 2030) y 17 ODS."
+],
 };
