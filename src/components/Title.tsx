@@ -92,7 +92,7 @@ export default function Title({ onPlay, hasProgress }: { onPlay: () => void; has
           </h1>
           <p className="font-pixel text-[11px] sm:text-sm mt-3 text-[#9be7ff] leading-relaxed">Noa y el Temario Mágico</p>
           <p className="mt-4 text-sm sm:text-base text-white/85 max-w-md mx-auto md:mx-0">
-            Plataformas retro de los 90 para repasar los <b>6 bloques</b> del temario: recorre seis mundos, habla con sus habitantes, responde pruebas tipo test, supera minijuegos y derrota al jefe final de cada bloque.
+            Plataformas retro para repasar los <b>6 bloques</b> y sus <b>36 temas (mini-mundos)</b>: recorre cada tema oficial, aprende con sus personajes, responde preguntas test con explicaciones del BOE, resuelve minijuegos y derrota al jefe final.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
             <button
@@ -110,13 +110,11 @@ export default function Title({ onPlay, hasProgress }: { onPlay: () => void; has
           </div>
           {help && (
             <div className="mt-4 bg-black/40 border-2 border-white/30 p-3 text-sm text-left space-y-1">
-              <p>⌨️ <b>Mover:</b> ← → o A D · <b>Saltar:</b> Espacio, ↑ o W</p>
-              <p>📖 <b>Lanzar libro:</b> X o K (derrota enemigos y frena ataques)</p>
-              <p>💬 <b>Hablar:</b> E o ↓ al acercarte a un personaje</p>
-              <p>❓ <b>Bloques ?:</b> golpéalos desde abajo para responder una pregunta</p>
-              <p>🔒 <b>Prueba:</b> minijuego que abre la puerta a mitad de mundo</p>
-              <p>👑 <b>Jefe:</b> esquiva y responde bien para vencerle</p>
-              <p>📱 En móvil hay botones táctiles en pantalla.</p>
+              <p>⌨️ <b>Teclado:</b> ← → / A D mover · Espacio / ↑ saltar · X lanzar libro · E / ↓ hablar · Esc pausa</p>
+              <p>📱 <b>Móvil y Tablet:</b> Mando virtual ergonómico táctil (◀ ▶ mover, ▲ saltar, 📖 libro, 💬 hablar con aviso dinámico)</p>
+              <p>🗺️ <b>36 Mini-Mundos:</b> Cada bloque tiene sus 6 temas individuales y el Gran Desafío del Jefe</p>
+              <p>❓ <b>Bloques ?:</b> Salta desde abajo para responder preguntas test oficiales</p>
+              <p>🔒 <b>Pruebas:</b> Minijuegos de ordenar y emparejar conceptos</p>
             </div>
           )}
           <p className="mt-6 text-[11px] text-white/50 max-w-md mx-auto md:mx-0">

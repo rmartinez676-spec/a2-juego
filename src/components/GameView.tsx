@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { WorldDef, Question } from "../game/types";
+import type { WorldDef, Question, MiniWorldDef } from "../game/types";
 import { Game, Input, MAX_HEARTS } from "../game/engine";
 import type { HudState } from "../game/engine";
 import { isMuted, setMuted, sfx, startMusic, stopMusic, unlockAudio } from "../game/audio";
@@ -18,21 +18,39 @@ type Overlay =
 
 interface Props {
   world: WorldDef;
+  miniWorld?: MiniWorldDef;
   worldIdx: number;
   onAnswer: (qid: string, ok: boolean) => void;
   onComplete: (r: WorldResult) => void;
   onExit: () => void;
 }
 
-export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit }: Props) {
+export default function GameView({ world, miniWorld, worldIdx, onAnswer, onComplete, onExit }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<Game | null>(null);
   const inputRef = useRef(new Input());
   const overlayRef = useRef<Overlay | null>({ kind: "intro" });
   const stats = useRef({ correct: 0, wrong: 0 });
   const [overlay, setOverlayState] = useState<Overlay | null>({ kind: "intro" });
-  const [hud, setHud] = useState<HudState>({ hearts: MAX_HEARTS, coins: 0, score: 0, bossHp: 0, bossMax: 0, bossActive: false, qFound: 0, qTotal: world.blockQs.length });
+  const [hud, setHud] = useState<HudState>({
+    hearts: MAX_HEARTS,
+    coins: 0,
+    score: 0,
+    bossHp: 0,
+    bossMax: 0,
+    bossActive: false,
+    qFound: 0,
+    qTotal: world.blockQs.length,
+    nearNpc: false,
+  });
   const [muted, setMutedState] = useState(isMuted());
+
+  // Detectar si el dispositivo tiene pantalla táctil (móvil, tablet, etc.)
+  const [touchEnabled, setTouchEnabled] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  });
+
   const answerRef = useRef(onAnswer);
   answerRef.current = onAnswer;
 
@@ -132,48 +150,85 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
     }
   };
 
-  const touch = (key: "left" | "right" | "jump" | "throw", down: boolean) => {
+  const vibrate = (ms = 12) => {
+    try {
+      if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate(ms);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const touch = (key: "left" | "right" | "jump" | "throw" | "talk", down: boolean) => {
     const inp = inputRef.current;
     if (overlayRef.current !== null) return;
+    if (down) vibrate();
     if (key === "left") inp.left = down;
     else if (key === "right") inp.right = down;
     else if (key === "jump") {
       inp.jump = down;
       if (down) inp.press("jump");
-    } else if (key === "throw" && down) inp.press("throw");
+    } else if (key === "throw" && down) {
+      inp.press("throw");
+    } else if (key === "talk" && down) {
+      inp.press("talk");
+    }
   };
-
-  const tb = (key: "left" | "right" | "jump" | "throw", label: string, extra = "") => (
-    <button
-      className={`touch-none select-none font-pixel text-lg w-16 h-16 border-4 border-black bg-white/80 active:bg-[#ffd84d] shadow-[3px_3px_0_#000] ${extra}`}
-      onPointerDown={(e) => {
-        e.preventDefault();
-        touch(key, true);
-      }}
-      onPointerUp={() => touch(key, false)}
-      onPointerCancel={() => touch(key, false)}
-      onPointerLeave={() => touch(key, false)}
-      onContextMenu={(e) => e.preventDefault()}
-    >
-      {label}
-    </button>
-  );
 
   const total = stats.current.correct + stats.current.wrong;
   const acc = total === 0 ? 1 : stats.current.correct / total;
   const stars = acc >= 0.85 ? 3 : acc >= 0.65 ? 2 : 1;
 
+  // Renderizador de botón táctil ergonómico con pointer-capture
+  const renderTouchBtn = (
+    key: "left" | "right" | "jump" | "throw" | "talk",
+    label: string,
+    sublabel?: string,
+    extra = "",
+  ) => {
+    return (
+      <button
+        type="button"
+        className={`touch-none select-none flex flex-col items-center justify-center border-4 border-black font-pixel shadow-[3px_3px_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0_#000] cursor-pointer transition-all ${extra}`}
+        onPointerDown={(e) => {
+          e.preventDefault();
+          try {
+            (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+          } catch {
+            /* ignore */
+          }
+          touch(key, true);
+        }}
+        onPointerUp={(e) => {
+          e.preventDefault();
+          touch(key, false);
+        }}
+        onPointerCancel={(e) => {
+          e.preventDefault();
+          touch(key, false);
+        }}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <span className="text-xl sm:text-2xl leading-none">{label}</span>
+        {sublabel && <span className="text-[8px] sm:text-[9px] mt-0.5 leading-none opacity-80">{sublabel}</span>}
+      </button>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-[#0d0d24] flex flex-col items-center py-2 px-2 select-none">
-      {/* HUD */}
-      <div className="w-full max-w-[1000px] flex flex-wrap items-center gap-x-4 gap-y-1 bg-[#14143a] border-4 border-black px-3 py-2 text-white font-pixel text-[10px] sm:text-xs" style={{ boxShadow: `0 0 0 2px ${world.color}` }}>
-        <button className="cursor-pointer hover:text-[#ffd84d]" onClick={pauseNow} title="Pausa (Esc)">
+    <div className="min-h-screen bg-[#0d0d24] flex flex-col items-center justify-between py-1 sm:py-2 px-2 select-none overflow-x-hidden">
+      {/* HUD SUPERIOR */}
+      <div
+        className="w-full max-w-[1020px] flex flex-wrap items-center gap-x-3 gap-y-1 bg-[#14143a] border-4 border-black px-3 py-2 text-white font-pixel text-[10px] sm:text-xs shrink-0 shadow-[4px_4px_0_#000]"
+        style={{ boxShadow: `0 0 0 2px ${world.color}` }}
+      >
+        <button className="cursor-pointer hover:text-[#ffd84d] active:scale-95" onClick={pauseNow} title="Pausa (Esc)">
           ⏸
         </button>
-        <span style={{ color: world.color }} className="brightness-150">
+        <span style={{ color: world.color }} className="brightness-150 truncate max-w-[180px] sm:max-w-none">
           {world.emoji} {world.bloque}
+          {miniWorld && ` · T${miniWorld.num}`}
         </span>
-        <span className="flex gap-0.5 text-sm">
+        <span className="flex gap-0.5 text-xs sm:text-sm">
           {Array.from({ length: MAX_HEARTS }).map((_, i) => (
             <span key={i} className={i < hud.hearts ? "" : "grayscale opacity-30"}>
               ❤️
@@ -182,59 +237,105 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
         </span>
         <span>🪙 {hud.coins}</span>
         <span>⭐ {hud.score}</span>
-        <span>❓ {hud.qFound}/{hud.qTotal}</span>
-        <button className="ml-auto cursor-pointer" onClick={toggleMute} title="Sonido">
-          {muted ? "🔇" : "🔊"}
-        </button>
-        <button className="cursor-pointer hover:text-[#ff7a90]" onClick={onExit}>
-          Salir
-        </button>
+        <span>
+          ❓ {hud.qFound}/{hud.qTotal}
+        </span>
+
+        <div className="ml-auto flex items-center gap-2">
+          {/* Botón para alternar controles táctiles en móvil y tablet */}
+          <button
+            className={`cursor-pointer px-1.5 py-0.5 border border-white/30 text-[9px] sm:text-[10px] ${
+              touchEnabled ? "bg-[#ffd84d] text-black font-bold" : "bg-black/50 text-white/70"
+            }`}
+            onClick={() => setTouchEnabled(!touchEnabled)}
+            title="Activar / desactivar mando táctil"
+          >
+            🎮 {touchEnabled ? "Táctil ON" : "Táctil OFF"}
+          </button>
+          <button className="cursor-pointer hover:text-[#ffd84d]" onClick={toggleMute} title="Sonido">
+            {muted ? "🔇" : "🔊"}
+          </button>
+          <button className="cursor-pointer text-[#ff7a90] hover:text-white" onClick={onExit} title="Salir al mapa">
+            Salir
+          </button>
+        </div>
+
         {hud.bossActive && (
-          <div className="w-full flex items-center gap-2">
-            <span className="text-[#ff7a90]">👑 {world.boss.name}</span>
+          <div className="w-full flex items-center gap-2 mt-1">
+            <span className="text-[#ff7a90] shrink-0">👑 {world.boss.name}</span>
             <div className="flex-1 h-3 bg-black border-2 border-white/40">
-              <div className="h-full bg-gradient-to-r from-[#e0364b] to-[#ff9a5a] transition-all duration-500" style={{ width: `${(hud.bossHp / Math.max(1, hud.bossMax)) * 100}%` }} />
+              <div
+                className="h-full bg-gradient-to-r from-[#e0364b] to-[#ff9a5a] transition-all duration-300"
+                style={{ width: `${(hud.bossHp / Math.max(1, hud.bossMax)) * 100}%` }}
+              />
             </div>
           </div>
         )}
       </div>
 
-      {/* Pantalla */}
-      <div className="relative mt-2 border-4 border-black bg-black shadow-[0_0_0_3px_#ffd84d33]" style={{ width: "min(100%, calc((100dvh - 150px) * 1.6667))", aspectRatio: "5 / 3", maxWidth: 1000 }}>
+      {/* ÁREA DE JUEGO (CANVAS + MODALES) */}
+      <div
+        className="relative my-auto border-4 border-black bg-black shadow-[0_0_0_3px_#ffd84d33] shrink-0"
+        style={{
+          width: "min(100%, calc((100dvh - 200px) * 1.6667))",
+          aspectRatio: "5 / 3",
+          maxWidth: 1000,
+        }}
+      >
         <canvas ref={canvasRef} className="w-full h-full [image-rendering:pixelated] block" />
 
         {overlay?.kind === "intro" && (
           <InfoCard
-            title={`${world.bloque} · Mundo ${world.num}`}
+            title={miniWorld ? `${world.bloque} · ${miniWorld.temaTitle}` : `${world.bloque} · Mundo ${world.num}`}
             color={world.color}
             actions={
               <button className={btn} onClick={begin}>
-                ¡Empezar!
+                ¡Empezar! ▶
               </button>
             }
           >
-            <p className="font-pixel text-sm sm:text-base mb-2" style={{ color: world.color }}>
+            <p className="font-pixel text-sm sm:text-base mb-1" style={{ color: world.color }}>
               {world.emoji} {world.name}
             </p>
-            <p className="mb-2 opacity-90">{world.title}</p>
-            <ul className="text-sm opacity-90 list-disc pl-5 space-y-0.5">
-              <li>Habla con los personajes: te explican el temario.</li>
-              <li>Golpea los bloques <b>?</b> con la cabeza para responder preguntas test.</li>
-              <li>Supera la <b>Prueba</b> (minijuego) para abrir la puerta.</li>
-              <li>Derrota al jefe final respondiendo bien y esquivando sus ataques.</li>
+            <p className="mb-2 text-xs sm:text-sm font-semibold text-[#ffd84d]">{world.title}</p>
+            <ul className="text-xs sm:text-sm opacity-90 list-disc pl-5 space-y-1">
+              <li>
+                Habla con el tutor <b>{world.npcs[0]?.name}</b> para repasar los artículos clave.
+              </li>
+              <li>
+                Golpea los bloques <b>?</b> saltando para responder preguntas test oficiales.
+              </li>
+              <li>
+                Supera el <b>Desafío / Minijuego</b> para abrir el portón hacia la meta.
+              </li>
+              <li>
+                Esquiva los proyectiles del guardián y responde bien para completar el tema.
+              </li>
             </ul>
-            <p className="mt-2 text-xs opacity-70">Enemigos de este mundo: {world.enemyName}. Salta sobre ellos o lánzales libros (X).</p>
+            <p className="mt-3 text-xs opacity-75">
+              Enemigos: {world.enemyName}. Salta sobre ellos o lánzales libros con el botón 📖 (tecla X).
+            </p>
           </InfoCard>
         )}
 
-        {overlay?.kind === "talk" && <DialogBox npc={world.npcs[overlay.idx]} color={world.color} onClose={() => { const d = overlay.done; setOverlay(null); d(); }} />}
+        {overlay?.kind === "talk" && (
+          <DialogBox
+            npc={world.npcs[overlay.idx]}
+            color={world.color}
+            onClose={() => {
+              const d = overlay.done;
+              setOverlay(null);
+              d();
+            }}
+          />
+        )}
 
         {overlay?.kind === "quiz" && (
           <QuizBox
             q={overlay.q}
             boss={overlay.boss}
             color={world.color}
-            title={overlay.boss ? `👑 ¡Ataque del jefe! Pregunta (quedan ${overlay.remaining})` : "❓ ¡Bloque de pregunta!"}
+            title={overlay.boss ? `👑 ¡Ataque del jefe! Pregunta (quedan ${overlay.remaining})` : "❓ ¡Pregunta de examen!"}
             onDone={(ok) => {
               record(overlay.q, ok);
               const d = overlay.done;
@@ -258,7 +359,7 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
 
         {overlay?.kind === "bossIntro" && (
           <InfoCard
-            title={`👑 JEFE FINAL: ${world.boss.name}`}
+            title={`👑 GUARDIÁN FINAL: ${world.boss.name}`}
             color="#e0364b"
             actions={
               <button
@@ -276,10 +377,10 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
               </button>
             }
           >
-            <p className="italic">«{world.boss.intro[overlay.page]}»</p>
+            <p className="italic text-sm sm:text-base">«{world.boss.intro[overlay.page]}»</p>
             {overlay.page === world.boss.intro.length - 1 && (
               <p className="mt-3 text-xs opacity-80">
-                Esquiva sus ataques (puedes pararlos con libros, X). Al terminar el tiempo te hará una pregunta: si aciertas, pierde vida; si fallas, pierdes un corazón.
+                Esquiva sus ataques. Al expirar el tiempo te formulará una pregunta clave: acertar le resta vida; fallar te quita un corazón.
               </p>
             )}
           </InfoCard>
@@ -302,7 +403,7 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
               </button>
             }
           >
-            <p>¡Ánimo! Repasar es parte de la oposición. Recuperas todos los corazones y vuelves al último punto de control.</p>
+            <p>¡Ánimo! El estudio de las oposiciones es constancia. Recuperas tus corazones y vuelves al último punto de control.</p>
           </InfoCard>
         )}
 
@@ -322,14 +423,22 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
                     gameRef.current?.resume();
                   }}
                 >
-                  Continuar
+                  Continuar ▶
                 </button>
               </>
             }
           >
-            <p className="text-sm">
-              <b>Mover:</b> ← → / A D · <b>Saltar:</b> Espacio / ↑ / W · <b>Lanzar libro:</b> X / K · <b>Hablar:</b> E / ↓ · <b>Pausa:</b> Esc
-            </p>
+            <div className="space-y-2 text-xs sm:text-sm">
+              <p>
+                <b>Mover:</b> Flechas ← → / A D · <b>Saltar:</b> Espacio / W / ↑
+              </p>
+              <p>
+                <b>Lanzar libro:</b> X / K · <b>Hablar:</b> E / ↓ / Enter · <b>Pausa:</b> Esc
+              </p>
+              <p className="opacity-80">
+                En pantallas táctiles (móviles y tablets), usa el mando virtual inferior con botones ergonómicos de movimiento, salto, libro y hablar.
+              </p>
+            </div>
           </InfoCard>
         )}
 
@@ -345,17 +454,17 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
                   onComplete({ stars, score: overlay.score, correct: stats.current.correct, wrong: stats.current.wrong });
                 }}
               >
-                Volver al mapa ▶
+                Continuar al mapa ▶
               </button>
             }
           >
-            <p className="italic mb-2">«{world.boss.defeat[0]}»</p>
-            <p className="font-pixel text-xs mb-2">
+            <p className="italic mb-2 text-sm sm:text-base">«{world.boss.defeat[0]}»</p>
+            <p className="font-pixel text-xs mb-2 text-[#ffd84d]">
               {"★".repeat(stars)}
               <span className="opacity-30">{"★".repeat(3 - stars)}</span> · Puntos {overlay.score} · Aciertos {stats.current.correct}/{total}
             </p>
-            <p className="text-xs font-bold text-[#ffd84d] mb-1">📝 Chuleta de repaso:</p>
-            <ul className="text-xs sm:text-sm list-disc pl-5 space-y-1 max-h-40 overflow-auto">
+            <p className="text-xs font-bold text-[#7dffb0] mb-1">📝 Chuleta de repaso de este tema:</p>
+            <ul className="text-xs sm:text-sm list-disc pl-5 space-y-1 max-h-48 overflow-y-auto">
               {world.summary.map((s, i) => (
                 <li key={i}>{s}</li>
               ))}
@@ -364,18 +473,45 @@ export default function GameView({ world, worldIdx, onAnswer, onComplete, onExit
         )}
       </div>
 
-      {/* Controles táctiles */}
-      <div className="md:hidden w-full max-w-[1000px] flex justify-between mt-3 px-2">
-        <div className="flex gap-3">
-          {tb("left", "◀")}
-          {tb("right", "▶")}
+      {/* CONTROLES TÁCTILES ERGONÓMICOS PARA MÓVIL Y TABLET */}
+      {touchEnabled ? (
+        <div className="w-full max-w-[1020px] flex items-center justify-between px-2 pt-2 pb-1 gap-2 shrink-0">
+          {/* Pad Izquierdo: Movimiento Dirección (◀ ▶) */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {renderTouchBtn("left", "◀", "IZQ", "w-14 h-14 sm:w-20 sm:h-20 bg-white/90 text-black")}
+            {renderTouchBtn("right", "▶", "DER", "w-14 h-14 sm:w-20 sm:h-20 bg-white/90 text-black")}
+          </div>
+
+          {/* Botón Central: Hablar / Interactuar con NPC (se ilumina cuando está cerca) */}
+          <div className="flex items-center">
+            {renderTouchBtn(
+              "talk",
+              "💬",
+              hud.nearNpc ? "¡HABLAR!" : "HABLAR",
+              `w-14 h-14 sm:w-16 sm:h-16 ${
+                hud.nearNpc
+                  ? "bg-[#ffd84d] text-black ring-4 ring-white animate-bounce scale-105 font-bold"
+                  : "bg-white/70 text-black opacity-80"
+              }`,
+            )}
+          </div>
+
+          {/* Pad Derecho: Acciones (Lanzar Libro 📖 + Saltar ▲) */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {renderTouchBtn("throw", "📖", "LIBRO", "w-14 h-14 sm:w-18 sm:h-18 bg-[#e0463a] text-white")}
+            {renderTouchBtn(
+              "jump",
+              "▲",
+              "SALTAR",
+              "w-16 h-16 sm:w-22 sm:h-22 bg-[#ffd84d] text-black text-2xl font-bold ring-2 ring-black",
+            )}
+          </div>
         </div>
-        <div className="flex gap-3">
-          {tb("throw", "📖")}
-          {tb("jump", "▲", "bg-[#ffd84d]/90")}
-        </div>
-      </div>
-      <p className="hidden md:block mt-2 text-[11px] text-white/60 font-pixel">← → mover · Espacio saltar · X libro · E hablar · Esc pausa</p>
+      ) : (
+        <p className="text-[11px] text-white/50 font-pixel text-center py-1">
+          ← → mover · Espacio saltar · X libro · E hablar · Esc pausa · Activa 'Táctil ON' para jugar con dedos en móvil/tablet
+        </p>
+      )}
     </div>
   );
 }

@@ -27,8 +27,13 @@ export default function Review({ wrong, onMaster, onBack }: { wrong: string[]; o
                   {w.emoji} {w.bloque} · {w.name}
                 </h3>
                 <div className="grid gap-3">
-                  {list.map(({ q }) => (
+                  {list.map(({ q, miniWorld }) => (
                     <div key={q.id} className="border-2 p-3 bg-[#1c1c4a]" style={{ borderColor: w.color }}>
+                      {miniWorld && (
+                        <span className="font-pixel text-[9px] text-[#ffd84d] bg-black/60 px-2 py-0.5 inline-block mb-1 border border-white/20">
+                          {miniWorld.emoji} {miniWorld.temaTitle}
+                        </span>
+                      )}
                       <p className="font-semibold text-sm sm:text-base">{q.q}</p>
                       <p className="mt-2 text-sm">
                         ✅ <b className="text-[#7dffb0]">{q.options[q.answer]}</b>

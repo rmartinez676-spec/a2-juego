@@ -6,24 +6,42 @@ export interface WorldResult {
 }
 
 export interface Progress {
-  unlocked: number; // número de mundos desbloqueados (>=1)
+  unlocked: number; // número de mundos/bloques desbloqueados (>=1)
+  unlockedMini: Record<string, number>; // id de bloque -> número de mini mundos desbloqueados (1..7)
   results: Record<string, WorldResult>;
   wrong: string[]; // ids de preguntas falladas
   studyMode: boolean;
   muted: boolean;
+  touchControls: boolean;
 }
 
-const KEY = "opos-quest-a2-v1";
+const KEY = "opos-quest-a2-v2";
 
 export function defaultProgress(): Progress {
-  return { unlocked: 1, results: {}, wrong: [], studyMode: false, muted: false };
+  return {
+    unlocked: 1,
+    unlockedMini: { estado: 1, ue: 1, politicas: 1, derecho: 1, rrhh: 1, hacienda: 1 },
+    results: {},
+    wrong: [],
+    studyMode: false,
+    muted: false,
+    touchControls: true,
+  };
 }
 
 export function loadProgress(): Progress {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY) || localStorage.getItem("opos-quest-a2-v1");
     if (!raw) return defaultProgress();
-    return { ...defaultProgress(), ...(JSON.parse(raw) as Partial<Progress>) };
+    const parsed = JSON.parse(raw) as Partial<Progress>;
+    return {
+      ...defaultProgress(),
+      ...parsed,
+      unlockedMini: {
+        ...defaultProgress().unlockedMini,
+        ...(parsed.unlockedMini || {}),
+      },
+    };
   } catch {
     return defaultProgress();
   }

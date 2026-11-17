@@ -18,6 +18,7 @@ export interface HudState {
   bossActive: boolean;
   qFound: number;
   qTotal: number;
+  nearNpc?: boolean;
 }
 
 export interface Callbacks {
@@ -255,6 +256,7 @@ export class Game {
       bossActive: this.boss.started,
       qFound: this.qFound,
       qTotal: this.world.blockQs.length,
+      nearNpc: this.nearNpc >= 0,
     };
   }
 
@@ -495,6 +497,7 @@ export class Game {
     }
 
     // --- NPC ---
+    const prevNear = this.nearNpc;
     this.nearNpc = -1;
     this.level.npcs.forEach((n, i) => {
       const d = Math.abs(n.x + 16 - (p.x + p.w / 2));
@@ -502,6 +505,7 @@ export class Game {
         this.nearNpc = i;
       }
     });
+    if (this.nearNpc !== prevNear) this.dirty = true;
     if (this.nearNpc >= 0 && !this.paused) {
       const i = this.nearNpc;
       if ((!this.talked[i] && p.onGround) || inp.consume("talk")) this.talkNpc(i);
