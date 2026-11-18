@@ -1,0 +1,31 @@
+{
+  "name": "Opos Quest A2 · Noa y el Temario Mágico",
+  "short_name": "OposQuest A2",
+  "description": "Juego retro de plataformas para repasar los 58 temas oficiales del Cuerpo de Gestión de la Administración Civil del Estado (A2).",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#140c2e",
+  "theme_color": "#161638",
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
